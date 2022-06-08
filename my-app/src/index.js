@@ -10,9 +10,21 @@ if (require('electron-squirrel-startup')) {
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    icon: __dirname + '/logo.ico',
     width: 800,
     height: 600,
+    show: false,
+    webPreferences: {
+      nodeIntegration: true,
+      devTools: false
+    }
   });
+
+  mainWindow.maximize();
+
+  mainWindow.on('ready-to-show', mainWindow.show);
+  
+  mainWindow.setMenuBarVisibility(false);
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, 'index.html'));

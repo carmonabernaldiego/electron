@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    background: #0c111b;
+    font-family: roboto, sans-serif;
+}
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 4%;
+    background: #0c111b;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo {
+    height: 70px;
+}
+
+.nav-links {
+    margin-top: 10px;
+    display: flex;
+    list-style: none;
+}
+
+.nav-items a {
+    text-decoration: none;
+    margin-left: 20px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #fff;
+    opacity: 0.9;
+    transition: color 200ms linear;
+}
+
+.nav-items a.active,
+.nav-items a:hover {
+    color: #0f8da9;
+    opacity: 1;
+    transition: color 350ms linear;
+}
+
+.nav-items a:active {
+    color: #fff;
+    opacity: 0.9;
+    transition: color 200ms linear;
+}
+
+.right-container {
+    display: block;
+    margin-left: auto;
+}
+
+.search-box {
+    border: none;
+    border-bottom: 1px solid #aaa;
+    background: transparent;
+    outline: none;
+    height: 30px;
+    color: #fff;
+    width: 250px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: .5s;
+}
+
+.search-box:focus {
+    width: 400px;
+    border-color: #1f80e0;
+}
+
+#logout-btn,
+#sub-btn {
+    background: #0f8da9;
+    padding: 9px 20px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background 200ms linear;
+}
+
+#logout-btn:hover,
+#sub-btn:hover {
+    background: #fff;
+    color: #0f8da9;
+    transition: background 350ms linear;
+}
+
+#logout-btn:active,
+#sub-btn:active {
+    background: #0f8da9;
+    color: #fff;
+    transition: background 200ms linear;
+}
+
+#login-link,
+#login-name {
+    margin-left: 25px;
+    color: #fff;
+    opacity: 0.9;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 200ms linear;
+}
+
+#login-link:hover,
+#login-name:hover {
+    color: #0f8da9;
+    opacity: 1;
+    transition: color 350ms linear;
+}
+
+#login-link:active,
+#login-name:active {
+    color: #fff;
+    opacity: 0.9;
+    transition: color 200ms linear;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 70px;
+    grid-row-gap: 0px;
+    margin-top: 120px;
+    margin-bottom: 100px;
+    margin-left: 110px;
+    margin-right: 110px;
+}
+
+section article {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+}
+
+section article .pelicula {
+    width: 400px;
+    background: #32476cd3 linear-gradient(to bottom, rgba(4, 8, 15, 0), #192133 90%);
+    border-radius: 0.5rem;
+}
+
+section article .pelicula img {
+    width: 100%;
+}
+
+section article .pelicula h3 {
+    padding: 10px 0;
+    font-size: 1.3rem;
+    color: #fff;
+    text-align: center;
+}
+
+section article .pelicula span {
+    display: block;
+    padding: 20px 16px 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #fff;
+    text-align: left;
+}
+
+section article .pelicula p {
+    padding: 16px 16px 40px;
+    font-size: 1rem;
+    color: #fff;
+    text-align: justify;
+}
+
+section aside {
+    width: 400px;
+    height: 370px;
+    background: #32476ca4 linear-gradient(to bottom, rgba(4, 8, 15, 0), #192133 90%);
+    border-radius: 0.5rem;
+    color: #fff;
+    text-align: center;
+}
+
+section aside ul {
+    list-style: none;
+    text-align: left;
+    margin: 5px 15px;
+}
+
+section aside ul li button {
+    display: block;
+    width: 100%;
+    height: 50px;
+    background: #32476cd3;
+    margin-top: 20px;
+    border: none;
+    border-radius: 0.4em;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    outline: none !important;
+    outline-width: 0 !important;
+    cursor: pointer;
+    transition: background 700ms linear;
+}
+
+section aside ul li button:hover {
+    background: #5276b3a4 radial-gradient(circle, rgba(20, 39, 71, 0), #354d84 90%);
+    transition: background 800ms linear;
+}
+
+section aside ul li button:active {
+    background: #32476cd3;
+    transition: background 700ms linear;
+}

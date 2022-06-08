@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Películas - CKH PELIS</title>
+    <title>Series - CKH PELIS</title>
     <link rel="icon" type="image/png" href="assets/img/logo.png" />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
@@ -13,8 +13,8 @@
     <nav class="navbar">
       <img src="assets/img/logo.png" class="brand-logo" alt="" />
       <ul class="nav-links">
-        <li class="nav-items"><a href="series.html">Series</a></li>
-        <li class="nav-items"><a class="active" href="#">Películas</a></li>
+        <li class="nav-items"><a class="active" href="#">Series</a></li>
+        <li class="nav-items"><a href="index.html">Películas</a></li>
         <li class="nav-items"><a href="anime.html">Animes</a></li>
       </ul>
       <div class="right-container">
@@ -34,34 +34,25 @@
       <aside>
         <ul>
           <li>
-            <button onclick="filtrarCategoria('Accion')">Acción</button>
+            <button onclick="filtrarCategoria( 'Accion' )">Acción</button>
           </li>
           <li>
-            <button onclick="filtrarCategoria('Comedia')">Comedia</button>
+            <button onclick="filtrarCategoria( 'Comedia' )">Comedia</button>
           </li>
           <li>
-            <button onclick="filtrarCategoria('DC')">DC Comics</button>
+            <button onclick="filtrarCategoria( 'Drama' )">Drama</button>
           </li>
           <li>
-            <button onclick="filtrarCategoria('Marvel')">Marvel</button>
+            <button onclick="filtrarCategoria( 'Marvel' )">Marvel</button>
           </li>
           <li>
-            <button onclick="ingresarPeliculas()">Mostrar todo</button>
+            <button onclick="ingresarSeries()">Mostrar todo</button>
           </li>
         </ul>
       </aside>
-      <article id="contenido">
-        <!-- ESTE ARTICLE ENGLOBA TODAS LAS PELICULAS QUE SE INSERTAN POR UN SCRIPT -->
-      </article>
+      <article id="contenido"></article>
     </section>
     <script src="assets/js/script.js"></script>
-    <!-- ESTE SCRIPT ES EL ENCARGADO DE METER TODAS LAS PELICULAS -->
-    <script src="assets/js/scriptPeliculas.js"></script>
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8185770440672299"
-      crossorigin="anonymous"
-    ></script>
+    <script src="assets/js/scriptSerie.js"></script>
   </body>
-
 </html>

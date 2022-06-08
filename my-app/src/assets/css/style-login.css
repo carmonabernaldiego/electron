@@ -1,0 +1,190 @@
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background: #e3e9ed;
+}
+
+header {
+    width: 100%;
+    height: 280px;
+    padding-top: 20px;
+    background: #426ca4;
+    box-shadow: 0 2px 6px rgba(64, 121, 196, 0.4);
+    user-select: none;
+}
+
+header .logo {
+    width: 140px;
+    margin: 0 auto;
+}
+
+header a {
+    text-decoration: none;
+}
+
+header a img {
+    width: 100%;
+}
+
+.box-login,
+.box-registro {
+    width: 380px;
+    height: 378px;
+    margin: -55px auto 0;
+    background: #eef4ff;
+    box-shadow: 0 2px 6px rgba(64, 121, 196, 0.2);
+    border-top: 4px solid #6f8daf;
+    border-radius: 0.4em;
+    user-select: none;
+}
+
+.box-login .logo {
+    width: 150px;
+    height: 150px;
+    margin: -55px auto 0;
+    background: url(../img/user.png) #eef4ff no-repeat bottom / 126px 126px;
+    box-shadow: 0 1px 6px rgba(64, 121, 196, 0.2);
+    border: 5px solid #6f8daf;
+    border-radius: 100%;
+}
+
+.box-login .label,
+.box-registro .label {
+    display: block;
+    padding: 10px 0 18px 0;
+    font-size: 1.7em;
+    color: #303134;
+    text-shadow: 0 1px 5px rgba(64, 121, 196, 0.2);
+    text-align: center;
+}
+
+.box-registro .label {
+    padding: 30px 0 0;
+}
+
+.box-login #txtuser,
+.box-login #txtpass,
+.box-registro #txtuser,
+.box-registro #txtname,
+.box-registro #txtpass {
+    display: block;
+    width: 87%;
+    height: 45px;
+    margin: 0 auto;
+    padding: 0 10px;
+    background: transparent;
+    box-shadow: 0 1px 6px rgba(64, 121, 196, 0.2);
+    border: 2px solid #92adcc;
+    border-radius: 0.4em;
+    font-size: .9em;
+    color: #526f99;
+    outline: none !important;
+    outline-width: 0 !important;
+    transition: all 350ms ease-out;
+}
+
+.box-login #txtuser:focus,
+.box-login #txtpass:focus,
+.box-registro #txtuser:focus,
+.box-registro #txtname:focus,
+.box-registro #txtpass:focus {
+    color: #446594 !important;
+    cursor: text;
+    box-shadow: 0 0 0 1.5pt #92adcc !important;
+    transition: all 250ms ease-in;
+}
+
+.box-registro #txtname,
+.box-registro #txtuser,
+.box-registro #txtpass {
+    margin-top: 25px;
+}
+
+.box-login #txtpass {
+    margin-top: 20px;
+}
+
+.box-login .forgot-pass {
+    margin: 12px 0 10px;
+    text-align: center;
+}
+
+.box-login .forgot-pass a {
+    display: inline-block;
+    font-size: 1em;
+    color: #303134;
+    text-shadow: 0 1px 5px rgba(64, 121, 196, 0.2);
+    text-decoration: none;
+    outline: none !important;
+    outline-width: 0 !important;
+}
+
+.box-login .forgot-pass a::after {
+    display: block;
+    content: "";
+    width: 0;
+    height: 3px;
+    margin: 0 auto;
+    background: #92adcc;
+    border-radius: 0.1em;
+    transition: all 350ms ease-out;
+}
+
+.box-login .forgot-pass a:hover::after,
+.box-login .forgot-pass a:focus::after {
+    padding: 0 50%;
+    transition: all 250ms ease-in;
+}
+
+.box-login .forgot-pass a:active {
+    color: #658097;
+}
+
+.box-login .forgot-pass a:active::after {
+    padding: 0 0;
+    transition: all 250ms ease-in;
+}
+
+.box-login #button,
+.box-registro #btnRegistro {
+    display: block;
+    width: 100px;
+    height: 35px;
+    margin: 0 auto;
+    background: #6f93af;
+    box-shadow: 0 1px 6px rgba(64, 121, 196, 0.2);
+    border: none;
+    border-radius: 0.4em;
+    color: #eef4ff;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none !important;
+    outline-width: 0 !important;
+    transition: all 350ms ease-out;
+}
+
+.box-login #button:hover,
+.box-login #button:focus,
+.box-registro #btnRegistro:hover,
+.box-registro #btnRegistro:focus {
+    background: #58768d;
+    box-shadow: 0 0 0 2.5pt #92adcc !important;
+    transition: all 250ms ease-in;
+}
+
+.box-login #button:active,
+.box-registro #btnRegistro:active {
+    background: #6f93af;
+    transition: all 250ms ease-in;
+}
+
+.box-registro #btnRegistro {
+    margin-top: 30px;
+}
