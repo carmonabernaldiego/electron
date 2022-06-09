@@ -1,0 +1,22 @@
+.CodeMirror {
+  background: $card-bg;
+  border: 1px solid $border-color;
+  color: $body-color;
+}
+
+.editor-toolbar {
+  border: 1px solid $border-color;
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  a {
+    @extend .text-muted;
+    &:hover {
+      background: rgba(theme-color(primary), .2);
+      border: none;
+    }
+  }
+  i.separator {
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+  }
+}

@@ -1,0 +1,164 @@
+.email-head {
+  background-color: transparent;
+}
+
+.email-head-subject {
+  padding: 25px 25px;
+  border-bottom: 1px solid $border-color;
+  @media(max-width: 767px) {
+    padding: 25px 10px;
+  }
+  .title {
+    display: block;
+    font-size: .99rem;
+    a {
+      &.active .icon {
+        color: theme-color(warning);
+      }
+      .icon {
+        color: silver;
+        margin-right: 6px;
+        svg {
+          width: 18px;
+        }
+      }
+    }
+  }
+  .icons {
+    font-size: 14px;
+    float: right;
+    .icon {
+      color: $body-color;
+      margin-left: 12px;
+      svg {
+        width: 18px;
+      }
+    }
+  }
+}
+
+.email-head-sender {
+  padding: 13px 25px;
+  @media(max-width: 767px) {
+    padding: 25px 10px;
+  }
+  .avatar {
+    float: left;
+    margin-right: 10px;
+  }
+  .date {
+    float: right;
+    font-size: 12px;
+  }
+  .avatar {
+    float: left;
+    margin-right: 10px;
+    img {
+      width: 36px;
+    }
+  }
+  .sender {
+    > a {
+      color: $body-color;
+    }
+    span {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+    .actions {
+      display: inline-block;
+      position: relative;
+      .icon {
+        color: $text-muted;
+        margin-left: 7px;
+        svg {
+          width: 18px;
+        }
+      }
+    }
+  }
+}
+
+.email-body {
+  background-color: transparent;
+  border-top: 1px solid $border-color;
+  padding: 30px 28px;
+  @media(max-width: 767px) {
+    padding: 30px 10px;
+  }
+}
+
+.email-attachments {
+  background-color: transparent;
+  padding: 25px 28px 5px;
+  border-top: 1px solid $border-color;
+  @media(max-width: 767px) {
+    padding: 25px 10px 0;
+  }
+  .title {
+    display: block;
+    font-weight: 500;
+    span {
+      font-weight: 400;
+    }
+  }
+  ul {
+    list-style: none;
+    margin: 15px 0 0;
+    padding: 0;
+    > li {
+      margin-bottom: 5px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      a {
+        color: $body-color;
+        svg {
+          width: 18px;
+          color: $text-muted;
+        }
+      }
+      .icon {
+        color: #737373;
+        margin-right: 2px;
+        
+      }
+      span {
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.rtl {
+  .email-head-subject {
+    .title {
+      a {
+        .icon {
+          margin-right: 0;
+          margin-left: 6px;
+        }
+      }
+    }
+    .icons {
+      .icon {
+        margin-left: 0;
+        margin-right: 12px;
+      }
+    }
+  }
+  .email-head-sender {
+    .avatar {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+    .sender {
+      .actions {
+        .icon {
+          margin-left: 0;
+          margin-right: 7px;
+        }
+      }
+    }
+  }
+}

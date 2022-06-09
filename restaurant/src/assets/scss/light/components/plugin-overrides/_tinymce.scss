@@ -1,0 +1,83 @@
+.tox {
+  &.tox-tinymce {
+    border: 1px solid $border-color;
+    .tox-editor-container {
+      .tox-menubar {
+        background-color: $card-bg;
+      }
+      .tox-toolbar {
+        background-color: $card-bg;
+        border-top: 1px solid $border-color;
+        .tox-toolbar__group {
+          border-right: 1px solid $border-color;
+        }
+      }
+      .tox-sidebar-wrap {
+        .tox-edit-area {
+          border-top: 1px solid $border-color;
+          .tox-edit-area__iframe {
+            background-color: $card-bg;
+          }
+        }
+      }
+      .tox-mbtn {
+        color: $body-color;
+        &:hover,
+        &.tox-mbtn--active {
+          background: darken($card-bg, 5%);
+        }
+      }
+      .tox-tbtn {
+        color: $body-color;
+        svg {
+          fill: $body-color;
+        }
+        &:hover,
+        &.tox-tbtn--enabled {
+          background: darken($card-bg, 5%);
+        }
+      }
+      .tox-split-button {
+        &:hover {
+          box-shadow: none;
+        }
+      }
+    }
+    .tox-statusbar {
+      background-color: $card-bg;
+      border-top: 1px solid $border-color;
+      color: $body-color;
+      .tox-statusbar__path-item,
+      .tox-statusbar__wordcount {
+        color: $text-muted;
+      }
+    }
+  }
+}
+
+.tox {
+  .tox-tiered-menu {
+    .tox-menu {
+      background-color: $card-bg;
+      border: 1px solid $border-color;
+      .tox-collection__group {
+        border-color: $border-color;
+        .tox-collection__item {
+          color: $body-color;
+          &.tox-collection__item--active {
+            background: darken($card-bg, 5%);
+          }
+        }
+      }
+    }
+  }
+}
+
+.rtl {
+  .tox {
+    .tox-menubar,
+    .tox-toolbar {
+      direction: rtl;
+    }
+  }
+}

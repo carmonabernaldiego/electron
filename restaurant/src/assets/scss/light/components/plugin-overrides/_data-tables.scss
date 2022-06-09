@@ -1,0 +1,54 @@
+.dataTables_wrapper {
+  &.dt-bootstrap4 {
+    .dataTables_length {
+      @media(max-width: 767px) {
+        text-align: left;
+      }
+      select {
+        @extend .w-100;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+    .dataTables_filter {
+      @media(max-width: 767px) {
+        text-align: left;
+        margin-left: -19px;
+      }
+    }
+  }
+  div {
+    &.dataTables_paginate {
+      ul { 
+        &.pagination {
+          @extend .justify-content-center;
+          @extend .justify-content-md-end;
+          @extend .mt-3;
+          @extend .mt-md-0;
+        }
+      }
+    }
+  }
+}
+
+.rtl {
+  .dataTables_wrapper {
+    .dataTables_filter {
+      text-align: left;
+      input {
+        margin-left: 0;
+        margin-right: 0.5rem;
+      }
+    }
+    > div {
+      &.row {
+        div[class^="col-"]:first-child {
+          padding-right: 0;
+        }
+        div[class^="col-"]:last-child {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}

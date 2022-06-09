@@ -1,0 +1,23 @@
+.dropify-wrapper {
+  background: $card-bg;
+  @extend .border;
+  &:hover {
+    background-image: linear-gradient(-45deg,darken($card-bg, 5%) 25%,transparent 25%,transparent 50%,darken($card-bg, 5%) 50%,darken($card-bg, 5%) 75%,transparent 75%,transparent)
+  }
+  .dropify-message {
+    span {
+      &.file-icon {
+        font-size: .875rem;
+        color: $text-muted;
+        &::before {
+          font-family: feather;
+          content: '\e8e3';
+          font-size: 24px;
+        }
+      }
+    }
+  }
+  .dropify-preview {
+    background-color: $card-bg;
+  }
+}

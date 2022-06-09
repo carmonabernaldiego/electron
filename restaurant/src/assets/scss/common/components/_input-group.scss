@@ -1,0 +1,19 @@
+.rtl {
+  .input-group > .input-group-append > .btn {
+    @include border-left-radius($border-radius);
+    @include border-right-radius(0);
+  }
+  .input-group {
+    > .form-control,
+    > .custom-select {
+      &:not(:last-child) {
+         @include border-left-radius(0); 
+         @include border-right-radius($border-radius); 
+      }
+      &:not(:first-child) { 
+        @include border-right-radius(0); 
+        @include border-left-radius($border-radius); 
+      }
+    }
+  }
+}

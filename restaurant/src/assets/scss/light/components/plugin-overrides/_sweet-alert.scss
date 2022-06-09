@@ -1,0 +1,67 @@
+/* Sweet Alert */
+
+.swal2-modal {
+  min-height: 300px;
+  @extend .d-flex;
+  @include align-items(center);
+  @include justify-content(center);
+  @include flex-direction(column);
+  @include border-radius(7px);
+
+  .swal2-header {
+    .swal2-title {
+      font-size: 25px;
+      line-height: 1;
+      font-weight: 600;
+      color: $body-color;
+      margin-bottom: 0;
+    }
+
+    .swal2-icon,
+    .swal2-success-ring {
+      margin-top: 0;
+      margin-bottom: 42px;
+    }
+    
+    .swal2-icon {
+      margin-bottom: 25px;
+      &::before {
+        height: 100%;
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .swal2-actions {
+    button {
+      @extend .btn;
+      &.swal2-confirm {
+        @extend .btn-primary;
+      }
+      &.swal2-cancel {
+        @extend .btn-danger;
+        @extend .border-danger;
+      }
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  .swal2-content {
+    font-size: $default-font-size;
+    color: $text-muted;
+    font-weight: initial;
+    margin-top: 11px;
+    text-decoration: none;
+  }
+
+  .swal2-close {
+    font-size: 20px;
+  }
+
+  .swal2-success-ring {
+    left: -30px;
+  }
+}

@@ -1,0 +1,34 @@
+@each $color, $value in $theme-colors {
+  .alert-fill-#{$color} {
+    @include alert-variant(theme-color($color), theme-color($color), color(white));
+    &.alert-fill-light {
+      color: theme-color(dark);
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .alert-icon-#{$color} {
+    // @include alert-variant(theme-color-level($color), theme-color($color), color(white));
+    @include alert-variant(theme-color-level($color, $alert-bg-level), theme-color-level($color, $alert-border-level), theme-color-level($color, $alert-color-level));
+    svg {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      color: theme-color-level($color, $alert-color-level);
+      margin-right: 1.25rem;
+    }
+  }   
+}
+
+.rtl {
+  @each $color, $value in $theme-colors {
+    .alert-icon-#{$color} {
+      svg {
+        margin-right: 0;
+        margin-left: 1.25rem;
+      }
+    }
+  }
+}
+

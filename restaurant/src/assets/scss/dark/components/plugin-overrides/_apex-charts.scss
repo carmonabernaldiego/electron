@@ -1,0 +1,27 @@
+.apexcharts-canvas {
+  .apexcharts-toolbar {
+    @media(max-width: 767px) {
+      display: none;
+    }
+    .apexcharts-menu {
+      background: $card-bg;
+      border: 1px solid $border-color;
+      .apexcharts-menu-item {
+        &:hover {
+          background: lighten($card-bg, 10%);
+        }
+      }
+    }
+  }
+}
+
+.apexcharts-tooltip {
+  background-color: red;
+  color: $text-muted;
+}
+
+.rtl {
+  .apexcharts-canvas {
+    direction: ltr;
+  }
+}

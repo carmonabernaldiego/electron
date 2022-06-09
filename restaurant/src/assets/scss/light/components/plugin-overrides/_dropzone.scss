@@ -1,0 +1,17 @@
+.dropzone {
+  overflow: auto;
+  @extend .border;
+  @media (min-width: 1400px) {
+    min-height: 200px;
+  }
+  max-height: 200px;
+  padding: 0;
+  &.dz-clickable {
+    .dz-message {
+      margin-top: 65px;
+      * {
+        @extend .text-muted;
+      }
+    }
+  }
+}

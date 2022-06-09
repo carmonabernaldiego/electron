@@ -1,0 +1,36 @@
+.ps {
+	> .ps__rail-y {
+		width: 3px;
+		background-color: rgba(72, 83, 114, 0.06);
+		z-index: 10;
+		position: absolute;
+		left: auto !important;
+		right: 0;
+		opacity: 0;
+		margin: 1px;
+		> .ps__thumb-y {
+			position: absolute;
+			border-radius: 0;
+			width: 3px;
+			left: 0;
+			background-color: lighten($card-bg, 15%);
+		}
+	}
+	> .ps__rail-x {
+		width: 3px;
+		background-color: rgba(72, 83, 114, 0.06);
+		z-index: 10;
+		position: absolute;
+		left: auto !important;
+		right: 0;
+		opacity: 0;
+		margin: 1px;
+		> .ps__thumb-x {
+			position: absolute;
+			border-radius: 0;
+			width: 3px;
+			left: 0;
+			background-color: #97a3b9;
+		}
+	}
+}

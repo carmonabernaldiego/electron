@@ -1,0 +1,97 @@
+.email-head-title {
+  padding: 15px;
+  border-bottom: 1px solid $border-color;
+  font-weight: 400;
+  color: #3d405c;
+  font-size: .99rem;
+  .icon {
+    color: #696969;
+    margin-right: 12px;
+    vertical-align: middle;
+    line-height: 31px;
+    position: relative;
+    top: -1px;
+    float: left;
+    font-size: 1.538rem;
+  }
+}
+
+.email-compose-fields {
+  background-color: transparent;
+  padding: 20px 15px;
+  .select2-container--default {
+    .select2-selection--multiple {
+      @extend .form-control;
+      .select2-selection__rendered {
+        margin: -2px -14px;
+        .select2-selection__choice {
+          border-radius: 0;
+          background: theme-color(primary);
+          color: $white;
+          margin-top: 0px;
+          padding: 4px 10px;
+          font-size: 13px;
+          border: 0;
+          span {
+            color: $white;
+          }
+        }
+        .select2-search {
+          line-height: 15px;
+        }
+      }
+    }
+  }
+}
+
+.form-group.row {
+  margin-bottom: 0;
+  padding: 12px 0;
+  label {
+    white-space: nowrap;
+  }
+}
+
+.email-compose-fields label {
+  padding-top: 6px;
+}
+
+.email {
+  &.editor {
+    background-color: transparent;
+    .editor-statusbar {
+      display: none;
+    }
+  }
+  &.action-send {
+    padding: 8px 0px 0;
+  }
+}
+
+.btn-space {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.breadcrumb {
+  margin: 0;
+  background-color: transparent;
+}
+
+.rtl {
+  .email-compose-fields {
+    .select2-container--default {
+      .select2-selection--multiple {
+        .select2-selection__rendered {
+          .select2-selection__choice {
+            float: right;
+          }
+        }
+      }
+    }
+  }
+  .btn-space {
+    margin-right: 0;
+    margin-left: 5px;
+  }
+}

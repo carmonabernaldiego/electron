@@ -1,0 +1,93 @@
+// jQuery Steps
+
+.wizard {
+  > .content {
+    min-height: 20rem;
+    overflow: auto;
+    // background: rgb(248, 248, 248);
+    background: $white;
+    border: 1px solid $border-color;
+    margin-left: 0;
+  }
+  > .steps {
+    ul {
+      li {
+        a {
+          &, &:hover {
+            padding: .4rem 1rem;
+          }
+          border-radius: 3px;
+          .number {
+            font-size: .875rem;
+          }
+        }
+        &.disabled {
+          a {
+            &, &:hover {
+              background: darken($card-bg, 5%);
+            }
+          }
+        }
+        &.current {
+          a {
+            background: theme-color(primary);
+            &:hover {
+              background: darken(theme-color(primary), 5%);
+            }
+          }
+        }
+        &.done {
+          a {
+            background: darken(theme-color(primary), 20%);
+            &:hover {
+              background: darken(theme-color(primary), 25%);
+            }
+          }
+        }
+      }
+      &:first-child {
+        a {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  > .actions {
+    margin-top: 12px;
+    a {
+      &, &:hover {
+        @extend .btn;
+        @extend .btn-primary;
+      }
+    }
+    .disabled {
+      a {
+        @extend .btn;
+        @extend .btn-outline-primary;
+      }
+    }
+  }
+
+  &.vertical {
+    > .content {
+      margin: 0 0 0.5em 1.5%;
+      width: 68%;
+    }
+    > .actions {
+      margin-top: 8px;
+    }
+  }
+}
+
+.rtl {
+  .wizard {
+    > .steps,
+    > .actions {
+      > ul {
+        > li {
+          float: right;
+        }
+      }
+    }
+  }
+}

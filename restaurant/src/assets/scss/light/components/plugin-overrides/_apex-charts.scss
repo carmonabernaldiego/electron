@@ -1,0 +1,13 @@
+.apexcharts-canvas {
+  .apexcharts-toolbar {
+    @media(max-width: 767px) {
+      display: none;
+    }
+  }
+}
+
+.rtl {
+  .apexcharts-canvas {
+    direction: ltr;
+  }
+}
