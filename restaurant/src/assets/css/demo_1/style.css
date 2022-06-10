@@ -1,3 +1,6 @@
+*{
+  user-select: none;
+}
 @-moz-keyframes flash {
   0% {
     opacity: 1; }
