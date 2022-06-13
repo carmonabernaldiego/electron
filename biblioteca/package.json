@@ -1,6 +1,6 @@
 {
-  "name": "restaurant",
-  "productName": "restaurant",
+  "name": "biblioteca",
+  "productName": "biblioteca",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": "src/index.js",
@@ -24,7 +24,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "restaurant"
+            "name": "biblioteca"
           }
         },
         {
