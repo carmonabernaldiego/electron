@@ -1,0 +1,19 @@
+{
+  "name": "myapp-fasi",
+  "version": "1.0.0",
+  "description": "app desktop",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "campillo",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^12.0.0"
+  },
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}

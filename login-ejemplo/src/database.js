@@ -1,14 +1,10 @@
-const mysql = require('promise-mysql')
+const mysql = require('mysql');
 
-const connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'db_school'
-})
+const db = mysql.createConnection({
+    host:'localhost',
+    user:'root',
+    password:'',
+    database:'db_school'
+});
 
-function getConnection() {  
-    return connection;
-}
-
-module.exports= {getConnection}
+module.exports = db
