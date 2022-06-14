@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <form class="p-4">
+        <div class="form-group">
+            <input type="text" id="usuario" class="form-control border-secondary" placeholder="Usuario" maxlength="20" autofocus>
+        </div>
+        <div class="form-group">
+            <input type="password" id="clave" class="form-control border-secondary" placeholder="Clave" maxlength="20" autofocus>
+        </div>
+        <div class="form-group">
+            <label id="mensaje" class="form-control border-0 text-center"></label>
+        </div>
+        <button class="btn btn-secondary">
+            Aceptar
+        </button>
+        <button class="btn btn-secondary float-right" onclick="window.close();">
+            Cancelar
+        </button>
+    </form>
+    <script>
+        const { ipcRenderer } = require('electron');
+        const main = require('../main');
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async(e) => {
+            const usuarioForma = document.querySelector('#usuario').value;
+            const claveForma = document.querySelector('#clave').value;
+            const estadoUsuario = await main.consultarUsuario(usuarioForma, claveForma);
+            if (typeof estadoUsuario == 'undefined') {
+                document.getElementById('mensaje').innerHTML = 'Usuario o Clave INVALIDA';
+            } else if (estadoUsuario.usuario == usuarioForma){
+                valorMensaje = false
+                ipcRenderer.send('newUsuario', estadoUsuario);
+            }
+            e.preventDefault();
+        });
+    </script>    
+</body>
+</html>
