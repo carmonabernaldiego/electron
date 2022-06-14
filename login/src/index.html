@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>app fasi</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+   <link rel="stylesheet" href="./bootstrap.min.css" > 
+  <!--  <link rel="stylesheet" href="./style.css"> -->
+      
+</head>
+<body>
+  <div class="constainer p-4">
+    <div class="row ">
+
+    <div class="col-md-4">
+        <div class="card p-2">
+          <input type="text" id="idproduct" hidden >
+             <div class="form-group">
+                <input 
+                   class="form-control"
+                   type="text" 
+                   id="name"
+                   placeholder="Name">
+             </div>
+            <div class="form-group">
+                <input 
+                  class="form-control"
+                  type="number"
+                  id="price"
+                  step="50"
+                  min="0" 
+                  placeholder="Price">
+            </div>
+          
+            <div>
+              <button id="btnform"
+                 class="btn btn-primary" >
+                Add
+             </button>
+
+              <button id="btnUpdate"
+                 class="btn btn-success" >
+                Update
+             </button>
+          </div>
+            
+    
+         </div>
+    </div>
+
+    <div class="col-md-6">
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody id="mylist">
+            <!-- info -->
+           </tbody>
+        </table>
+   </div> 
+   </div>
+</div>
+</body>
+</html>

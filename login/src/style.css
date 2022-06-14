@@ -1,0 +1,41 @@
+.row{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+}
+table
+{
+    border: 1px solid #000;
+}
+    
+th, td 
+{
+   width: 25%;
+   text-align: left;
+   vertical-align: top;
+   border: 1px solid #000;
+   border-collapse: collapse;
+   padding: 0.3em;
+}
+
+th 
+{
+   background: #000;
+   color: floralwhite;
+}
+
+ tbody tr 
+{
+   background-color: darkslategrey;
+}
+
+
+input
+{
+   width: 160px;
+   height: 30px;
+   border-radius: 5px;
+   margin-bottom: 10px;
+}
+
