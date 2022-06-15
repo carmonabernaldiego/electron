@@ -46,7 +46,8 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.63",
