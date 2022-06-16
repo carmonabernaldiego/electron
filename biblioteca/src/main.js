@@ -9,27 +9,62 @@ if (require('electron-squirrel-startup')) {
 
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 800,
+  const window = new BrowserWindow({
+    width: 900,
     height: 600,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
-      devTools: false
-    }
+      devTools: false,
+      contextIsolation: false
+    },
+    maximizable: false,
+    resizable: false,
+    preload: path.join(__dirname, 'index.js')
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  window.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  window.webContents.openDevTools();
+
+  // and load the index.html of the ap.loadFile(path.join(__dirname, 'index.html'));
+
+  // Open the DevTool.webContents.openDevTools();
+};
+
+const createWindowLogin = () => {
+  // Create the browser window.
+  windowLogin = new BrowserWindow({
+    width: 500,
+    height: 480,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true,
+      devTools: false,
+      contextIsolation: false
+    },
+    maximizable: false,
+    resizable: false,
+    preload: path.join(__dirname, 'login.js')
+  });
+
+  // and load the index.html of the app.
+  windowLogin.loadFile(path.join(__dirname, 'login.html'));
+
+  // Open the DevTools.
+  windowLogin.webContents.openDevTools();
+
+  // and load the index.html of the ap.loadFile(path.join(__dirname, 'login.html'));
+
+  // Open the DevTool.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
+app.on('ready', createWindowLogin);
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
