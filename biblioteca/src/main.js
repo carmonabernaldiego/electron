@@ -1,3 +1,5 @@
+'use strict';
+
 const { app, BrowserWindow, ipcMain, Notification } = require('electron');
 const path = require('path');
 
@@ -25,6 +27,8 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   window.loadFile(path.join(__dirname, 'views/index.html'));
+
+  window.maximize();
 
   // Open the DevTools.
   window.webContents.openDevTools();

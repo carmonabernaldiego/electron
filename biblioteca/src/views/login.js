@@ -12,11 +12,10 @@ window.onload = function () {
     btnLogin = document.getElementById("btnLogin");
 
     btnLogin.onclick = function () {
-        if (usuario == '') {
-            alert('Ingrese usuario, por favor.');
-        }
-        if (password == '') {
-            alert('Ingrese contraseña, por favor.');
+        if (txtEmail.value == '') {
+            alert('Ingresá tú dirección de correo electrónico.');
+        }else if (txtPassword.value == '') {
+            alert('Ingresá tú contraseña.');
         } else {
             const obj = { email: txtEmail.value, password: txtPassword.value }
 
