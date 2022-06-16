@@ -1,30 +1,30 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain, Notification } = require('electron');
 const path = require('path');
+
+let db = require('./connection');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
   app.quit();
 }
+let window;
+let windowLogin;
 
 const createWindow = () => {
   // Create the browser window.
-  const window = new BrowserWindow({
+  window = new BrowserWindow({
     width: 900,
     height: 600,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
-      devTools: false,
-      contextIsolation: false
-    },
-    maximizable: false,
-    resizable: false,
-    preload: path.join(__dirname, 'index.js')
+      devTools: false
+    }
   });
 
   // and load the index.html of the app.
-  window.loadFile(path.join(__dirname, 'index.html'));
+  window.loadFile(path.join(__dirname, 'views/index.html'));
 
   // Open the DevTools.
   window.webContents.openDevTools();
@@ -38,7 +38,7 @@ const createWindowLogin = () => {
   // Create the browser window.
   windowLogin = new BrowserWindow({
     width: 500,
-    height: 480,
+    height: 470,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
@@ -46,12 +46,11 @@ const createWindowLogin = () => {
       contextIsolation: false
     },
     maximizable: false,
-    resizable: false,
-    preload: path.join(__dirname, 'login.js')
+    resizable: false
   });
 
   // and load the index.html of the app.
-  windowLogin.loadFile(path.join(__dirname, 'login.html'));
+  windowLogin.loadFile(path.join(__dirname, 'views/login.html'));
 
   // Open the DevTools.
   windowLogin.webContents.openDevTools();
@@ -85,3 +84,29 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+ipcMain.handle('login', (event, obj) => {
+  validatelogin(obj);
+});
+
+function validatelogin(obj) {
+  const { email, password } = obj;
+  const sql = "SELECT * FROM users WHERE email=? AND pass=?";
+
+  db.query(sql, [email, password], (error, results, fields) => {
+    if (error) {
+      console.log(error);
+    }
+
+    if (results.length > 0) {
+      createWindow();
+      window.show();
+      windowLogin.close();
+    } else {
+      new Notification({
+        title: "Inicia Sesión",
+        body: 'Correo electrónico o contraseña equivocada.'
+      }).show();
+    }
+  });
+}
