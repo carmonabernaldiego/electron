@@ -10,6 +10,7 @@ if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
   app.quit();
 }
+
 let window;
 let windowLogin;
 
@@ -21,7 +22,8 @@ const createWindow = () => {
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
-      devTools: false
+      devTools: false,
+      contextIsolation: false
     }
   });
 
@@ -93,6 +95,10 @@ ipcMain.handle('login', (event, obj) => {
   validatelogin(obj);
 });
 
+ipcMain.handle('logout', (event) => {
+  logoutUser();
+});
+
 function validatelogin(obj) {
   const { email, password } = obj;
   const sql = "SELECT * FROM users WHERE email=? AND pass=?";
@@ -113,4 +119,8 @@ function validatelogin(obj) {
       }).show();
     }
   });
+}
+
+function logoutUser() {
+ alert('hola');
 }
