@@ -1,5 +1,3 @@
-'use strict';
-
 const { app, BrowserWindow, ipcMain, Notification } = require('electron');
 const path = require('path');
 
@@ -23,7 +21,7 @@ const createWindow = () => {
     webPreferences: {
       nodeIntegration: true,
       devTools: false,
-      contextIsolation: false
+      contextIsolation: true
     }
   });
 
@@ -48,11 +46,12 @@ const createWindowLogin = () => {
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
-      devTools: false,
-      contextIsolation: false
+      devTools: true,
+      contextIsolation: true
     },
     maximizable: false,
-    resizable: false
+    resizable: false,
+    preload: path.join(__dirname, 'preload.js')
   });
 
   // and load the index.html of the app.
@@ -91,16 +90,12 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-ipcMain.handle('login', (event, obj) => {
-  validatelogin(obj);
-});
+ipcMain.on('login', (event, data) => {
+  validatelogin(data);
+})
 
-ipcMain.handle('logout', (event) => {
-  logoutUser();
-});
-
-function validatelogin(obj) {
-  const { email, password } = obj;
+function validatelogin(data) {
+  const { email, password } = data;
   const sql = "SELECT * FROM users WHERE email=? AND pass=?";
 
   db.query(sql, [email, password], (error, results, fields) => {
@@ -119,8 +114,4 @@ function validatelogin(obj) {
       }).show();
     }
   });
-}
-
-function logoutUser() {
- alert('hola');
 }
