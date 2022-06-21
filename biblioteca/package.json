@@ -2,7 +2,7 @@
   "name": "biblioteca",
   "productName": "biblioteca",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Biblioteca Virtual",
   "main": "src/main.js",
   "scripts": {
     "start": "electron-forge start",
