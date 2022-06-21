@@ -1,4 +1,7 @@
-const { app, BrowserWindow, ipcMain, Notification } = require('electron');
+const electronApp = require('electron').app;
+const electronBrowserWindow = require('electron').BrowserWindow;
+const electronIpcMain = require('electron').ipcMain;
+const electronNotification = require('electron').Notification;
 const path = require('path');
 
 let db = require('./connection');
@@ -6,29 +9,26 @@ let db = require('./connection');
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
-  app.quit();
+  electronApp.quit();
 }
-
 let window;
-let windowLogin;
+let loginWindow;
 
-const createWindow = () => {
+const createWindowDashboard = () => {
   // Create the browser window.
-  window = new BrowserWindow({
+  window = new electronBrowserWindow({
     width: 900,
     height: 600,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
-      devTools: false,
-      contextIsolation: true
+      contextIsolation: true,
+      devTools: false
     }
   });
 
   // and load the index.html of the app.
   window.loadFile(path.join(__dirname, 'views/index.html'));
-
-  window.maximize();
 
   // Open the DevTools.
   window.webContents.openDevTools();
@@ -36,53 +36,51 @@ const createWindow = () => {
   // and load the index.html of the ap.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTool.webContents.openDevTools();
+
+  window.maximize();
 };
 
-const createWindowLogin = () => {
+const createWindow = () => {
   // Create the browser window.
-  windowLogin = new BrowserWindow({
+  loginWindow = new electronBrowserWindow({
     width: 500,
     height: 470,
+    resizable: false,
+    maximizable: false,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
-      devTools: true,
-      contextIsolation: true
-    },
-    maximizable: false,
-    resizable: false,
-    preload: path.join(__dirname, 'preload.js')
+      contextIsolation: true,
+      devTools: false,
+      preload: path.join(__dirname, 'preload.js')
+    }
   });
 
   // and load the index.html of the app.
-  windowLogin.loadFile(path.join(__dirname, 'views/login.html'));
+  loginWindow.loadFile(path.join(__dirname, 'views/login.html'));
 
   // Open the DevTools.
-  windowLogin.webContents.openDevTools();
-
-  // and load the index.html of the ap.loadFile(path.join(__dirname, 'login.html'));
-
-  // Open the DevTool.webContents.openDevTools();
+  loginWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindowLogin);
+electronApp.on('ready', createWindow);
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
-app.on('window-all-closed', () => {
+electronApp.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit();
+    electronApp.quit();
   }
 });
 
-app.on('activate', () => {
+electronApp.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  if (BrowserWindow.getAllWindows().length === 0) {
+  if (electronBrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
 });
@@ -90,9 +88,9 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-ipcMain.on('login', (event, data) => {
+electronIpcMain.on('login', (event, data) => {
   validatelogin(data);
-})
+});
 
 function validatelogin(data) {
   const { email, password } = data;
@@ -104,11 +102,11 @@ function validatelogin(data) {
     }
 
     if (results.length > 0) {
-      createWindow();
+      createWindowDashboard();
       window.show();
-      windowLogin.close();
+      loginWindow.close();
     } else {
-      new Notification({
+      new electronNotification({
         title: "Inicia Sesión",
         body: 'Correo electrónico o contraseña equivocada.'
       }).show();

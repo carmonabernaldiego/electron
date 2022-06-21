@@ -1,25 +1,35 @@
-'use strict';
+let page;
 
-const { ipcRenderer } = require('electron');
+document.addEventListener('DOMContentLoaded', function () {
+    page = new PageLogin(window);
+});
 
-let txtEmail;
-let txtPassword;
-let btnLogin;
+class PageLogin {
+    constructor() {
+        this.attachEvents();
+    }
 
-window.onload = function () {
-    txtEmail = document.getElementById("txtEmail");
-    txtPassword = document.getElementById("txtPassword");
-    btnLogin = document.getElementById("btnLogin");
+    get(id) {
+        return document.querySelector(id);
+    }
 
-    btnLogin.onclick = function () {
-        if (txtEmail.value == '') {
+    attachEvents() {
+        let btnLogin = this.get('#btnLogin');
+        btnLogin.addEventListener('click', this.login);
+    }
+
+    login() {
+        let email = page.get('#txtEmail').value;
+        let password = page.get('#txtPassword').value;
+
+        if (email == '') {
             alert('Ingresá tú dirección de correo electrónico.');
-        }else if (txtPassword.value == '') {
+        } else if (password == '') {
             alert('Ingresá tú contraseña.');
         } else {
-            const obj = { email: txtEmail.value, password: txtPassword.value }
+            const data = { email: email, password: password };
 
-            ipcRenderer.invoke("login", obj);
+            window.ipcRender.send('login', data);
         }
     }
 }
