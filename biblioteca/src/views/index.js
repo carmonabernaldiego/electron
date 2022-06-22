@@ -19,7 +19,7 @@ class Page {
     }
 
     loadDataUser() {
-        window.ipcRender.receive('getUserData', (result) => {
+        window.ipcRender.receive('getUser', (result) => {
             console.log(result);
         });
 
