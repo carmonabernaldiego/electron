@@ -2,6 +2,8 @@ const electronApp = require('electron').app;
 const electronBrowserWindow = require('electron').BrowserWindow;
 const electronIpcMain = require('electron').ipcMain;
 const electronNotification = require('electron').Notification;
+const Store = require('electron-store');
+const store = new Store();
 const path = require('path');
 
 let db = require('./connection');
@@ -23,7 +25,8 @@ const createWindowDashboard = () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true,
-      devTools: false
+      devTools: true,
+      preload: path.join(__dirname, 'preload.js')
     }
   });
 
@@ -88,13 +91,18 @@ electronApp.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
+electronIpcMain.handle('getUserData', (event, message) => {
+  console.log(message); // Ping 2 (invoke from render process)
+  return 'Pong 2 (handle from main process)';
+});
+
 electronIpcMain.on('login', (event, data) => {
   validatelogin(data);
 });
 
 function validatelogin(data) {
   const { email, password } = data;
-  const sql = "SELECT * FROM users WHERE email=? AND pass=?";
+  const sql = "SELECT * FROM users WHERE user=? AND pass=?";
 
   db.query(sql, [email, password], (error, results, fields) => {
     if (error) {
@@ -102,6 +110,11 @@ function validatelogin(data) {
     }
 
     if (results.length > 0) {
+      store.set('user', results[0].user);
+      store.set('email', results[0].email);
+      store.set('permissions', results[0].permissions);
+      store.set('image', results[0].image);
+
       createWindowDashboard();
       window.show();
       loginWindow.close();

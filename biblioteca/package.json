@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^8.0.2",
     "mysql2": "^2.3.3"
   },
   "devDependencies": {
