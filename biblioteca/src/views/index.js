@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 class Page {
     constructor() {
         this.attachEvents();
+        this.loadDataUser();
     }
 
     get(id) {
@@ -15,12 +16,16 @@ class Page {
 
     attachEvents() {
         let btnLogout = this.get('#btnLogout');
-        btnLogout.addEventListener('click', this.loadDataUser);
+        btnLogout.addEventListener('click', this.logout);
     }
 
     loadDataUser() {
         window.ipcRender.invoke('getUserData').then((result) => {
             console.log(result);
         });
+    }
+
+    logout() {
+        window.ipcRender.send('render-to-main', 'confirm-logout');
     }
 }

@@ -93,15 +93,11 @@ electronApp.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-electronIpcMain.handle('getUserData', (event) => {
-  return 'Pong 2 (handle from main process)';
-});
-
 electronIpcMain.on('login', (event, data) => {
-  validatelogin(data);
+  validateLogin(data);
 });
 
-function validatelogin(data) {
+function validateLogin(data) {
   const { email, password } = data;
   const sql = "SELECT * FROM users WHERE user=? AND pass=?";
 
@@ -127,3 +123,15 @@ function validatelogin(data) {
     }
   });
 }
+
+electronIpcMain.on('logout', (event, data) => {
+  validateLogout(data);
+});
+
+function validateLogout(data) {
+
+}
+
+electronIpcMain.handle('getUserData', (event) => {
+  return store.get('user');
+});
