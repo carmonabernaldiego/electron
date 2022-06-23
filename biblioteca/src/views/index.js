@@ -19,11 +19,7 @@ class Page {
     }
 
     loadDataUser() {
-        window.ipcRender.receive('getUser', (result) => {
-            console.log(result);
-        });
-
-        window.ipcRender.invoke('getUserData', 'Ping 2 (invoke from render process)').then((result) => {
+        window.ipcRender.invoke('getUserData').then((result) => {
             console.log(result);
         });
     }

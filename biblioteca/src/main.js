@@ -13,6 +13,7 @@ if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
   electronApp.quit();
 }
+
 let window;
 let loginWindow;
 
@@ -92,8 +93,7 @@ electronApp.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-electronIpcMain.handle('getUserData', (event, message) => {
-  console.log(message); // Ping 2 (invoke from render process)
+electronIpcMain.handle('getUserData', (event) => {
   return 'Pong 2 (handle from main process)';
 });
 
