@@ -2,6 +2,11 @@ let page;
 
 document.addEventListener('DOMContentLoaded', function () {
     page = new Page(window);
+
+    let profileUser = page.get('#profileUser');
+    let profileUserBox = page.get('#profileUserBox');
+    let profileName = page.get('#profileName');
+    let profileEmail = page.get('#profileEmail');
 });
 
 class Page {
@@ -20,13 +25,14 @@ class Page {
     }
 
     loadDataUser() {
-        window.ipcRender.invoke('getUserData').then((result) => {
-            const { user, email, permissions, image } = result;
 
-            console.log(user);
-            console.log(email);
-            console.log(permissions);
-            console.log(image);
+        window.ipcRender.invoke('getUserData').then((result) => {
+            const { user, email, permissions, image, name, surnames } = result;
+
+            profileUser.src = "http://mysoftup.com/images/users/" + image;
+            profileUserBox.src = "http://mysoftup.com/images/users/" + image;
+            profileName.innerHTML = name + ' ' + surnames;
+            profileEmail.innerHTML = email;
         });
     }
 
