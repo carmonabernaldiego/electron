@@ -19,10 +19,10 @@ class PageLogin {
     }
 
     login() {
-        let error = page.get('#text-error');
+        let error = this.get('#text-error');
 
-        let email = page.get('#txtEmail').value;
-        let password = page.get('#txtPassword').value;
+        let email = this.get('#txtEmail').value;
+        let password = this.get('#txtPassword').value;
 
         if (email == '') {
             error.innerHTML = 'Ingresá tú dirección de correo electrónico.';

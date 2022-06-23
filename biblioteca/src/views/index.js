@@ -2,11 +2,6 @@ let page;
 
 document.addEventListener('DOMContentLoaded', function () {
     page = new Page(window);
-
-    let profileUser = page.get('#profileUser');
-    let profileUserBox = page.get('#profileUserBox');
-    let profileName = page.get('#profileName');
-    let profileEmail = page.get('#profileEmail');
 });
 
 class Page {
@@ -25,6 +20,10 @@ class Page {
     }
 
     loadDataUser() {
+        let profileUser = this.get('#profileUser');
+        let profileUserBox = this.get('#profileUserBox');
+        let profileName = this.get('#profileName');
+        let profileEmail = this.get('#profileEmail');
 
         window.ipcRender.invoke('getUserData').then((result) => {
             const { user, email, permissions, image, name, surnames } = result;
