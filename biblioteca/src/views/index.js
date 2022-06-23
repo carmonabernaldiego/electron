@@ -21,11 +21,16 @@ class Page {
 
     loadDataUser() {
         window.ipcRender.invoke('getUserData').then((result) => {
-            console.log(result);
+            const { user, email, permissions, image } = result;
+
+            console.log(user);
+            console.log(email);
+            console.log(permissions);
+            console.log(image);
         });
     }
 
     logout() {
-        window.ipcRender.send('render-to-main', 'confirm-logout');
+        window.ipcRender.send('logout', 'confirm-logout');
     }
 }

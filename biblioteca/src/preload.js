@@ -4,7 +4,8 @@ const ipcRender = require('electron').ipcRenderer;
 const ipc = {
     'render': {
         'send': [
-            'login'
+            'login',
+            'logout'
         ],
         'sendReceive': [
             'getUserData'

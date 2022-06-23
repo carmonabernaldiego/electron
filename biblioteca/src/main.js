@@ -124,14 +124,25 @@ function validateLogin(data) {
   });
 }
 
-electronIpcMain.on('logout', (event, data) => {
-  validateLogout(data);
+electronIpcMain.on('logout', (event, confirm) => {
+  validateLogout(confirm);
 });
 
-function validateLogout(data) {
+function validateLogout(confirm) {
+  if (confirm == 'confirm-logout') {
+    store.delete('user');
+    store.delete('email');
+    store.delete('permissions');
+    store.delete('image');
 
+    createWindow();
+    loginWindow.show();
+    window.close();
+  }
 }
 
 electronIpcMain.handle('getUserData', (event) => {
-  return store.get('user');
+  const data = { user: store.get('user'), email: store.get('email'), permissions: store.get('permissions'), image: store.get('image') };
+
+  return data;
 });

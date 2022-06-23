@@ -19,13 +19,19 @@ class PageLogin {
     }
 
     login() {
+        let error = page.get('#text-error');
+
         let email = page.get('#txtEmail').value;
         let password = page.get('#txtPassword').value;
 
         if (email == '') {
-            alert('Ingresá tú dirección de correo electrónico.');
+            error.innerHTML = 'Ingresá tú dirección de correo electrónico.';
+            error.classList.remove("text-muted");
+            error.classList.add("text-danger");
         } else if (password == '') {
-            alert('Ingresá tú contraseña.');
+            error.innerHTML = 'Ingresá tú contraseña.';
+            error.classList.remove("text-muted");
+            error.classList.add("text-danger");
         } else {
             const data = { email: email, password: password };
 
