@@ -28,10 +28,17 @@ class Page {
         window.ipcRender.invoke('getUserData').then((result) => {
             const { user, email, permissions, image, name, surnames } = result;
 
-            profileUser.src = "http://mysoftup.com/images/users/" + image;
-            profileUserBox.src = "http://mysoftup.com/images/users/" + image;
-            profileName.innerHTML = name + ' ' + surnames;
-            profileEmail.innerHTML = email;
+            if (permissions == 'admin') {
+                profileUser.src = "http://mysoftup.com/images/users/" + image;
+                profileUserBox.src = "http://mysoftup.com/images/users/" + image;
+                profileName.innerHTML = name + ' ' + surnames;
+                profileEmail.innerHTML = email;
+
+                
+            } else if (permissions == 'invitado') {
+                profileName.innerHTML = 'Invitado';
+                profileEmail.innerHTML = 'invitado@ckh.com';
+            }
         });
     }
 
