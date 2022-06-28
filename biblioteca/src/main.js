@@ -147,6 +147,8 @@ function validateLogout(confirm) {
     store.delete('email');
     store.delete('permissions');
     store.delete('image');
+    store.delete('name');
+    store.delete('surnames');
 
     createWindow();
     loginWindow.show();
@@ -154,7 +156,9 @@ function validateLogout(confirm) {
   }
 }
 
-electronIpcMain.on('invitado', (event) => {
+electronIpcMain.on('invitado', (event, permissions) => {
+  store.set('permissions', permissions);
+
   createWindowDashboard();
   window.show();
   loginWindow.close();

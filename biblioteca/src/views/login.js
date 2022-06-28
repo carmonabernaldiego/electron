@@ -43,6 +43,6 @@ class PageLogin {
     }
 
     invitado() {
-        window.ipcRender.send('invitado');
+        window.ipcRender.send('invitado', 'invitado');
     }
 }
