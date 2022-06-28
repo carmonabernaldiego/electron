@@ -16,6 +16,9 @@ class PageLogin {
     attachEvents() {
         let btnLogin = this.get('#btnLogin');
         btnLogin.addEventListener('click', this.login);
+
+        let btnInvitado = this.get('#btnInvitado');
+        btnInvitado.addEventListener('click', this.invitado);
     }
 
     login() {
@@ -37,5 +40,9 @@ class PageLogin {
 
             window.ipcRender.send('login', data);
         }
+    }
+
+    invitado() {
+        window.ipcRender.send('invitado');
     }
 }

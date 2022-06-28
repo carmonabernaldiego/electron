@@ -5,7 +5,8 @@ const ipc = {
     'render': {
         'send': [
             'login',
-            'logout'
+            'logout',
+            'invitado'
         ],
         'sendReceive': [
             'getUserData'

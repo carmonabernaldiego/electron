@@ -154,6 +154,12 @@ function validateLogout(confirm) {
   }
 }
 
+electronIpcMain.on('invitado', (event) => {
+  createWindowDashboard();
+  window.show();
+  loginWindow.close();
+});
+
 electronIpcMain.handle('getUserData', (event) => {
   const data = { user: store.get('user'), email: store.get('email'), permissions: store.get('permissions'), image: store.get('image'), name: store.get('name'), surnames: store.get('surnames') };
 
