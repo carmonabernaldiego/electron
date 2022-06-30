@@ -1,0 +1,59 @@
+// Accordions
+.accordion {
+  >.card {
+    margin-bottom: .75rem;
+    border-radius: .25rem;
+    .card-header {
+      background-color: transparent;
+      padding: 1.3rem 2rem;
+      * {
+        font-weight: 400;
+        font-size: .95rem;        
+      }
+      a {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+        font-size: inherit;
+        position: relative;
+        @include transition(color .5s ease);
+        padding-right: 1.5rem;
+        &:before {
+          font-family: feather;
+          position: absolute;
+          right: 7px;
+          top: 0;
+          font-size: 14px;
+          display: block;
+        }
+        &[aria-expanded="true"] {
+          color: theme-color(primary);
+          &:before {
+            content: "\e842";
+          }
+        }
+        &[aria-expanded="false"] {
+          &:before{
+            content: "\e845";
+          }
+        }
+      }
+    }
+    .card-body {
+      font-size: .875rem;
+      padding: 1.3rem 2rem;
+      font-weight: 400;
+      i {
+        font-size: 1.25rem;
+      }
+    }
+    &:first-of-type {
+      border-bottom: 1px solid $card-border-color;
+    }
+    &:not(:first-of-type) {
+      &:not(:last-of-type) {
+        border-bottom: 1px solid $card-border-color;
+      }
+    }
+  }
+}

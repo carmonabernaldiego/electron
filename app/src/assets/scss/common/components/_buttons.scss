@@ -1,0 +1,189 @@
+/* Buttons */
+
+.btn {
+  font-size: $btn-font-size;
+  line-height: 1;
+  padding: .5rem 1rem .4rem;
+  i {
+    font-size: 1rem;
+  }
+  &.btn-rounded {
+    @include border-radius(50px);
+  }
+  &.btn-xs {
+    padding: $btn-padding-y-xs $btn-padding-x-xs;
+    font-size: $btn-font-size-xs;
+  }
+  &.btn-sm {
+    font-size: $btn-font-size-sm;
+  }
+  &.btn-lg {
+    font-size: $btn-font-size-lg;
+  }
+  
+
+  /* Buttons with only icons */
+  &.btn-icon {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    svg {
+      height: 15px;
+    }
+    &.btn-sm {
+      width: 30px;
+      height: 30px;
+      svg {
+        height: 13px;
+      }
+    }
+    &.btn-lg {
+      width: 48px;
+      height: 48px;
+      svg {
+        height: 20px;
+      }
+    }
+  }
+
+  /* Buttons with icon and text */
+  &.btn-icon-text {
+    .btn-icon-prepend {
+      margin-right: .5rem;
+    }
+    .btn-icon-append {
+      margin-left: .5rem;
+    }
+    .btn-icon-prepend,
+    .btn-icon-append {
+      width: 15px;
+      height: 15px;
+    }
+    &.btn-sm {
+      .btn-icon-prepend,
+      .btn-icon-append {
+        width: 12px;
+        height: 12px;
+      }
+    }
+    &.btn-lg {
+      .btn-icon-prepend,
+      .btn-icon-append {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  &.btn-social-icon {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+  }
+}
+
+.btn-group {
+  .btn {
+    + .btn {
+      border-left: 0;
+    }
+  }
+}
+
+.rtl {
+  .btn-group {
+    .btn {
+      + .btn {
+        border-left: 1px solid;
+        border-right: 0;
+      }
+    }
+
+    > .btn:not(:first-child):not(:last-child):not(.dorpdown-toggle) {
+      border-radius: 0;
+    }
+
+    // Reset rounded corners
+    > .btn:not(:last-child):not(.dropdown-toggle),
+    > .btn-group:not(:last-child) > .btn {
+      border-radius: $btn-border-radius;
+      @include border-left-radius(0);
+    }
+
+    > .btn:not(:first-child),
+    > .btn-group:not(:first-child) > .btn {
+      border-radius: $btn-border-radius;
+      @include border-right-radius(0);
+    }
+  }
+}
+
+.btn-toolbar {
+  .btn-group {
+    +.btn-group {
+      @extend .ml-2;
+    }
+  }
+}
+/*social buttons*/
+@each $color, $value in $social-colors {
+  .btn-#{$color} {
+    @include social-button(social-color($color));
+  }
+  .btn-outline-#{$color} {
+    @include social-outline-button(social-color($color));
+  }
+}
+/* inverse buttons */
+@each $color, $value in $theme-colors {
+  .btn-inverse-#{$color} {
+    @include button-inverse-variant($value);
+  }
+}
+
+.btn-outline-info {
+  &:hover {
+    color: #fff;
+  }
+}
+
+.rtl {
+  .btn {
+    /* Buttons with icon and text */
+    &.btn-icon-text {
+      .btn-icon-prepend {
+        margin-right: 0;
+        margin-left: .5rem;
+      }
+      .btn-icon-append {
+        margin-left: 0;
+        margin-right: .5rem;
+      }
+    }
+  }
+
+  .btn-group {
+    .btn {
+      + .btn {
+        border-left: 1px solid;
+        // border-right: 1px solid;
+      }
+    }
+
+    > .btn:not(:first-child):not(:last-child):not(.dorpdown-toggle) {
+      border-radius: 0;
+    }
+
+    // Reset rounded corners
+    > .btn:not(:last-child):not(.dropdown-toggle),
+    > .btn-group:not(:last-child) > .btn {
+      border-radius: $btn-border-radius;
+      @include border-left-radius(0);
+    }
+
+    > .btn:not(:first-child),
+    > .btn-group:not(:first-child) > .btn {
+      border-radius: $btn-border-radius;
+      @include border-right-radius(0);
+    }
+  }
+}

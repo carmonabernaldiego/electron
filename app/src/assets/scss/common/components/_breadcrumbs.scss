@@ -1,0 +1,44 @@
+.breadcrumb {
+  &.bg-success,&.bg-dark,&.bg-danger,&.bg-warning,&.bg-primary,&.bg-info{
+    border: none;
+    .breadcrumb-item {
+      color: rgba($white, .8);
+      &:before{
+        color: inherit;
+      }
+      a,span{
+        color: inherit;
+      }
+      &.active {
+        color: $white;
+      }
+    }
+  }
+}
+
+/* inverse breadcrumb */
+@each $color, $value in $theme-colors {
+  .bg-inverse-#{$color} {
+    @include breadcrumb-inverse-variant($value);
+    &.bg-inverse-dark {
+      background: darken($white, 25%);
+    }
+  }
+}
+
+.rtl {
+  .breadcrumb {
+    .breadcrumb-item {
+      padding-left: $breadcrumb-item-padding;
+      &:last-child {
+        padding-left: 0;
+      }
+      + .breadcrumb-item {
+        &::before {
+          padding-right: 0;
+          padding-left: $breadcrumb-item-padding;
+        }
+      }
+    }
+  }
+}

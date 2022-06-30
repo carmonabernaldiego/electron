@@ -1,0 +1,240 @@
+.fc {
+  .fc-button {
+    @extend .btn;
+  }
+  .fc-toolbar {
+    &.fc-header-toolbar {
+      margin-bottom: 2rem;
+      @media(max-width: 767px) {
+        @include display-flex;
+        @include align-items(center);
+        @include justify-content(center);
+        @include flex-wrap(wrap);
+        .fc-left {
+          margin-bottom: 15px;
+        }
+        .fc-right {
+          margin-bottom: 15px;
+        }
+      } 
+      .fc-left, .fc-right {
+        .fc-button-group {
+          @extend .btn-group;
+          .fc-button {
+            @extend .btn-outline-primary;
+            background-image: none;
+            text-transform: capitalize;
+            text-shadow: none;
+            &.fc-state-disabled {
+              @extend .btn-outline-primary-muted;              
+            }
+            &.fc-state-active {
+              @extend .btn-outline-primary-muted;
+            }
+            .fc-icon {
+              &::after {
+                font-family: feather;
+                font-size: 16px;
+                top: 0;
+              }
+              &.fc-icon-left-single-arrow {
+                &::after {
+                  content: "\e843";
+                }
+              }
+              &.fc-icon-right-single-arrow {
+                &::after {
+                  content: "\e844";
+                }
+              }
+              &.fc-state-disabled {
+                &:disabled {
+                  text-transform: capitalize;
+                  line-height: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+      .fc-center {
+        h2 {
+          font-size: 26px;
+        }
+      }
+    }
+  }
+  .fc-view-container {
+    .fc-view {
+      table {
+        .fc-body {
+          .fc-widget-content {
+            .fc-day-grid-container {
+              .fc-day-grid {
+                .fc-row {
+                  .fc-bg {
+                    table {
+                      td {
+                        &.fc-other-month {
+                          background-color: #f8f9fc;
+                        }
+                        &.fc-today {
+                          background-color: lighten(theme-color(info), 23%);
+                        }
+                      }
+                    }
+                  }
+                  .fc-content-skeleton {
+                    table {
+                      .fc-day-top {
+                        &.fc-today {
+                          background: 0 0;
+                          .fc-day-number {
+                            padding: 3px 7px;
+                            background: theme-color(primary);
+                            color: $white;
+                            font-weight: bold;
+                          }
+                        }
+                      }
+                      .fc-event-container {
+                        .fc-day-grid-event {
+                          border-radius: 0;
+                          padding: 3px 0 3px 5px;
+                          border-width: 2px;
+                          border-right: 0;
+                          border-top: 0;
+                          border-bottom: 0;
+                          &.fc-event {
+                            background-color: lighten(theme-color(danger), 35%);
+                            border-color: theme-color(danger);
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.external-events {
+  .fc-event {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 2px;
+    background: lighten(theme-color(secondary), 41%);
+    border: 0;
+    border-left: 3px solid theme-color(primary);
+    color: $text-muted;
+    font-weight: bold;
+    font-size: 13px;
+    &:nth-child(2) {
+      border-left: 3px solid theme-color(warning);
+      background: lighten(theme-color(warning), 47%);
+    }
+    &:nth-child(3) {
+      border-left: 3px solid theme-color(danger);
+      background: lighten(theme-color(danger), 37%);
+    }
+    &:nth-child(4) {
+      border-left: 3px solid theme-color(info);
+      background: lighten(theme-color(info), 37%);
+    }
+    &:nth-child(5) {
+      border-left: 3px solid theme-color(success);
+      background: lighten(theme-color(success), 58%);
+    }
+    &:nth-child(6) {
+      border-left: 3px solid theme-color(primary);
+      background: lighten(theme-color(primary), 27%);
+    }
+  }
+}
+
+.rtl {
+  .fc {
+    text-align: right;
+    .fc-toolbar {
+      &.fc-header-toolbar {
+        .fc-left, .fc-right {
+          .fc-button-group {
+            .fc-button {
+              &:last-child {
+                border-right: 1px solid;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-top-right-radius: $btn-border-radius;
+                border-bottom-right-radius: $btn-border-radius;
+              }
+              &:first-child:not(:last-child) {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                border-top-left-radius: $btn-border-radius;
+                border-bottom-left-radius: $btn-border-radius;
+              }
+            }
+          }
+        }
+      }
+    }
+    .fc-view-container {
+      .fc-view {
+        table {
+          .fc-body {
+            .fc-widget-content {
+              .fc-day-grid-container {
+                .fc-day-grid {
+                  .fc-row {
+                    .fc-content-skeleton {
+                      table {
+                        .fc-event-container {
+                          .fc-day-grid-event {
+                            padding: 3px 5px 3px 0;
+                            border-right: 3px solid;
+                            border-left: 0;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .external-events {
+    .fc-event {
+      border-left: 0;
+      border-right: 3px solid theme-color(primary);
+      &:nth-child(2) {
+      border-left: 0;
+      border-right: 3px solid theme-color(warning);
+      }
+      &:nth-child(3) {
+        border-left: 0;
+        border-right: 3px solid theme-color(danger);
+      }
+      &:nth-child(4) {
+        border-left: 0;
+        border-right: 3px solid theme-color(info);
+      }
+      &:nth-child(5) {
+        border-left: 0;
+        border-right: 3px solid theme-color(success);
+      }
+      &:nth-child(6) {
+        border-left: 0;
+        border-right: 3px solid theme-color(primary);
+      }
+    }
+  }
+}

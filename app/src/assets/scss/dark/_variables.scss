@@ -1,0 +1,372 @@
+
+// Color system
+$blue:              #5E50F9;
+$indigo:            #6610f2;
+$purple:            #6a008a;
+$pink:              #E91E63;
+$red:               #f96868;
+$orange:            #f2a654;
+$yellow:            #f6e84e;
+$green:             #46c35f;
+$teal:              #58d8a3;
+$cyan:              #57c7d4;
+$black:             #000;
+$white:             #ffffff;
+$white-smoke:       #f2f7f8;
+$violet:            #41478a;
+$darkslategray :    #2e383e;
+$dodger-blue :      #3498db;
+
+
+$colors: (
+  blue:             $blue,
+  indigo:           $indigo,
+  purple:           $purple,
+  pink:             $pink,
+  red:              $red,
+  orange:           $orange,
+  yellow:           $yellow,
+  green:            $green,
+  teal:             $teal,
+  cyan:             $cyan,
+  white:            $white,
+  gray:             #434a54,
+  gray-light:       #aab2bd,
+  gray-lighter:     #e8eff4,
+  gray-lightest:    #e6e9ed,
+  gray-dark:        #0f1531,
+  black:            #000000
+);
+
+
+$theme-colors: (
+  primary:         #727cf5,
+  secondary:       #7987a1,
+  success:         #10b759,
+  info:            #66d1d1,
+  warning:         #fbbc06,
+  danger:          #ff3366,
+  light:           #ececec,
+  dark:            #060c17,
+  primary-muted:   #b1cfec,
+  info-muted:      #7ee5e5,
+  danger-muted:    #f77eb9,
+);
+
+$theme-gradient-colors: (
+  primary:         linear-gradient(230deg, #759bff, #843cf6),
+  secondary:       linear-gradient(to right, #e7ebf0, #868e96),
+  success:         linear-gradient(45deg, #7bffce, #30c93e),
+  info:            linear-gradient(to bottom, #0e4cfd, #6a8eff),
+  warning:         linear-gradient(135deg, #ffc480, #ff763b),
+  danger:          linear-gradient(316deg, #fc5286, #fbaaa2),
+  light:           linear-gradient(to right, #cfd9df 0%, #e2ebf0 100%),
+  dark:            linear-gradient(to right, #7d7979 0%, #000000 100%)
+);
+// Color system
+
+// Color variables
+$content-bg: #070d19;
+$border-color: #262f43;
+// Color variables
+
+// Social colors
+$social-colors: (
+  twitter: #2caae1,
+  facebook: #3b579d,
+  google: #dc4a38,
+  linkedin: #0177b5,
+  pinterest: #cc2127,
+  youtube: #e52d27,
+  github: #333333,
+  behance: #1769ff,
+  dribbble: #ea4c89,
+  reddit: #ff4500,
+  instagram: #fb3958
+);
+// Social colors
+
+// Font
+$type1: 'Overpass', sans-serif;
+
+$default-font-size: .875rem; // 14px as base font size
+$default-font-weight: 400;
+$default-line-height: 1.5;
+$lead-font-size: 1.19rem;
+
+
+// This variable affects the `.h-*` and `.w-*` classes.
+$sizes: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$sizes: map-merge(
+  (
+    10: 10%,
+    20: 20%,
+    25: 25%,
+    30: 30%,
+    40: 40%,
+    50: 50%,
+    60: 60%,
+    75: 75%,
+    80: 80%,
+    90: 90%,
+    100: 100%,
+    auto: auto
+  ),
+  $sizes
+);
+
+$text-muted: #7886a1;
+$body-color: #eef4ff;
+// Font
+
+// Footer
+$footer-height: 75px;
+$footer-bg: $content-bg;
+$footer-color: color(dark);
+// Footer
+
+// Badges
+// $badge-font-size:                   75%;
+$badge-font-weight:                 700;
+$badge-padding-y:                   4px;
+$badge-padding-x:                   5px;
+$badge-border-radius:               3px;
+// Badges
+
+
+// Buttons
+$button-fixed-width:        150px;
+$btn-padding-y:       .5rem;
+$btn-padding-x:       1rem;
+$btn-line-height:     1.5;
+
+$btn-padding-y-xs:    .35rem;
+$btn-padding-x-xs:    .75rem;
+
+$btn-padding-y-sm:    .4rem;
+$btn-padding-x-sm:    .85rem;
+$btn-line-height-sm:    .85rem;
+
+$btn-padding-y-lg:    .8rem;
+$btn-padding-x-lg:    1.5rem;
+$btn-line-height-lg:     1;
+
+$btn-font-size:       .875rem;
+$btn-font-size-xs:    .625rem;
+$btn-font-size-sm:    .75rem;
+$btn-font-size-lg:    1.3rem;
+
+$btn-font-weight:       600;
+
+$btn-border-radius:         .1875rem;
+$btn-border-radius-xs:      .1875rem;
+$btn-border-radius-sm:      .1875rem;
+$btn-border-radius-lg:      .1875rem;
+// Buttons
+
+///////// CARD ////////
+$card-spacing-y: 1.5rem;
+$card-padding-y: 1.5rem;
+$card-padding-x: 1.5rem;
+$card-spacer-y : .875rem;
+$card-spacer-x : 1.5rem;
+$card-border-radius: .25rem;
+$card-cap-bg: rgba(0,0,0,.0);
+$card-inner-border-radius: 0;
+$card-border-color: #172340;
+$card-box-shadow: 3px 0 10px 0 #060b15;
+$card-title-color: $body-color;
+$card-bg: #0c1427;
+$card-description-color: #76838f;
+$card-bg-varient: #222328;
+///////// CARD ////////
+
+// Tooltip
+//default styles
+$tooltip-font-size:     .75rem;
+$tooltip-padding-y:     .4rem;
+$tooltip-padding-x:     .75rem;
+$tooltip-border-radius: .375rem;
+// Tooltip
+
+// Forms
+$input-bg:                $card-bg;
+$input-disabled-bg:       lighten($card-bg, 10%);
+$input-focus-bg:          darken($card-bg, 7%);
+$input-focus-border-color: theme-color(primary);
+$input-focus-color:        $body-color;
+$input-border-radius:     2px;
+$input-placeholder-color: #c9c8c8;
+$input-placeholder-color: $text-muted;
+$input-font-size: .875rem;
+$input-group-addon-bg: $card-bg;
+
+$input-padding-y:       .5rem;
+$input-padding-x:       1rem;
+
+$input-line-height:     1;
+$input-line-height-sm:   2;
+
+$input-padding-y-xs:    .3rem;
+$input-padding-x-xs:    .75rem;
+
+$input-padding-y-sm:    .4rem;
+$input-padding-x-sm:    .875rem;
+
+$input-padding-y-lg:    .94rem;
+$input-padding-x-lg:    1rem;
+
+$input-font-size-sm:    .8rem;
+
+$custom-range-track-bg: $content-bg;
+// Forms
+
+// Dropdowns
+$dropdown-bg: $card-bg;
+$dropdown-color: $text-muted;
+$dropdown-border-color: $border-color;
+$dropdown-box-shadow: 0 0 10px 0 #060b15;
+$dropdown-divider-bg:   $border-color;
+$dropdown-link-color:   darken($body-color, 5%);
+$dropdown-header-color: $body-color;
+$dropdown-link-hover-bg: #eaeaf1;
+$dropdown-font-size: 13px;
+// Dropdowns
+
+// Tables
+$table-color: $body-color;
+$table-accent-bg: darken($card-bg, 3%);
+$table-hover-bg:  darken($card-bg, 3%);
+$table-hover-color: $text-muted;
+$table-cell-padding: .875rem .9375rem;
+$table-border-color: $border-color;
+$table-dark-bg: darken($card-bg, 3%);
+$table-inverse-bg: #2a2b32;
+$table-inverse-color: color(white);
+// Tables
+
+// Measurment and property variables
+$border-property: 1px solid $border-color;
+$grid-gutter-width: 1.5rem;
+$action-transition-duration: 0.2s;
+$action-transition-timing-function: ease;
+// Measurment and property variables
+
+// Breadcrumb
+// default styles
+$breadcrumb-padding-y:              0.56rem;
+$breadcrumb-padding-x:              1.13rem;
+$breadcrumb-item-padding:           .5rem;
+$breadcrumb-margin-bottom:          1rem;
+$breadcrumb-font-size:              $default-font-size;
+// $breadcrumb-bg:                     transparent;
+$breadcrumb-border-color:           $border-color;
+$breadcrumb-divider-color:          $gray-600;
+$breadcrumb-active-color:           $gray-700;
+$breadcrumb-divider:                "/";
+// custom styles
+$breadcrumb-custom-padding-y:       0;
+$breadcrumb-custom-padding-x:       0;
+$breadcrumb-custom-item-padding-y:  0.56rem;
+$breadcrumb-custom-item-padding-x:  10px;
+$breadcrumb-custom-item-color:      $black;
+$breadcrumb-item-bg:                #dbe3e6;
+// Breadcrumb
+
+// Modals
+$modal-inner-padding:               0.937rem;
+$modal-dialog-margin:               10px;
+$modal-dialog-margin-y-sm-up:       30px;
+$modal-title-line-height:           $line-height-base;
+$modal-content-bg:                  $card-bg;
+$modal-content-box-shadow-xs:       0 3px 9px rgba($black,.5);
+$modal-content-box-shadow-sm-up:    0 5px 15px rgba($black,.5);
+
+$modal-backdrop-bg:                 $black;
+$modal-backdrop-opacity:            .5;
+
+$modal-header-border-color:         $border-color;
+$modal-content-border-color:        $border-color;
+$modal-footer-border-color:         $border-color;
+
+$modal-header-border-width:         $border-width;
+$modal-content-border-width:        $border-width;
+$modal-footer-border-width:         $border-width;
+
+$modal-header-padding-x:              26px;
+$modal-header-padding-y:              25px;
+
+$modal-body-padding-x:                26px;
+$modal-body-padding-y:                35px;
+
+$modal-footer-padding-x:              31px;
+$modal-footer-padding-y:              15px;
+
+$modal-lg:                          800px;
+$modal-md:                          500px;
+$modal-sm:                          300px;
+$modal-fade-transform: scale(.8);
+$modal-transition:                  transform .4s ease;
+// Modals
+
+////////  PROGRESS BAR ///////////
+$progress-bg: #374155;
+////////  PROGRESS BAR ///////////
+
+// Tabs
+$nav-tabs-border-color:             $border-color;
+$nav-tabs-link-bg:                  #f6f8fa;
+$nav-tabs-link-color:               #000000;
+$nav-tabs-link-hover-border-color:  $nav-tabs-border-color $nav-tabs-border-color $nav-tabs-border-color;
+$nav-tabs-link-active-color:        $body-color;
+$nav-tabs-link-active-bg:           rgba(theme-color(primary), .1);
+$nav-tabs-link-active-border-color: $border-color;
+$nav-pills-custom-bg:               #fcfcfd;
+// Tabs
+
+// List Group
+$list-group-bg: $card-bg;
+$list-group-border-color: $border-color;
+$list-group-disabled-bg: lighten($card-bg, 5%);
+$list-group-hover-bg: darken($card-bg, 3%);
+// List Group
+
+// Pagination
+$pagination-bg: $card-bg;
+$pagination-hover-bg: darken($card-bg, 3%);
+$pagination-hover-border-color: darken($card-bg, 3%);
+$pagination-border-color: $border-color;
+$pagination-disabled-bg: lighten($card-bg, 5%);
+$pagination-disabled-border-color: $border-color;
+// Pagination
+
+// Popover
+$popover-bg: lighten($card-bg, 5%);
+$popover-header-bg: lighten($card-bg, 5%);
+$popover-arrow-color: lighten($card-bg, 5%);
+$popover-body-color: $body-color;
+// Popover
+
+// Sidebar
+$sidebar-width-lg: 240px;
+$sidebar-folded-width: 70px;
+
+$sidebar-light-bg: $white;
+$sidebar-light-border-color: #f2f4f9;
+
+$sidebar-dark-bg: #0c1427;
+$sidebar-dark-border-color: #182647;
+// Sidebar
+
+// Navbar
+$navbar-height: 60px;
+// Navbar
+
+// Content-nav
+$content-nav-width: 220px;
+
+// Sidebar
+$sidebar-dark-bg: $card-bg;
+$sidebar-dark-border-color: #344258;
+// Sidebar

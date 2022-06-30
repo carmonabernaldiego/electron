@@ -1,0 +1,12 @@
+// Badge outlined variations
+@each $color, $value in $theme-colors {
+  .badge-outline#{$color} {
+    @include badge-outline-variatons($value);
+  }
+}
+
+.badge {
+  // line-height: 10px;
+  padding: 6px 5px 3px;
+  // line-height: 11px;
+}

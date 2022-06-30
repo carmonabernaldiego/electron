@@ -1,0 +1,20 @@
+.dataTables_wrapper {
+  &.dt-bootstrap4 {
+    .dataTables_length {
+      @media(max-width: 767px) {
+        text-align: left;
+      }
+      select {
+        @extend .w-100;
+        margin-left: 10px;
+        margin-right: 10px;
+        background: $card-bg;
+      }
+    }
+    .dataTables_filter {
+      @media(max-width: 767px) {
+        text-align: left;
+      }
+    }
+  }
+}

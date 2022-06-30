@@ -1,0 +1,148 @@
+.profile-page {
+  .profile-header {
+    box-shadow: $card-box-shadow;
+    border: 1px solid $card-border-color;
+    .cover {
+      position: relative;
+      border-radius: .25rem .25rem 0 0;
+      figure {
+        margin-bottom: 0;
+        @media(max-width: 767px) {
+          height: 110px;
+          overflow: hidden;
+        }
+        @media(min-width: 2400px) {
+          height: 280px;
+          overflow: hidden;
+        }
+        img {
+          border-radius: .25rem .25rem 0 0;
+          width: 100%;
+          @media(max-width: 767px) {
+            -webkit-transform: scale(2);
+                    transform: scale(2);
+            margin-top: 15px;
+          }
+          @media(min-width: 2400px) {
+            margin-top: -55px;
+          }
+        }
+      }
+      .gray-shade {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        // background:-webkit-gradient(linear, left top, left bottom, color-stop(71%, rgba(255,255,255,0)), to(rgba(255,255,255, .5)));
+        // background:linear-gradient(rgba(255,255,255,0) 71%, rgba(255,255,255, .5));
+        background:linear-gradient(rgba($card-bg, .1), $card-bg 99%);
+      }
+      .cover-body {
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        padding: 0 20px;
+        .profile-pic {
+          border-radius: 50%;
+          width: 100px;
+          @media(max-width: 767px) {
+            width: 70px;
+          }
+        }
+        .profile-name {
+          font-size: 20px;
+          font-weight: 600;
+          margin-left: 17px;
+        }
+      }
+    }
+    .header-links {
+      padding: 15px;
+      @include display-flex;
+      @include justify-content(center);
+      background: $card-bg;
+      border-radius: 0 0 .25rem .25rem;
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {
+          a {
+            color: $body-color;
+            -webkit-transition: all .2s ease;
+            transition: all .2s ease; 
+          }
+          &:hover,
+          &.active {
+            color: theme-color(primary);
+            a {
+              color: theme-color(primary);              
+            }
+          }
+        }
+      }
+    }
+  }
+  .profile-body {
+    .left-wrapper {
+      .social-links {
+        a {
+          width: 30px;
+          height: 30px;
+          &.github {
+            @extend .text-github;
+          }
+          &.twitter {
+            @extend .text-twitter;
+          }
+          &.instagram {
+            @extend .text-instagram;
+          }
+        }
+      }
+    }
+    .right-wrapper {
+      .latest-photos {
+        > .row {
+          margin-right: 0;
+          margin-left: 0;
+          > div {
+            padding-left: 3px;
+            padding-right: 3px;
+            figure {
+              -webkit-transition: all .3s ease-in-out;
+              transition: all .3s ease-in-out;
+              margin-bottom: 6px;
+              &:hover {
+                -webkit-transform: scale(1.06);
+                        transform: scale(1.06);
+              }
+              img {
+                border-radius: .25rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.rtl {
+  .profile-page {
+    .profile-header {
+      .cover {
+        .cover-body {
+          .profile-name {
+            margin-left: 0;
+            margin-right: 17px;
+          }
+        }
+      }
+    }
+  }
+}

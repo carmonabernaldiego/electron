@@ -1,0 +1,59 @@
+.pagination {
+  .page-item {
+    .page-link {
+      min-width: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        width: 17px;
+        height: 17px;
+      }
+    }
+  }
+  &.pagination-separated {
+    .page-item {
+      margin-left: 2px;
+      margin-right: 2px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child  {
+        margin-right: 0;
+      }
+      .page-link {
+        @include border-radius(2px);
+      }
+    }
+  }
+  &.pagination-rounded {
+    .page-item {
+      margin-right: 3px;
+      margin-left: 3px;
+      .page-link {
+        @include border-radius(50px);
+      }
+    }
+  }
+}
+
+.rtl {
+  .pagination {
+    .page-item {
+      &:first-child {
+        .page-link {
+          margin-left: 0;
+          @include border-left-radius(0);
+          @include border-right-radius($border-radius);
+        }
+      }
+      &:last-child {
+        .page-link {
+          margin-left: 0;
+          @include border-right-radius(0);
+          @include border-left-radius($border-radius);
+        }
+      }
+    }
+  }
+}

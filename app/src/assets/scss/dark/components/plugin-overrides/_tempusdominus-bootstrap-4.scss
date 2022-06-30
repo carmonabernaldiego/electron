@@ -1,0 +1,39 @@
+// tempusdominus-bootstrap-4
+.timepicker {
+  &.input-group {
+    padding: 0;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    .form-control {
+      border: 0;
+      border-radius: 5px 0 0 5px;
+    }
+    .input-group-append {
+      .input-group-text {
+        padding: .3rem .6rem;
+        background: $card-bg;
+        border: 0;
+        border-left: 2px solid $border-color;
+        border-radius: 0 5px 5px 0;
+        svg {
+          width: 18px;
+          color: $text-muted;
+        }
+      }
+    }
+  }
+}
+
+.rtl {
+  .timepicker {
+    &.input-group {
+      .input-group-append {
+        .input-group-text {
+          border-left: 1px solid $border-color;
+          border-right: 1px solid $border-color;
+          border-radius: 5px 0 0 5px;
+        }
+      }
+    }
+  }
+}
