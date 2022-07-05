@@ -26,7 +26,7 @@ const createWindowDashboard = () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true,
-      devTools: false,
+      devTools: true,
       preload: path.join(__dirname, 'preload.js')
     }
   });
@@ -99,7 +99,7 @@ electronIpcMain.on('login', (event, data) => {
 
 function validateLogin(data) {
   const { email, password } = data;
-  const sql = "SELECT * FROM users WHERE email=? AND pass=?";
+  const sql = "SELECT * FROM usuarios WHERE email=? AND pass=?";
 
   db.query(sql, [email, password], (error, results, fields) => {
     if (error) {
@@ -111,23 +111,11 @@ function validateLogin(data) {
       store.set('email', results[0].email);
       store.set('permissions', results[0].permissions);
       store.set('image', results[0].image);
+      store.set('name', results[0].name);
 
-      const sql = "SELECT * FROM administratives WHERE user=?";
-
-      db.query(sql, [store.get('user')], (error, results, fields) => {
-        if (error) {
-          console.log(error);
-        }
-
-        if (results.length > 0) {
-          store.set('name', results[0].name);
-          store.set('surnames', results[0].surnames);
-
-          createWindowDashboard();
-          window.show();
-          loginWindow.close();
-        }
-      });
+      createWindowDashboard();
+      window.show();
+      loginWindow.close();
     } else {
       new electronNotification({
         title: "Inicia Sesión",
@@ -148,7 +136,6 @@ function validateLogout(confirm) {
     store.delete('permissions');
     store.delete('image');
     store.delete('name');
-    store.delete('surnames');
 
     createWindow();
     loginWindow.show();
@@ -165,7 +152,7 @@ electronIpcMain.on('invitado', (event, permissions) => {
 });
 
 electronIpcMain.handle('getUserData', (event) => {
-  const data = { user: store.get('user'), email: store.get('email'), permissions: store.get('permissions'), image: store.get('image'), name: store.get('name'), surnames: store.get('surnames') };
+  const data = { user: store.get('user'), email: store.get('email'), permissions: store.get('permissions'), image: store.get('image'), name: store.get('name') };
 
   return data;
 });

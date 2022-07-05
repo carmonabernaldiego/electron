@@ -9,7 +9,8 @@ const ipc = {
             'invitado'
         ],
         'sendReceive': [
-            'getUserData'
+            'getUserData',
+            'getBooks'
         ]
     }
 };
@@ -25,7 +26,7 @@ contextBridge.exposeInMainWorld(
     },
     invoke: (channel, args) => {
         let validChannels = ipc.render.sendReceive;
-        
+
         if (validChannels.includes(channel)) {
             return ipcRender.invoke(channel, args);
         }
