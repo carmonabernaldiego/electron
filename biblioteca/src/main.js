@@ -167,7 +167,7 @@ electronIpcMain.handle('getBooks', (event) => {
 
     if (results.length > 0) {
       for (let i = 0; i < results.length; i++) {
-        isbn += results[i].isbn + '_';
+        isbn += results[i].ISBN + '_';
         nombre += results[i].nombre + '_';
         carrera += results[i].carrera + '_';
         ubicacion += results[i].ubicacion + '_';
