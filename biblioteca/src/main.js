@@ -40,8 +40,6 @@ const createWindowDashboard = () => {
   // and load the index.html of the ap.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTool.webContents.openDevTools();
-
-  window.maximize();
 };
 
 const createWindow = () => {
@@ -116,6 +114,7 @@ function validateLogin(data) {
       createWindowDashboard();
       window.show();
       loginWindow.close();
+      window.maximize();
     } else {
       new electronNotification({
         title: "Inicia Sesión",
@@ -149,10 +148,39 @@ electronIpcMain.on('invitado', (event, permissions) => {
   createWindowDashboard();
   window.show();
   loginWindow.close();
+  window.maximize();
 });
 
 electronIpcMain.handle('getUserData', (event) => {
   const data = { user: store.get('user'), email: store.get('email'), permissions: store.get('permissions'), image: store.get('image'), name: store.get('name') };
+
+  return data;
+});
+
+electronIpcMain.handle('getBooks', (event) => {
+  let nombre = '', carrera = '', ubicacion = '', editorial = '';
+
+  db.query('SELECT * FROM `libros`', (error, results, fields) => {
+    if (error) {
+      console.log(error);
+    }
+
+    if (results.length > 0) {
+      for (let i = 0; i < results.length; i++) {
+        nombre += results[i].nombre + '_';
+        carrera += results[i].carrera + '_';
+        ubicacion += results[i].ubicacion + '_';
+        editorial += results[i].editorial + '_';
+      }
+
+      store.set('nombreLibro', nombre);
+      store.set('carreraLibro', carrera);
+      store.set('ubicacionLibro', ubicacion);
+      store.set('editorialLibro', editorial);
+    }
+  });
+
+  const data = { nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
 
   return data;
 });
