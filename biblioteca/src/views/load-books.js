@@ -73,6 +73,6 @@ class PageBooks {
     }
 
     logout() {
-        window.ipcRender.send('logout', 'confirm-logout');
+        //window.ipcRender.send('logout', 'confirm-logout');
     }
 }
