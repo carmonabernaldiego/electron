@@ -1,9 +1,13 @@
-const article = document.querySelector('#content-books');
-const inputBuscar = document.querySelector('#inputBuscar');
+let pageBooks;
 
-const mostrarLibros = (nombres, carreras, ubicaciones, editoriales) => {
-    let contador = 1;
+document.addEventListener('DOMContentLoaded', function () {
+    pageBooks = new PageBooks(window);
+});
+
+const showBooks = (nombres, carreras, ubicaciones, editoriales) => {
+    const contenedorLibros = document.querySelector('#content-books');
     let texto = '';
+    let contador = 1;
 
     for (let i = 0; i < nombres.length; i++) {
         texto +=
@@ -22,32 +26,50 @@ const mostrarLibros = (nombres, carreras, ubicaciones, editoriales) => {
         `;
 
         if (contador == 3) {
-            article.innerHTML += '<div class="row pb-4">' + texto + '</div>';
+            contenedorLibros.innerHTML += '<div class="row pb-4">' + texto + '</div>';
             texto = '';
             contador = 0;
         }
         contador++;
     }
-    article.innerHTML += '<div class="row pb-4">' + texto + '</div>';
+    contenedorLibros.innerHTML += '<div class="row pb-4">' + texto + '</div>';
 }
 
-const iniciarPrograma = () => {
-    window.ipcRender.invoke('getBooks').then((results) => {
-        const { nombre, carrera, ubicacion, editorial } = results;
+class PageBooks {
+    constructor() {
+        this.attachEvents();
+        this.loadBooks();
+    }
 
-        let nombres = nombre.replace(/(^_)|(_$)/g, '');
-        let carreras = carrera.replace(/(^_)|(_$)/g, '');
-        let ubicaciones = ubicacion.replace(/(^_)|(_$)/g, '');
-        let editoriales = editorial.replace(/(^_)|(_$)/g, '');
+    get(id) {
+        return document.querySelector(id);
+    }
 
-        nombres = nombres.split("_");
-        carreras = carreras.split("_");
-        ubicaciones = ubicaciones.split("_");
-        editoriales = editoriales.split("_");
+    attachEvents() {
+        let btnLogout = this.get('#btnLogout');
+        btnLogout.addEventListener('click', this.logout);
+    }
 
-        mostrarLibros(nombres, carreras, ubicaciones, editoriales);
-    });
+    loadBooks() {
+        window.ipcRender.invoke('getBooks').then((results) => {
+            const { nombre, carrera, ubicacion, editorial } = results;
 
+            let nombres = nombre.replace(/(^_)|(_$)/g, '');
+            let carreras = carrera.replace(/(^_)|(_$)/g, '');
+            let ubicaciones = ubicacion.replace(/(^_)|(_$)/g, '');
+            let editoriales = editorial.replace(/(^_)|(_$)/g, '');
+
+            nombres = nombres.split("_");
+            carreras = carreras.split("_");
+            ubicaciones = ubicaciones.split("_");
+            editoriales = editoriales.split("_");
+
+            showBooks(nombres, carreras, ubicaciones, editoriales);
+        });
+
+    }
+
+    logout() {
+        window.ipcRender.send('logout', 'confirm-logout');
+    }
 }
-
-iniciarPrograma();

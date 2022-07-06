@@ -6,7 +6,7 @@ const Store = require('electron-store');
 const store = new Store();
 const path = require('path');
 
-let db = require('./connection');
+let db = require('./connection.js');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -26,7 +26,7 @@ const createWindowDashboard = () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true,
-      devTools: true,
+      devTools: false,
       preload: path.join(__dirname, 'preload.js')
     }
   });
@@ -69,7 +69,7 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
-electronApp.on('ready', createWindowDashboard);
+electronApp.on('ready', createWindow);
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -84,7 +84,7 @@ electronApp.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (electronBrowserWindow.getAllWindows().length === 0) {
-    createWindowDashboard();
+    createWindow();
   }
 });
 
