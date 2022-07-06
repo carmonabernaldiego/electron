@@ -38,11 +38,17 @@ const showBooks = (isbn, nombres, carreras, ubicaciones, editoriales) => {
 
 class PageBooks {
     constructor() {
+        this.attachEvents();
         this.loadBooks();
     }
 
     get(id) {
         return document.querySelector(id);
+    }
+
+    attachEvents() {
+        let btnLogout = this.get('#btnLogout');
+        btnLogout.addEventListener('click', this.logout);
     }
 
     loadBooks() {
@@ -56,12 +62,17 @@ class PageBooks {
             editorial = editorial.replace(/(^_)|(_$)/g, '');
 
             isbn = isbn.split("_");
-            nombre = nombres.split("_");
-            carrera = carreras.split("_");
-            ubicacion = ubicaciones.split("_");
-            editorial = editoriales.split("_");
+            nombre = nombre.split("_");
+            carrera = carrera.split("_");
+            ubicacion = ubicacion.split("_");
+            editorial = editorial.split("_");
 
             showBooks(isbn, nombre, carrera, ubicacion, editorial);
         });
+
+    }
+
+    logout() {
+        window.ipcRender.send('logout', 'confirm-logout');
     }
 }

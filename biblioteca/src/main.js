@@ -174,7 +174,7 @@ electronIpcMain.handle('getBooks', (event) => {
         editorial += results[i].editorial + '_';
       }
 
-      store.set('isbnLibro', nombre);
+      store.set('isbnLibro', isbn);
       store.set('nombreLibro', nombre);
       store.set('carreraLibro', carrera);
       store.set('ubicacionLibro', ubicacion);
