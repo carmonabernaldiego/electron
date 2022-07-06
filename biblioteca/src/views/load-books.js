@@ -4,6 +4,15 @@ document.addEventListener('DOMContentLoaded', function () {
     pageBooks = new PageBooks(window);
 });
 
+const filtrarCarrera = (carrera) => {
+    connection.query(
+        `SELECT * FROM LIBRO WHERE carrera = "${carrera}"; `,
+        function (error, results, fields) {
+            mostrarLibros(results);
+        }
+    );
+}
+
 const showBooks = (isbn, nombres, carreras, ubicaciones, editoriales) => {
     const contenedorLibros = document.querySelector('#content-books');
     let texto = '';
