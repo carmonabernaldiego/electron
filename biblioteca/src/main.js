@@ -158,7 +158,7 @@ electronIpcMain.handle('getUserData', (event) => {
 });
 
 electronIpcMain.handle('getBooks', (event) => {
-  let nombre = '', carrera = '', ubicacion = '', editorial = '';
+  let isbn = '', nombre = '', carrera = '', ubicacion = '', editorial = '';
 
   db.query('SELECT * FROM `libros`', (error, results, fields) => {
     if (error) {
@@ -167,12 +167,14 @@ electronIpcMain.handle('getBooks', (event) => {
 
     if (results.length > 0) {
       for (let i = 0; i < results.length; i++) {
+        isbn += results[i].isbn + '_';
         nombre += results[i].nombre + '_';
         carrera += results[i].carrera + '_';
         ubicacion += results[i].ubicacion + '_';
         editorial += results[i].editorial + '_';
       }
 
+      store.set('isbnLibro', nombre);
       store.set('nombreLibro', nombre);
       store.set('carreraLibro', carrera);
       store.set('ubicacionLibro', ubicacion);
@@ -180,7 +182,7 @@ electronIpcMain.handle('getBooks', (event) => {
     }
   });
 
-  const data = { nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
+  const data = { isbn: store.get('isbnLibro'), nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
 
   return data;
 });
