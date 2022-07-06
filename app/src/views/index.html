@@ -51,9 +51,7 @@
           </ul>
         </div>
       </nav>
-
       <!-- partial -->
-
       <div class="page-wrapper">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar">
@@ -118,129 +116,37 @@
           </div>
         </nav>
         <!-- partial -->
-
-
-
         <div class="page-content">
           <div class="row pb-4">
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 1</h5>
-                </div>
-              </div>
+            <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
+              <button onclick="iniciarPrograma()" class="w-100 btn btn-primary
+                btn-md">Mostrar todo</button>
             </div>
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 2</h5>
-                </div>
-              </div>
+            <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
+              <button onclick="filtrarCarrera('SOFTWARE')" class="w-100 btn
+                btn-primary btn-md">Software</button>
             </div>
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 3</h5>
-                </div>
-              </div>
+            <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
+              <button onclick="filtrarCarrera('AMBIENTAL')" class="w-100 btn
+                btn-primary btn-md">Ambiental</button>
             </div>
-          </div>
-          <div class="row pb-4">
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 4</h5>
-                </div>
-              </div>
+            <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
+              <button onclick="filtrarCarrera('ENERGIA')" class="w-100 btn
+                btn-primary btn-md">Energia</button>
             </div>
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 5</h5>
-                </div>
-              </div>
+            <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
+              <button onclick="filtrarCarrera('PYMES')" class="w-100 btn
+                btn-primary btn-md">PYMES</button>
             </div>
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 6</h5>
-                </div>
-              </div>
+            <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
+              <button onclick="filtrarCarrera('INGLES')" class="w-100 btn
+                btn-primary btn-md">Inglés</button>
             </div>
           </div>
-          <div class="row pb-4">
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 7</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 8</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 9</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row pb-4">
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 10</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 11</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 12</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 13</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 14</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="text-center text-uppercase mt-3 mb-4">Libro 15</h5>
-                </div>
-              </div>
-            </div>
+          <div id="content-books">
+
           </div>
         </div>
-
-
-
         <!-- partial:partials/_footer.html -->
         <footer
           class="footer d-flex flex-column flex-md-row align-items-center
@@ -254,6 +160,7 @@
       </div>
     </div>
     <script src="load-user.js"></script>
+    <script src="load-books.js"></script>
     <!-- core:js -->
     <script src="../assets/vendors/core/core.js"></script>
     <!-- endinject -->

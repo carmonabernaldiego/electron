@@ -6,7 +6,7 @@ const Store = require('electron-store');
 const store = new Store();
 const path = require('path');
 
-let db = require('./connection');
+let db = require('./connection.js');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -40,8 +40,6 @@ const createWindowDashboard = () => {
   // and load the index.html of the ap.loadFile(path.join(__dirname, 'index.html'));
 
   // Open the DevTool.webContents.openDevTools();
-
-  window.maximize();
 };
 
 const createWindow = () => {
@@ -99,7 +97,7 @@ electronIpcMain.on('login', (event, data) => {
 
 function validateLogin(data) {
   const { email, password } = data;
-  const sql = "SELECT * FROM users WHERE email=? AND pass=?";
+  const sql = "SELECT * FROM usuarios WHERE email=? AND pass=?";
 
   db.query(sql, [email, password], (error, results, fields) => {
     if (error) {
@@ -111,23 +109,12 @@ function validateLogin(data) {
       store.set('email', results[0].email);
       store.set('permissions', results[0].permissions);
       store.set('image', results[0].image);
+      store.set('name', results[0].name);
 
-      const sql = "SELECT * FROM administratives WHERE user=?";
-
-      db.query(sql, [store.get('user')], (error, results, fields) => {
-        if (error) {
-          console.log(error);
-        }
-
-        if (results.length > 0) {
-          store.set('name', results[0].name);
-          store.set('surnames', results[0].surnames);
-
-          createWindowDashboard();
-          window.show();
-          loginWindow.close();
-        }
-      });
+      createWindowDashboard();
+      window.show();
+      loginWindow.close();
+      window.maximize();
     } else {
       new electronNotification({
         title: "Inicia Sesión",
@@ -148,7 +135,6 @@ function validateLogout(confirm) {
     store.delete('permissions');
     store.delete('image');
     store.delete('name');
-    store.delete('surnames');
 
     createWindow();
     loginWindow.show();
@@ -162,10 +148,39 @@ electronIpcMain.on('invitado', (event, permissions) => {
   createWindowDashboard();
   window.show();
   loginWindow.close();
+  window.maximize();
 });
 
 electronIpcMain.handle('getUserData', (event) => {
-  const data = { user: store.get('user'), email: store.get('email'), permissions: store.get('permissions'), image: store.get('image'), name: store.get('name'), surnames: store.get('surnames') };
+  const data = { user: store.get('user'), email: store.get('email'), permissions: store.get('permissions'), image: store.get('image'), name: store.get('name') };
+
+  return data;
+});
+
+electronIpcMain.handle('getBooks', (event) => {
+  let nombre = '', carrera = '', ubicacion = '', editorial = '';
+
+  db.query('SELECT * FROM `libros`', (error, results, fields) => {
+    if (error) {
+      console.log(error);
+    }
+
+    if (results.length > 0) {
+      for (let i = 0; i < results.length; i++) {
+        nombre += results[i].nombre + '_';
+        carrera += results[i].carrera + '_';
+        ubicacion += results[i].ubicacion + '_';
+        editorial += results[i].editorial + '_';
+      }
+
+      store.set('nombreLibro', nombre);
+      store.set('carreraLibro', carrera);
+      store.set('ubicacionLibro', ubicacion);
+      store.set('editorialLibro', editorial);
+    }
+  });
+
+  const data = { nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
 
   return data;
 });
