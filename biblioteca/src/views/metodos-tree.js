@@ -50,8 +50,10 @@ const filtrarArbol = (libro, carrera) => {
     if (i !== -1) {
         carreras.splice(i, 1);
     }
+    console.log(carreras);
 
     for (let i = 0; i < carreras.length; i++) {
+        console.log("Se lanza El For de Metodos "+ carreras[i])
         raiz.filtrarCarrera(raiz.nodoInicial, carreras[i]);
         raiz.filtrarCarrera(raiz.nodoInicial, carreras[i]);
         //SE MANDA A LLAMAR DOS VECES POR QUE AVECES QUEDAN RESTOS AL SER UN LENGUAJE NO TIPADO

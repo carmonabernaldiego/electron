@@ -131,7 +131,7 @@ export class arbol {
             } else {
                 this.filtrarCarrera(nodo.izquierda, carrera);
 
-                if (nodo.objeto.CARRERA == carrera) {
+                if (nodo.objeto.carrera == carrera) {
 
                     this.eliminar(this.nodoInicial, nodo.key);
                 }
