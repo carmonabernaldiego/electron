@@ -13,23 +13,27 @@ const filtrarCarrera = (carrera) => {
     );
 }
 
-const showBooks = (isbn, nombres, carreras, ubicaciones, editoriales) => {
+import { ordenamientoArbol } from './metodos-tree.js';
+
+const mostrarLibros = (libros) => {
     const contenedorLibros = document.querySelector('#content-books');
     let texto = '';
     let contador = 1;
 
-    for (let i = 0; i < nombres.length; i++) {
+    libros = ordenamientoArbol(libros);
+
+    for (let i = 0; i < libros.length; i++) {
         texto +=
             `
             <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
               <div class="card">
-                <div class="card-header border-0 text-center">${nombres[i]}</div>
+                <div class="card-header border-0 text-center">${libros[i].nombre}</div>
                 <img src="../assets/images/book.jpg" class="card-img" alt="">
                 <div class="card-body">
-                    <h6 class="card-subtitle text-body">ISBN: ${isbn[i]}</h6>
-                  <h6 class="card-subtitle text-body">Carrera: ${carreras[i]}</h6>
-                  <h6 class="card-subtitle text-body">Ubicación: ${ubicaciones[i]}</h6>
-                  <h6 class="card-subtitle text-body">Editorial: ${editoriales[i]}</h6>
+                    <h6 class="card-subtitle text-body">ISBN: ${libros[i].isbn}</h6>
+                  <h6 class="card-subtitle text-body">Carrera: ${libros[i].carrera}</h6>
+                  <h6 class="card-subtitle text-body">Ubicación: ${libros[i].ubicacion}</h6>
+                  <h6 class="card-subtitle text-body">Editorial: ${libros[i].editorial}</h6>
                 </div>
               </div>
             </div>
@@ -56,8 +60,8 @@ class PageBooks {
     }
 
     attachEvents() {
-        let btnLogout = this.get('#btnLogout');
-        btnLogout.addEventListener('click', this.logout);
+        let btnMostrarTodo = this.get('#btnMostrarTodo');
+        btnMostrarTodo.addEventListener('click', this.loadBooks);
     }
 
     loadBooks() {
@@ -76,7 +80,19 @@ class PageBooks {
             ubicacion = ubicacion.split("_");
             editorial = editorial.split("_");
 
-            showBooks(isbn, nombre, carrera, ubicacion, editorial);
+            let libros = [];
+
+            for (let i = 0; i < isbn.length; i++) {
+                libros.push({
+                    'isbn': isbn[i],
+                    'nombre': nombre[i],
+                    'carrera': carrera[i],
+                    'ubicacion': ubicacion[i],
+                    'editorial': editorial[i]
+                });
+            }
+
+            mostrarLibros(libros);
         });
 
     }

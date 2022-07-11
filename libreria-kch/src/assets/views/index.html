@@ -6,26 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Biblioteca CKH</title>
     <!-- core:css -->
-    <link rel="stylesheet" href="../assets/vendors/core/core.css" />
+    <link rel="stylesheet" href="../vendors/core/core.css" />
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link
       rel="stylesheet"
-      href="../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css"
+      href="../vendors/bootstrap-datepicker/bootstrap-datepicker.min.css"
       />
     <!-- end plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../assets/fonts/feather-font/css/iconfont.css"
+    <link rel="stylesheet" href="../fonts/feather-font/css/iconfont.css"
       />
     <link
       rel="stylesheet"
-      href="../assets/vendors/flag-icon-css/css/flag-icon.min.css"
+      href="../vendors/flag-icon-css/css/flag-icon.min.css"
       />
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="../assets/css/demo_1/style.css" />
+    <link rel="stylesheet" href="../css/demo_1/style.css" />
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="../assets/images/favicon.png" />
+    <link rel="shortcut icon" href="../images/favicon.png" />
+    <script type="module" src="./js/script.js" defer></script>
   </head>
   <body>
     <div class="main-wrapper">
@@ -80,7 +81,7 @@
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false">
-                  <img id="profileUser" src="../assets/images/user.png"
+                  <img id="profileUser" src="../images/user.png"
                     alt="profile" />
                 </a>
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
@@ -88,7 +89,7 @@
                     class="dropdown-header d-flex flex-column
                     align-items-center">
                     <div class="figure mb-3">
-                      <img id="profileUserBox" src="../assets/images/user.png"
+                      <img id="profileUserBox" src="../images/user.png"
                         alt="profile" />
                     </div>
                     <div class="info text-center">
@@ -119,31 +120,31 @@
         <div class="page-content">
           <div class="row pb-4">
             <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
-              <button onclick="iniciarPrograma()" class="w-100 btn btn-primary
+              <button id="btnMostrarTodo" class="w-100 btn btn-primary
                 btn-md">Mostrar todo</button>
             </div>
             <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
-              <button onclick="filtrarCarrera('SOFTWARE')" class="w-100 btn
+              <button id="btnSoftware" class="w-100 btn
                 btn-primary btn-md">Software</button>
             </div>
             <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
-              <button onclick="filtrarCarrera('AMBIENTAL')" class="w-100 btn
+              <button id="btnAmbiental" class="w-100 btn
                 btn-primary btn-md">Ambiental</button>
             </div>
             <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
-              <button onclick="filtrarCarrera('ENERGIA')" class="w-100 btn
+              <button id="btnEnergia" class="w-100 btn
                 btn-primary btn-md">Energia</button>
             </div>
             <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
-              <button onclick="filtrarCarrera('PYMES')" class="w-100 btn
+              <button id="btnPymes" class="w-100 btn
                 btn-primary btn-md">PYMES</button>
             </div>
             <div class="col-md-2 stretch-card grid-margin grid-margin-md-0">
-              <button onclick="filtrarCarrera('INGLES')" class="w-100 btn
+              <button id="btnIngles" class="w-100 btn
                 btn-primary btn-md">Inglés</button>
             </div>
           </div>
-          <div id="content-books">
+          <div id="contenido">
 
           </div>
         </div>
@@ -159,27 +160,26 @@
         <!-- partial -->
       </div>
     </div>
-    <script src="load-user.js"></script>
-    <script src="load-books.js"></script>
+    <script src="./js/load-user.js"></script>
     <!-- core:js -->
-    <script src="../assets/vendors/core/core.js"></script>
+    <script src="../vendors/core/core.js"></script>
     <!-- endinject -->
     <!-- plugin js for this page -->
-    <script src="../assets/vendors/chartjs/Chart.min.js"></script>
-    <script src="../assets/vendors/jquery.flot/jquery.flot.js"></script>
-    <script src="../assets/vendors/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="../vendors/chartjs/Chart.min.js"></script>
+    <script src="../vendors/jquery.flot/jquery.flot.js"></script>
+    <script src="../vendors/jquery.flot/jquery.flot.resize.js"></script>
     <script
-      src="../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="../assets/vendors/apexcharts/apexcharts.min.js"></script>
-    <script src="../assets/vendors/progressbar.js/progressbar.min.js"></script>
+      src="../vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="../vendors/apexcharts/apexcharts.min.js"></script>
+    <script src="../vendors/progressbar.js/progressbar.min.js"></script>
     <!-- end plugin js for this page -->
     <!-- inject:js -->
-    <script src="../assets/vendors/feather-icons/feather.min.js"></script>
-    <script src="../assets/js/template.js"></script>
+    <script src="../vendors/feather-icons/feather.min.js"></script>
+    <script src="../js/template.js"></script>
     <!-- endinject -->
     <!-- custom js for this page -->
-    <script src="../assets/js/dashboard.js"></script>
-    <script src="../assets/js/datepicker.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/datepicker.js"></script>
     <!-- end custom js for this page -->
   </body>
 </html>
