@@ -94,10 +94,5 @@ class PageBooks {
 
             mostrarLibros(libros);
         });
-
-    }
-
-    logout() {
-        //window.ipcRender.send('logout', 'confirm-logout');
     }
 }
