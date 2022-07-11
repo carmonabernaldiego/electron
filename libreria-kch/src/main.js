@@ -32,7 +32,7 @@ const createWindowDashboard = () => {
   });
 
   // and load the index.html of the app.
-  window.loadFile(path.join(__dirname, 'views/index.html'));
+  window.loadFile(path.join(__dirname, 'assets/views/index.html'));
 
   // Open the DevTools.
   window.webContents.openDevTools();
@@ -59,7 +59,7 @@ const createWindow = () => {
   });
 
   // and load the index.html of the app.
-  loginWindow.loadFile(path.join(__dirname, 'views/login.html'));
+  loginWindow.loadFile(path.join(__dirname, 'assets/views/login.html'));
 
   // Open the DevTools.
   loginWindow.webContents.openDevTools();
