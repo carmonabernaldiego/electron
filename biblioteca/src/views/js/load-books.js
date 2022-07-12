@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 class PageBooks {
     constructor() {
         this.attachEvents();
+        this.loadBooks();
     }
 
     get(id) {
