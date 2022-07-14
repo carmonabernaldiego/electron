@@ -69,7 +69,7 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
-electronApp.on('ready', createWindow);
+electronApp.on('ready', createWindowDashboard);
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -84,7 +84,7 @@ electronApp.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (electronBrowserWindow.getAllWindows().length === 0) {
-    createWindow();
+    createWindowDashboard();
   }
 });
 
@@ -97,7 +97,7 @@ electronIpcMain.on('login', (event, data) => {
 
 function validateLogin(data) {
   const { email, password } = data;
-  const sql = "SELECT * FROM usuarios WHERE email=? AND pass=?";
+  const sql = "SELECT * FROM usuarios WHERE correo=? AND contrasena=?";
 
   db.query(sql, [email, password], (error, results, fields) => {
     if (error) {
@@ -105,11 +105,11 @@ function validateLogin(data) {
     }
 
     if (results.length > 0) {
-      store.set('user', results[0].user);
-      store.set('email', results[0].email);
-      store.set('permissions', results[0].permissions);
-      store.set('image', results[0].image);
-      store.set('name', results[0].name);
+      store.set('user', results[0].usuario);
+      store.set('email', results[0].correo);
+      store.set('permissions', results[0].permiso);
+      store.set('name', results[0].nombre);
+      store.set('image', results[0].imagen);
 
       createWindowDashboard();
       window.show();
