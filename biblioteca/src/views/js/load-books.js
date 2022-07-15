@@ -23,7 +23,7 @@ class PageBooks {
         let btnEnergia = this.get('#btnEnergia');
         let btnPymes = this.get('#btnPymes');
         let btnIngles = this.get('#btnIngles');
-        let btnBuscar = this.get('#txtSearch');
+        let txtBuscar = this.get('#txtSearch');
 
         btnMostrarTodo.addEventListener('click', this.loadBooks);
         btnSoftware.addEventListener('click', () => { this.filtrarCarrera('Software') });
@@ -31,7 +31,7 @@ class PageBooks {
         btnEnergia.addEventListener('click', () => { this.filtrarCarrera('Energía') });
         btnPymes.addEventListener('click', () => { this.filtrarCarrera('PyMES') });
         btnIngles.addEventListener('click', () => { this.filtrarCarrera('Inglés') });
-        btnBuscar.addEventListener('change', () => { this.buscarLibros(btnBuscar.value); });
+        txtBuscar.addEventListener('change', () => { this.buscarLibros(txtBuscar.value); });
     }
 
     loadBooks() {
