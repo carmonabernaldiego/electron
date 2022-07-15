@@ -26,20 +26,13 @@ const createWindowDashboard = () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true,
-      devTools: true,
+      devTools: false,
       preload: path.join(__dirname, 'preload.js')
     }
   });
 
   // and load the index.html of the app.
   window.loadFile(path.join(__dirname, 'views/index.html'));
-
-  // Open the DevTools.
-  window.webContents.openDevTools();
-
-  // and load the index.html of the ap.loadFile(path.join(__dirname, 'index.html'));
-
-  // Open the DevTool.webContents.openDevTools();
 };
 
 const createWindow = () => {
@@ -60,9 +53,6 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   loginWindow.loadFile(path.join(__dirname, 'views/login.html'));
-
-  // Open the DevTools.
-  loginWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished

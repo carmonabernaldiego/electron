@@ -19,11 +19,11 @@ class PageConsult {
             ubicacion = ubicacion.replace(/(^_)|(_$)/g, '');
             editorial = editorial.replace(/(^_)|(_$)/g, '');
 
-            isbn = isbn.split("_");
-            nombre = nombre.split("_");
-            carrera = carrera.split("_");
-            ubicacion = ubicacion.split("_");
-            editorial = editorial.split("_");
+            isbn = isbn.split('_');
+            nombre = nombre.split('_');
+            carrera = carrera.split('_');
+            ubicacion = ubicacion.split('_');
+            editorial = editorial.split('_');
 
             let libros = [];
 
@@ -46,7 +46,7 @@ const mostrarLibros = (libros) => {
     let TablaLibros = document.querySelector('#tabla-libros');
     let texto = '';
 
-    TablaLibros.innerHTML = "";
+    TablaLibros.innerHTML = '';
 
     for (let i = 0; i < libros.length; i++) {
         texto +=

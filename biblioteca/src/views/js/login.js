@@ -29,12 +29,12 @@ class PageLogin {
 
         if (email == '') {
             error.innerHTML = 'Ingresá tú dirección de correo electrónico.';
-            error.classList.remove("text-muted");
-            error.classList.add("text-danger");
+            error.classList.remove('text-muted');
+            error.classList.add('text-danger');
         } else if (password == '') {
             error.innerHTML = 'Ingresá tú contraseña.';
-            error.classList.remove("text-muted");
-            error.classList.add("text-danger");
+            error.classList.remove('text-muted');
+            error.classList.add('text-danger');
         } else {
             const data = { email: email, password: password };
 

@@ -44,11 +44,11 @@ class PageBooks {
             ubicacion = ubicacion.replace(/(^_)|(_$)/g, '');
             editorial = editorial.replace(/(^_)|(_$)/g, '');
 
-            isbn = isbn.split("_");
-            nombre = nombre.split("_");
-            carrera = carrera.split("_");
-            ubicacion = ubicacion.split("_");
-            editorial = editorial.split("_");
+            isbn = isbn.split('_');
+            nombre = nombre.split('_');
+            carrera = carrera.split('_');
+            ubicacion = ubicacion.split('_');
+            editorial = editorial.split('_');
 
             let libros = [];
 
@@ -76,11 +76,11 @@ class PageBooks {
             ubicacion = ubicacion.replace(/(^_)|(_$)/g, '');
             editorial = editorial.replace(/(^_)|(_$)/g, '');
 
-            isbn = isbn.split("_");
-            nombre = nombre.split("_");
-            carrera = carrera.split("_");
-            ubicacion = ubicacion.split("_");
-            editorial = editorial.split("_");
+            isbn = isbn.split('_');
+            nombre = nombre.split('_');
+            carrera = carrera.split('_');
+            ubicacion = ubicacion.split('_');
+            editorial = editorial.split('_');
 
             let libros = [];
 
@@ -108,11 +108,11 @@ class PageBooks {
             ubicacion = ubicacion.replace(/(^_)|(_$)/g, '');
             editorial = editorial.replace(/(^_)|(_$)/g, '');
 
-            isbn = isbn.split("_");
-            nombre = nombre.split("_");
-            carrera = carrera.split("_");
-            ubicacion = ubicacion.split("_");
-            editorial = editorial.split("_");
+            isbn = isbn.split('_');
+            nombre = nombre.split('_');
+            carrera = carrera.split('_');
+            ubicacion = ubicacion.split('_');
+            editorial = editorial.split('_');
 
             let libros = [];
 
@@ -126,7 +126,7 @@ class PageBooks {
                 });
             }
 
-            //La funcion "filtrarCarrera" recibe la CARRERA y hace un select de los libros con esa carrera y lo envia a "mostrarLibros"
+            //La funcion 'filtrarCarrera' recibe la CARRERA y hace un select de los libros con esa carrera y lo envia a 'mostrarLibros'
             mostrarLibros(filtrarArbol(libros, category));
         });
     }
@@ -139,20 +139,20 @@ const mostrarLibros = (libros) => {
 
     libros = ordenamientoArbol(libros);
 
-    contenedorLibros.innerHTML = "";
+    contenedorLibros.innerHTML = '';
 
     for (let i = 0; i < libros.length; i++) {
         texto +=
             `
-            <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-header border-0 text-center">${libros[i].nombre}</div>
-                <img src="../assets/images/book.jpg" class="card-img" alt="">
-                <div class="card-body">
-                    <h6 class="card-subtitle text-body">ISBN: ${libros[i].isbn}</h6>
-                  <h6 class="card-subtitle text-body">Carrera: ${libros[i].carrera}</h6>
-                  <h6 class="card-subtitle text-body">Ubicación: ${libros[i].ubicacion}</h6>
-                  <h6 class="card-subtitle text-body">Editorial: ${libros[i].editorial}</h6>
+            <div class='col-md-4 stretch-card grid-margin grid-margin-md-0'>
+              <div class='card'>
+                <div class='card-header border-0 text-center'>${libros[i].nombre}</div>
+                <img src='../assets/images/book.jpg' class='card-img' alt=''>
+                <div class='card-body'>
+                    <h6 class='card-subtitle text-body'>ISBN: ${libros[i].isbn}</h6>
+                  <h6 class='card-subtitle text-body'>Carrera: ${libros[i].carrera}</h6>
+                  <h6 class='card-subtitle text-body'>Ubicación: ${libros[i].ubicacion}</h6>
+                  <h6 class='card-subtitle text-body'>Editorial: ${libros[i].editorial}</h6>
                 </div>
               </div>
             </div>
@@ -175,21 +175,21 @@ const mostrarLibrosBusqueda = (libros, data) => {
 
     libros = ordenamientoArbol(libros);
 
-    contenedorLibros.innerHTML = "";
+    contenedorLibros.innerHTML = '';
 
     for (let i = 0; i < libros.length; i++) {
         if (libros[i].nombre.toLowerCase().search(data.toLowerCase()) != -1) {
             texto +=
                 `
-                <div class="col-md-4 stretch-card grid-margin grid-margin-md-0">
-                <div class="card">
-                    <div class="card-header border-0 text-center">${libros[i].nombre}</div>
-                    <img src="../assets/images/book.jpg" class="card-img" alt="">
-                    <div class="card-body">
-                        <h6 class="card-subtitle text-body">ISBN: ${libros[i].isbn}</h6>
-                    <h6 class="card-subtitle text-body">Carrera: ${libros[i].carrera}</h6>
-                    <h6 class="card-subtitle text-body">Ubicación: ${libros[i].ubicacion}</h6>
-                    <h6 class="card-subtitle text-body">Editorial: ${libros[i].editorial}</h6>
+                <div class='col-md-4 stretch-card grid-margin grid-margin-md-0'>
+                <div class='card'>
+                    <div class='card-header border-0 text-center'>${libros[i].nombre}</div>
+                    <img src='../assets/images/book.jpg' class='card-img' alt=''>
+                    <div class='card-body'>
+                        <h6 class='card-subtitle text-body'>ISBN: ${libros[i].isbn}</h6>
+                    <h6 class='card-subtitle text-body'>Carrera: ${libros[i].carrera}</h6>
+                    <h6 class='card-subtitle text-body'>Ubicación: ${libros[i].ubicacion}</h6>
+                    <h6 class='card-subtitle text-body'>Editorial: ${libros[i].editorial}</h6>
                     </div>
                 </div>
                 </div>
