@@ -15,17 +15,23 @@ class PageAgregar {
 
     attachEvents() {
         let btnAgregar = this.get('#btnAgregar');
-        let txtISBN = this.get('#txtISBN');
-        let txtNombre = this.get('#txtNombre');
-        let txtCarrera = this.get('#txtCarrera');
-        let txtUbicacion = this.get('#txtUbicacion');
-        let txtEditorial = this.get('#txtEditorial');
-        const data = { isbn: txtISBN, nombre: txtNombre, carrera: txtCarrera, ubicacion: txtUbicacion, editorial: txtEditorial };
 
-        btnAgregar.addEventListener('click', this.addBook(data));
+        btnAgregar.addEventListener('click', () => {
+            let txtISBN = this.get('#txtISBN').value;
+            let txtNombre = this.get('#txtNombre').value;
+            let txtCarrera = this.get('#txtCarrera').value;
+            let txtUbicacion = this.get('#txtUbicacion').value;
+            let txtEditorial = this.get('#txtEditorial').value;
+
+            if (!(txtISBN == '' || txtNombre == '' || txtCarrera == '' || txtUbicacion == '' || txtEditorial == '')) {
+                let data = { isbn: txtISBN, nombre: txtNombre, carrera: txtCarrera, ubicacion: txtUbicacion, editorial: txtEditorial };
+                this.addBook(data);
+            }
+        });
     }
 
     addBook(data) {
-        window.ipcRender.send('login', data);
+        window.ipcRender.send('addBook', data);
+        location.reload();
     }
 }

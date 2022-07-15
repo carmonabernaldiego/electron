@@ -26,13 +26,15 @@ const createWindowDashboard = () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true,
-      devTools: false,
+      devTools: true,
       preload: path.join(__dirname, 'preload.js')
     }
   });
 
   // and load the index.html of the app.
   window.loadFile(path.join(__dirname, 'views/index.html'));
+
+  window.webContents.openDevTools();
 };
 
 const createWindow = () => {
@@ -177,8 +179,8 @@ electronIpcMain.handle('getBooks', (event) => {
   return data;
 });
 
-electronIpcMain.handle('addBook', (event, data) => {
-  return addDB(data);
+electronIpcMain.on('addBook', (event, data) => {
+  addDB(data);
 });
 
 function addDB(data) {
@@ -188,9 +190,15 @@ function addDB(data) {
   db.query(sql, [isbn, nombre, editorial, carrera, ubicacion], (error) => {
     if (error) {
       console.log(error);
-      return false;
+      new electronNotification({
+        title: "Error",
+        body: 'El Libro con ISBN ' + isbn + ' ya existe.'
+      }).show();
     } else {
-      return true;
+      new electronNotification({
+        title: "Biblioteca CKH",
+        body: 'El Libro con ISBN ' + isbn + ' se agrego con éxito.'
+      }).show();
     }
   });
 }

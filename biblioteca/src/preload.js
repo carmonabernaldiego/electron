@@ -6,12 +6,12 @@ const ipc = {
         'send': [
             'login',
             'logout',
-            'invitado'
+            'invitado',
+            'addBook'
         ],
         'sendReceive': [
             'getUserData',
-            'getBooks',
-            'addBook'
+            'getBooks'
         ]
     }
 };
