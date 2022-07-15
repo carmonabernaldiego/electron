@@ -123,8 +123,8 @@ function validateLogout(confirm) {
     store.delete('user');
     store.delete('email');
     store.delete('permissions');
-    store.delete('image');
     store.delete('name');
+    store.delete('image');
 
     createWindow();
     loginWindow.show();
@@ -176,3 +176,21 @@ electronIpcMain.handle('getBooks', (event) => {
 
   return data;
 });
+
+electronIpcMain.handle('addBook', (event, data) => {
+  return addDB(data);
+});
+
+function addDB(data) {
+  const { isbn, nombre, carrera, ubicacion, editorial } = data;
+  const sql = "INSERT INTO libros (isbn, nombre, editorial, carrera, ubicacion) VALUES (?, ?, ?, ?, ?)";
+
+  db.query(sql, [isbn, nombre, editorial, carrera, ubicacion], (error) => {
+    if (error) {
+      console.log(error);
+      return false;
+    } else {
+      return true;
+    }
+  });
+}

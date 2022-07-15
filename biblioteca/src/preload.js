@@ -10,7 +10,8 @@ const ipc = {
         ],
         'sendReceive': [
             'getUserData',
-            'getBooks'
+            'getBooks',
+            'addBook'
         ]
     }
 };
