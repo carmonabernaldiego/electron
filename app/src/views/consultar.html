@@ -11,19 +11,17 @@
     <!-- plugin css for this page -->
     <link
       rel="stylesheet"
-      href="../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css"
-      />
+      href="../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css"
+    />
     <!-- end plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../assets/fonts/feather-font/css/iconfont.css"
-      />
     <link
       rel="stylesheet"
-      href="../assets/vendors/flag-icon-css/css/flag-icon.min.css"
-      />
+      href="../assets/fonts/feather-font/css/iconfont.css"
+    />
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="../assets/css/demo_1/style.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../assets/images/favicon.png" />
   </head>
@@ -48,7 +46,7 @@
                 <span class="link-title">Localizar libros</span>
               </a>
             </li>
-            <li class="nav-item nav-category">Estantes</li>
+            <li class="nav-item nav-category">Libros</li>
             <li class="nav-item">
               <a href="consultar.html" class="nav-link">
                 <i class="link-icon" data-feather="search"></i>
@@ -76,9 +74,7 @@
           </ul>
         </div>
       </nav>
-
       <!-- partial -->
-
       <div class="page-wrapper">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar">
@@ -86,17 +82,6 @@
             <i data-feather="menu"></i>
           </a>
           <div class="navbar-content">
-            <form class="search-form">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i data-feather="search"></i>
-                  </div>
-                </div>
-                <input type="text" class="form-control" id="navbarForm"
-                  placeholder="Buscar libro...">
-              </div>
-            </form>
             <ul class="navbar-nav">
               <li class="nav-item dropdown nav-profile">
                 <a
@@ -106,17 +91,24 @@
                   role="button"
                   data-toggle="dropdown"
                   aria-haspopup="true"
-                  aria-expanded="false">
-                  <img id="profileUser" src="../assets/images/user.png"
-                    alt="profile" />
+                  aria-expanded="false"
+                >
+                  <img
+                    id="profileUser"
+                    src="../assets/images/user.png"
+                    alt="profile"
+                  />
                 </a>
                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                   <div
-                    class="dropdown-header d-flex flex-column
-                    align-items-center">
+                    class="dropdown-header d-flex flex-column align-items-center"
+                  >
                     <div class="figure mb-3">
-                      <img id="profileUserBox" src="../assets/images/user.png"
-                        alt="profile" />
+                      <img
+                        id="profileUserBox"
+                        src="../assets/images/user.png"
+                        alt="profile"
+                      />
                     </div>
                     <div class="info text-center">
                       <p id="profileName" class="name font-weight-bold mb-0">
@@ -143,10 +135,6 @@
           </div>
         </nav>
         <!-- partial -->
-
-
-
-
         <div class="page-content">
           <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
@@ -159,104 +147,12 @@
                         <tr>
                           <th>ISBN</th>
                           <th>Nombre</th>
-                          <th>Descripción</th>
-                          <th>Autor</th>
-                          <th>Estante</th>
-                          <th>Stock</th>
+                          <th>Carrera</th>
+                          <th>Ubicación</th>
+                          <th>Editorial</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td>84-121-2310-1</td>
-                          <td>El tránsito terreno</td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.</td>
-                          <td>Plasencia, Juan Luis</td>
-                          <td>2</td>
-                          <td>5</td>
-                        </tr>
-                        <tr>
-                          <td>84-7489-146-9</td>
-                          <td>Sistemas operativos</td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.</td>
-                          <td>Bazilian Eric</td>
-                          <td>6</td>
-                          <td>2</td>
-                        </tr>
-                        <tr>
-                          <td>84-305-0473-7</td>
-                          <td>Poemas intrínsecos</td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.</td>
-                          <td>Plasencia, Juan Luis</td>
-                          <td>10</td>
-                          <td>3</td>
-                        </tr>
-                        <tr>
-                          <td>84-473-0120-6</td>
-                          <td>Avances en Arquitectura</td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.</td>
-                          <td>Richter, Helmut</td>
-                          <td>9</td>
-                          <td>2</td>
-                        </tr>
-                        <tr>
-                          <td>84-206-1704-0</td>
-                          <td>Las balas del bien</td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.</td>
-                          <td>Leverling, Janet</td>
-                          <td>7</td>
-                          <td>1</td>
-                        </tr>
-                        <tr>
-                          <td>84-226-2128-2</td>
-                          <td>La mente y el sentir</td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.</td>
-                          <td>Plasencia, Juan Luis</td>
-                          <td>4</td>
-                          <td>4</td>
-                        </tr>
-                        <tr>
-                          <td>84-7908-349-2</td>
-                          <td>Ensayos póstumos</td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.</td>
-                          <td>Bertomeu, Andrés</td>
-                          <td>9</td>
-                          <td>3</td>
-                        </tr>
-                        <tr>
-                          <td>84-578-0214-8</td>
-                          <td>La dualidad aparente</td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.</td>
-                          <td>Sanabria, Carmelo</td>
-                          <td>7</td>
-                          <td>3</td>
-                        </tr>
-                        <tr>
-                          <td>84-02-08696-9</td>
-                          <td>Arquitectura y arte</td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.</td>
-                          <td>Richter, Helmut</td>
-                          <td>5</td>
-                          <td>9</td>
-                        </tr>
-                        <tr>
-                          <td>84-01-92101-5</td>
-                          <td>Historia de Occidente</td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.</td>
-                          <td>Dulac, George</td>
-                          <td>3</td>
-                          <td>2</td>
-                        </tr>
-                      </tbody>
+                      <tbody id="tabla-libros"></tbody>
                     </table>
                   </div>
                 </div>
@@ -264,42 +160,33 @@
             </div>
           </div>
         </div>
-
-
-
         <!-- partial:partials/_footer.html -->
         <footer
-          class="footer d-flex flex-column flex-md-row align-items-center
-          justify-content-between">
+          class="footer d-flex flex-column flex-md-row align-items-center justify-content-between"
+        >
           <p class="text-muted text-center text-md-left">
-            Copyright © 2022 <a href="#">Biblioteca CKH</a>. Todos los
-            derechos
+            Copyright © 2022 <a href="#">Biblioteca CKH</a>. Todos los derechos
             reservados
           </p>
         </footer>
         <!-- partial -->
       </div>
     </div>
-    <script src="load-user.js"></script>
     <!-- core:js -->
     <script src="../assets/vendors/core/core.js"></script>
     <!-- endinject -->
     <!-- plugin js for this page -->
-    <script src="../assets/vendors/chartjs/Chart.min.js"></script>
-    <script src="../assets/vendors/jquery.flot/jquery.flot.js"></script>
-    <script src="../assets/vendors/jquery.flot/jquery.flot.resize.js"></script>
-    <script
-      src="../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="../assets/vendors/apexcharts/apexcharts.min.js"></script>
-    <script src="../assets/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="./js/load-user.js"></script>
+    <script src="./js/consultar.js"></script>
+    <script src="../assets/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <!-- end plugin js for this page -->
     <!-- inject:js -->
     <script src="../assets/vendors/feather-icons/feather.min.js"></script>
     <script src="../assets/js/template.js"></script>
     <!-- endinject -->
     <!-- custom js for this page -->
-    <script src="../assets/js/dashboard.js"></script>
-    <script src="../assets/js/datepicker.js"></script>
+    <script src="./js/data-table.js"></script>
     <!-- end custom js for this page -->
   </body>
 </html>

@@ -34,7 +34,12 @@ const createWindowDashboard = () => {
   // and load the index.html of the app.
   window.loadFile(path.join(__dirname, 'views/index.html'));
 
+  // Open the DevTools.
   window.webContents.openDevTools();
+
+  // and load the index.html of the ap.loadFile(path.join(__dirname, 'index.html'));
+
+  // Open the DevTool.webContents.openDevTools();
 };
 
 const createWindow = () => {
@@ -55,6 +60,9 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   loginWindow.loadFile(path.join(__dirname, 'views/login.html'));
+
+  // Open the DevTools.
+  loginWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -89,7 +97,7 @@ electronIpcMain.on('login', (event, data) => {
 
 function validateLogin(data) {
   const { email, password } = data;
-  const sql = "SELECT * FROM usuarios WHERE correo=? AND contrasena=?";
+  const sql = "SELECT * FROM usuarios WHERE email=? AND pass=?";
 
   db.query(sql, [email, password], (error, results, fields) => {
     if (error) {
@@ -97,11 +105,11 @@ function validateLogin(data) {
     }
 
     if (results.length > 0) {
-      store.set('user', results[0].usuario);
-      store.set('email', results[0].correo);
-      store.set('permissions', results[0].permiso);
-      store.set('name', results[0].nombre);
-      store.set('image', results[0].imagen);
+      store.set('user', results[0].user);
+      store.set('email', results[0].email);
+      store.set('permissions', results[0].permissions);
+      store.set('image', results[0].image);
+      store.set('name', results[0].name);
 
       createWindowDashboard();
       window.show();
@@ -125,8 +133,8 @@ function validateLogout(confirm) {
     store.delete('user');
     store.delete('email');
     store.delete('permissions');
-    store.delete('name');
     store.delete('image');
+    store.delete('name');
 
     createWindow();
     loginWindow.show();
@@ -150,7 +158,7 @@ electronIpcMain.handle('getUserData', (event) => {
 });
 
 electronIpcMain.handle('getBooks', (event) => {
-  let isbn = '', nombre = '', carrera = '', ubicacion = '', editorial = '';
+  let nombre = '', carrera = '', ubicacion = '', editorial = '';
 
   db.query('SELECT * FROM `libros`', (error, results, fields) => {
     if (error) {
@@ -159,14 +167,12 @@ electronIpcMain.handle('getBooks', (event) => {
 
     if (results.length > 0) {
       for (let i = 0; i < results.length; i++) {
-        isbn += results[i].ISBN + '_';
         nombre += results[i].nombre + '_';
         carrera += results[i].carrera + '_';
         ubicacion += results[i].ubicacion + '_';
         editorial += results[i].editorial + '_';
       }
 
-      store.set('isbnLibro', isbn);
       store.set('nombreLibro', nombre);
       store.set('carreraLibro', carrera);
       store.set('ubicacionLibro', ubicacion);
@@ -174,31 +180,7 @@ electronIpcMain.handle('getBooks', (event) => {
     }
   });
 
-  const data = { isbn: store.get('isbnLibro'), nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
+  const data = { nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
 
   return data;
 });
-
-electronIpcMain.on('addBook', (event, data) => {
-  addDB(data);
-});
-
-function addDB(data) {
-  const { isbn, nombre, carrera, ubicacion, editorial } = data;
-  const sql = "INSERT INTO libros (isbn, nombre, editorial, carrera, ubicacion) VALUES (?, ?, ?, ?, ?)";
-
-  db.query(sql, [isbn, nombre, editorial, carrera, ubicacion], (error) => {
-    if (error) {
-      console.log(error);
-      new electronNotification({
-        title: "Error",
-        body: 'El Libro con ISBN ' + isbn + ' ya existe.'
-      }).show();
-    } else {
-      new electronNotification({
-        title: "Biblioteca CKH",
-        body: 'El Libro con ISBN ' + isbn + ' se agrego con éxito.'
-      }).show();
-    }
-  });
-}
