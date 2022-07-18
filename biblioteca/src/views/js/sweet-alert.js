@@ -23,22 +23,21 @@ $(function () {
         if (result.value) {
           window.ipcRender.invoke('deleteBook', ISBN).then((confirm) => {
             if (confirm == 1) {
-              swalWithBootstrapButtons.fire(
-                '¡Eliminado!',
-                'Registro eliminado.',
-                'success'
-              );
-              location.href = "./eliminar.html";
-              location.href = "./eliminar.html";
+              swalWithBootstrapButtons.fire({
+                title: '¡Eliminado!',
+                text: "Registro eliminado.",
+                icon: 'success',
+                confirmButtonClass: 'mr-2',
+              }).then((result) => {
+                history.go(0);
+              });
             } else if (confirm == 0) {
-              alert('No ');
               swalWithBootstrapButtons.fire(
                 'Cancelado',
                 'La información permanece segura :)',
                 'error'
               );
             }
-
           });
         } else if (
           // Read more about handling dismissals
@@ -48,9 +47,9 @@ $(function () {
             'Cancelado',
             'La información permanece segura :)',
             'error'
-          )
+          );
         }
-      })
+      });
     }
   }
 });
