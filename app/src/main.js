@@ -61,13 +61,20 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
-electronApp.on('ready', createWindow);
+electronApp.on('ready', createWindowDashboard);
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 electronApp.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
+    store.delete('user');
+    store.delete('email');
+    store.delete('permissions');
+    store.delete('name');
+    store.delete('image');
+    store.delete('confirmDelete');
+    
     electronApp.quit();
   }
 });
@@ -76,7 +83,7 @@ electronApp.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (electronBrowserWindow.getAllWindows().length === 0) {
-    createWindow();
+    createWindowDashboard();
   }
 });
 
@@ -89,7 +96,7 @@ electronIpcMain.on('login', (event, data) => {
 
 function validateLogin(data) {
   const { email, password } = data;
-  const sql = "SELECT * FROM usuarios WHERE correo=? AND contrasena=?";
+  const sql = 'SELECT * FROM usuarios WHERE correo=? AND contrasena=?';
 
   db.query(sql, [email, password], (error, results, fields) => {
     if (error) {
@@ -109,7 +116,7 @@ function validateLogin(data) {
       window.maximize();
     } else {
       new electronNotification({
-        title: "Inicia Sesión",
+        title: 'Inicia Sesión',
         body: 'Correo electrónico o contraseña equivocada.'
       }).show();
     }
@@ -127,6 +134,7 @@ function validateLogout(confirm) {
     store.delete('permissions');
     store.delete('name');
     store.delete('image');
+    store.delete('confirmDelete');
 
     createWindow();
     loginWindow.show();
@@ -185,20 +193,38 @@ electronIpcMain.on('addBook', (event, data) => {
 
 function addDB(data) {
   const { isbn, nombre, carrera, ubicacion, editorial } = data;
-  const sql = "INSERT INTO libros (isbn, nombre, editorial, carrera, ubicacion) VALUES (?, ?, ?, ?, ?)";
+  const sql = 'INSERT INTO libros (isbn, nombre, editorial, carrera, ubicacion) VALUES (?, ?, ?, ?, ?)';
 
   db.query(sql, [isbn, nombre, editorial, carrera, ubicacion], (error) => {
     if (error) {
       console.log(error);
       new electronNotification({
-        title: "Error",
+        title: 'Error',
         body: 'El Libro con ISBN ' + isbn + ' ya existe.'
       }).show();
     } else {
       new electronNotification({
-        title: "Biblioteca CKH",
+        title: 'Biblioteca CKH',
         body: 'El Libro con ISBN ' + isbn + ' se agrego con éxito.'
       }).show();
+    }
+  });
+}
+
+electronIpcMain.handle('deleteBook', (event, ISBN) => {
+  deleteDB(ISBN);
+  return store.get('confirmDelete');
+});
+
+function deleteDB(ISBN) {
+  const sql = 'DELETE FROM libros WHERE ISBN = ?';
+
+  db.query(sql, [ISBN], (error) => {
+    if (error) {
+      console.log(error);
+      store.set('confirmDelete', 0);
+    } else {
+      store.set('confirmDelete', 1);
     }
   });
 }

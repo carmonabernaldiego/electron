@@ -13,6 +13,10 @@
       rel="stylesheet"
       href="../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css"
     />
+    <link
+      rel="stylesheet"
+      href="../assets/vendors/sweetalert2/sweetalert2.min.css"
+    />
     <!-- end plugin css for this page -->
     <!-- inject:css -->
     <link
@@ -150,6 +154,7 @@
                           <th>Carrera</th>
                           <th>Ubicación</th>
                           <th>Editorial</th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody id="tabla-libros"></tbody>
@@ -177,9 +182,11 @@
     <!-- endinject -->
     <!-- plugin js for this page -->
     <script src="./js/load-user.js"></script>
-    <script src="./js/consultar.js"></script>
+    <script src="./js/eliminar.js"></script>
     <script src="../assets/vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="../assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+    <script src="../assets/vendors/promise-polyfill/polyfill.min.js"></script>
     <!-- end plugin js for this page -->
     <!-- inject:js -->
     <script src="../assets/vendors/feather-icons/feather.min.js"></script>
