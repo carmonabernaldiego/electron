@@ -6,39 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 class PageConsult {
     constructor() {
-        this.consultBooks();
-    }
-
-    consultBooks() {
-        window.ipcRender.invoke('getBooks').then((result) => {
-            let { isbn, nombre, carrera, ubicacion, editorial } = result;
-
-            isbn = isbn.replace(/(^_)|(_$)/g, '');
-            nombre = nombre.replace(/(^_)|(_$)/g, '');
-            carrera = carrera.replace(/(^_)|(_$)/g, '');
-            ubicacion = ubicacion.replace(/(^_)|(_$)/g, '');
-            editorial = editorial.replace(/(^_)|(_$)/g, '');
-
-            isbn = isbn.split('_');
-            nombre = nombre.split('_');
-            carrera = carrera.split('_');
-            ubicacion = ubicacion.split('_');
-            editorial = editorial.split('_');
-
-            let libros = [];
-
-            for (let i = 0; i < isbn.length; i++) {
-                libros.push({
-                    'isbn': isbn[i],
-                    'nombre': nombre[i],
-                    'carrera': carrera[i],
-                    'ubicacion': ubicacion[i],
-                    'editorial': editorial[i]
-                });
-            }
-
-            mostrarLibros(libros);
-        });
+        consultBooks();
     }
 }
 
@@ -64,3 +32,89 @@ const mostrarLibros = (libros) => {
 
     TablaLibros.innerHTML = texto;
 }
+
+const consultBooks = () => {
+    window.ipcRender.invoke('getBooks').then((result) => {
+        let { isbn, nombre, carrera, ubicacion, editorial } = result;
+
+        isbn = isbn.replace(/(^_)|(_$)/g, '');
+        nombre = nombre.replace(/(^_)|(_$)/g, '');
+        carrera = carrera.replace(/(^_)|(_$)/g, '');
+        ubicacion = ubicacion.replace(/(^_)|(_$)/g, '');
+        editorial = editorial.replace(/(^_)|(_$)/g, '');
+
+        isbn = isbn.split('_');
+        nombre = nombre.split('_');
+        carrera = carrera.split('_');
+        ubicacion = ubicacion.split('_');
+        editorial = editorial.split('_');
+
+        let libros = [];
+
+        for (let i = 0; i < isbn.length; i++) {
+            libros.push({
+                'isbn': isbn[i],
+                'nombre': nombre[i],
+                'carrera': carrera[i],
+                'ubicacion': ubicacion[i],
+                'editorial': editorial[i]
+            });
+        }
+
+        mostrarLibros(libros);
+    });
+}
+
+$(function () {
+    showSwal = function (type, ISBN) {
+        'use strict';
+        if (type === 'passing-parameter-execute-cancel') {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger mr-2'
+                },
+                buttonsStyling: false,
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: '¿Estas seguro?',
+                text: "¡Esta acción no se puede revertir!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonClass: 'mr-2',
+                confirmButtonText: '¡Si, eliminar!',
+                cancelButtonText: '¡No, cancelar!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    window.ipcRender.invoke('deleteBook', ISBN).then((confirm) => {
+                        if (confirm == 1) {
+                            swalWithBootstrapButtons.fire({
+                                title: '¡Eliminado!',
+                                text: "Registro eliminado.",
+                                icon: 'success',
+                                confirmButtonClass: 'mr-2',
+                            }).then((result) => {
+                                consultBooks();
+                                location.reload(true);
+                            });
+                        } else if (confirm == 0) {
+                            swalWithBootstrapButtons.fire(
+                                'Cancelado',
+                                'La información permanece segura :)',
+                                'error'
+                            );
+                        }
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'La información permanece segura :)',
+                        'error'
+                    );
+                }
+            });
+        }
+    }
+});
