@@ -30,6 +30,11 @@ class Page {
       const { user, email, permissions, image, name } = result;
 
       if (permissions == 'admin') {
+        profileName.innerHTML = name;
+        profileEmail.innerHTML = email;
+        profileUser.src = 'http://mysoftup.com/images/users/' + image;
+        profileUserBox.src = 'http://mysoftup.com/images/users/' + image;
+
         let texto =
           `
           <li class='nav-item nav-category'>Libros</li>
@@ -60,10 +65,6 @@ class Page {
           `;
 
         navUser.innerHTML += texto;
-        profileUser.src = 'http://mysoftup.com/images/users/' + image;
-        profileUserBox.src = 'http://mysoftup.com/images/users/' + image;
-        profileName.innerHTML = name;
-        profileEmail.innerHTML = email;
       } else if (permissions == 'invitado') {
         profileName.innerHTML = 'Invitado';
         profileEmail.innerHTML = 'invitado@ckh.com';
