@@ -29,7 +29,7 @@ $(function () {
                 icon: 'success',
                 confirmButtonClass: 'mr-2',
               }).then((result) => {
-                history.go(0);
+                location.reload(true);
               });
             } else if (confirm == 0) {
               swalWithBootstrapButtons.fire(
