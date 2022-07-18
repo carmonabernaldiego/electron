@@ -40,13 +40,13 @@ class Page {
           <li class='nav-item nav-category'>Libros</li>
           <li class='nav-item'>
             <a href='consultar.html' class='nav-link'>
-              <i class='link-icon' data-feather='search'></i>
+              <i class='link-icon' data-feather='book'></i>
               <span class='link-title'>Consultar Libros</span>
             </a>
           </li>
           <li class='nav-item'>
             <a href='agregar.html' class='nav-link'>
-              <i class='link-icon' data-feather='plus-circle'></i>
+              <i class='link-icon' data-feather='plus-square'></i>
               <span class='link-title'>Agregar Libros</span>
             </a>
           </li>
@@ -58,7 +58,7 @@ class Page {
           </li>
           <li class='nav-item'>
             <a href='eliminar.html' class='nav-link'>
-              <i class='link-icon' data-feather='delete'></i>
+              <i class='link-icon' data-feather='trash'></i>
               <span class='link-title'>ELiminar Libros</span>
             </a>
           </li>
