@@ -26,7 +26,7 @@ const createWindowDashboard = () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true,
-      devTools: false,
+      devTools: true,
       preload: path.join(__dirname, 'preload.js')
     }
   });
@@ -89,7 +89,7 @@ electronIpcMain.on('login', (event, data) => {
 
 function validateLogin(data) {
   const { email, password } = data;
-  const sql = "SELECT * FROM usuarios WHERE correo=? AND contrasena=?";
+  const sql = 'SELECT * FROM usuarios WHERE correo=? AND contrasena=?';
 
   db.query(sql, [email, password], (error, results, fields) => {
     if (error) {
@@ -109,7 +109,7 @@ function validateLogin(data) {
       window.maximize();
     } else {
       new electronNotification({
-        title: "Inicia Sesión",
+        title: 'Inicia Sesión',
         body: 'Correo electrónico o contraseña equivocada.'
       }).show();
     }
@@ -127,6 +127,7 @@ function validateLogout(confirm) {
     store.delete('permissions');
     store.delete('name');
     store.delete('image');
+    store.delete('confirmDelete');
 
     createWindow();
     loginWindow.show();
@@ -185,20 +186,38 @@ electronIpcMain.on('addBook', (event, data) => {
 
 function addDB(data) {
   const { isbn, nombre, carrera, ubicacion, editorial } = data;
-  const sql = "INSERT INTO libros (isbn, nombre, editorial, carrera, ubicacion) VALUES (?, ?, ?, ?, ?)";
+  const sql = 'INSERT INTO libros (isbn, nombre, editorial, carrera, ubicacion) VALUES (?, ?, ?, ?, ?)';
 
   db.query(sql, [isbn, nombre, editorial, carrera, ubicacion], (error) => {
     if (error) {
       console.log(error);
       new electronNotification({
-        title: "Error",
+        title: 'Error',
         body: 'El Libro con ISBN ' + isbn + ' ya existe.'
       }).show();
     } else {
       new electronNotification({
-        title: "Biblioteca CKH",
+        title: 'Biblioteca CKH',
         body: 'El Libro con ISBN ' + isbn + ' se agrego con éxito.'
       }).show();
+    }
+  });
+}
+
+electronIpcMain.handle('deleteBook', (event, ISBN) => {
+  deleteDB(ISBN);
+  return store.get('confirmDelete');
+});
+
+function deleteDB(ISBN) {
+  const sql = 'DELETE FROM libros WHERE ISBN = ?';
+
+  db.query(sql, [ISBN], (error) => {
+    if (error) {
+      console.log(error);
+      store.set('confirmDelete', 0);
+    } else {
+      store.set('confirmDelete', 1);
     }
   });
 }

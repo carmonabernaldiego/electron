@@ -1,5 +1,5 @@
 $(function () {
-  showSwal = function (type) {
+  showSwal = function (type, ISBN) {
     'use strict';
     if (type === 'passing-parameter-execute-cancel') {
       const swalWithBootstrapButtons = Swal.mixin({
@@ -21,11 +21,25 @@ $(function () {
         reverseButtons: true
       }).then((result) => {
         if (result.value) {
-          swalWithBootstrapButtons.fire(
-            'Eliminado!',
-            'El registro se elimino.',
-            'success'
-          )
+          window.ipcRender.invoke('deleteBook', ISBN).then((confirm) => {
+            if (confirm == 1) {
+              swalWithBootstrapButtons.fire(
+                '¡Eliminado!',
+                'Registro eliminado.',
+                'success'
+              );
+              location.href = "./eliminar.html";
+              location.href = "./eliminar.html";
+            } else if (confirm == 0) {
+              alert('No ');
+              swalWithBootstrapButtons.fire(
+                'Cancelado',
+                'La información permanece segura :)',
+                'error'
+              );
+            }
+
+          });
         } else if (
           // Read more about handling dismissals
           result.dismiss === Swal.DismissReason.cancel
