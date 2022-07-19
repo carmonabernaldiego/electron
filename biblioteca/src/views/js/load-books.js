@@ -25,12 +25,12 @@ class PageBooks {
         let btnIngles = this.get('#btnIngles');
         let txtBuscar = this.get('#txtSearch');
 
-        btnMostrarTodo.addEventListener('click', this.loadBooks);
-        btnSoftware.addEventListener('click', () => { this.filtrarCarrera('Software') });
-        btnAmbiental.addEventListener('click', () => { this.filtrarCarrera('Ambiental') });
-        btnEnergia.addEventListener('click', () => { this.filtrarCarrera('Energía') });
-        btnPymes.addEventListener('click', () => { this.filtrarCarrera('PyMES') });
-        btnIngles.addEventListener('click', () => { this.filtrarCarrera('Inglés') });
+        btnMostrarTodo.addEventListener('click', () => { this.loadBooks; txtBuscar.value = ''; });
+        btnSoftware.addEventListener('click', () => { this.filtrarCarrera('Software'); txtBuscar.value = ''; });
+        btnAmbiental.addEventListener('click', () => { this.filtrarCarrera('Ambiental'); txtBuscar.value = ''; });
+        btnEnergia.addEventListener('click', () => { this.filtrarCarrera('Energía'); txtBuscar.value = ''; });
+        btnPymes.addEventListener('click', () => { this.filtrarCarrera('PyMES'); txtBuscar.value = ''; });
+        btnIngles.addEventListener('click', () => { this.filtrarCarrera('Inglés'); txtBuscar.value = ''; });
         txtBuscar.addEventListener('change', () => { this.buscarLibros(txtBuscar.value); });
     }
 
