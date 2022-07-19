@@ -26,7 +26,7 @@ const createWindowDashboard = () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true,
-      devTools: false,
+      devTools: true,
       preload: path.join(__dirname, 'preload.js')
     }
   });
@@ -152,20 +152,14 @@ electronIpcMain.handle('getUserData', (event) => {
 });
 
 electronIpcMain.handle('getBook', (event, ISBN) => {
-  store.delete('isbnLibro');
-  store.delete('nombreLibro');
-  store.delete('carreraLibro');
-  store.delete('ubicacionLibro');
-  store.delete('editorialLibro');
-
   let isbn = '', nombre = '', carrera = '', ubicacion = '', editorial = '';
 
-  db.query('SELECT * FROM libros WHERE isbn = ?', [ISBN], (error, results, fields) => {
+  db.query('SELECT * FROM libros WHERE isbn = ? LIMIT 1', [ISBN], (error, results, fields) => {
     if (error) {
       console.log(error);
     }
 
-    if (results.length > 0) {
+    if (results) {
       isbn = results[0].ISBN;
       nombre = results[0].nombre;
       carrera = results[0].carrera;
@@ -180,10 +174,9 @@ electronIpcMain.handle('getBook', (event, ISBN) => {
     }
   });
 
-  let data2 = { isbn: store.get('isbnLibro'), nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
+  let data = { isbn: store.get('isbnLibro'), nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
 
-  console.log(data2);
-  return data2;
+  return data;
 });
 
 electronIpcMain.handle('getBooks', (event) => {
@@ -203,15 +196,15 @@ electronIpcMain.handle('getBooks', (event) => {
         editorial += results[i].editorial + '_';
       }
 
-      store.set('isbnLibro', isbn);
-      store.set('nombreLibro', nombre);
-      store.set('carreraLibro', carrera);
-      store.set('ubicacionLibro', ubicacion);
-      store.set('editorialLibro', editorial);
+      store.set('isbn', isbn);
+      store.set('nombre', nombre);
+      store.set('carrera', carrera);
+      store.set('ubicacion', ubicacion);
+      store.set('editorial', editorial);
     }
   });
 
-  const data = { isbn: store.get('isbnLibro'), nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
+  const data = { isbn: store.get('isbn'), nombre: store.get('nombre'), carrera: store.get('carrera'), ubicacion: store.get('ubicacion'), editorial: store.get('editorial') };
 
   return data;
 });

@@ -35,8 +35,8 @@ class Page {
         profileUser.src = 'http://mysoftup.com/images/users/' + image;
         profileUserBox.src = 'http://mysoftup.com/images/users/' + image;
       } else if (permissions == 'invitado') {
-        profileName.innerHTML = 'Invitado';
-        profileEmail.innerHTML = 'invitado@ckh.com';
+        profileName.innerHTML = 'Lector';
+        profileEmail.innerHTML = '';
       }
     });
   }
