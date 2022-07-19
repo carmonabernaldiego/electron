@@ -34,8 +34,6 @@ class Page {
         profileEmail.innerHTML = email;
         profileUser.src = 'http://mysoftup.com/images/users/' + image;
         profileUserBox.src = 'http://mysoftup.com/images/users/' + image;
-
-        location.href = 'consultar.html';
       } else if (permissions == 'invitado') {
         profileName.innerHTML = 'Invitado';
         profileEmail.innerHTML = 'invitado@ckh.com';

@@ -104,6 +104,7 @@ function validateLogin(data) {
       store.set('image', results[0].imagen);
 
       createWindowDashboard();
+      window.loadFile(path.join(__dirname, 'views/consultar.html'));
       window.show();
       loginWindow.close();
       window.maximize();
