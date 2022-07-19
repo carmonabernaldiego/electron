@@ -11,6 +11,7 @@ const ipc = {
         ],
         'sendReceive': [
             'getUserData',
+            'getBook',
             'getBooks',
             'deleteBook'
         ]

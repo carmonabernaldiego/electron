@@ -141,7 +141,7 @@
               <div class="card">
                 <div class="card-body">
                   <h6 class="card-title">Libros</h6>
-                  <div class="table-responsive">
+                  <div id="dataGridView" class="table-responsive">
                     <table id="dataTable" class="table">
                       <thead>
                         <tr>
@@ -150,11 +150,107 @@
                           <th>Carrera</th>
                           <th>Ubicación</th>
                           <th>Editorial</th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody id="tabla-libros"></tbody>
                     </table>
                   </div>
+                  <form id="formUpdate" action="#">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="txtISBN" class="control-label"
+                            >ISBN</label
+                          >
+                          <input
+                            id="txtISBN"
+                            type="text"
+                            class="form-control"
+                            placeholder="ISBN"
+                            maxlength="10"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <!-- Col -->
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="txtNombre" class="control-label"
+                            >Nombre</label
+                          >
+                          <input
+                            id="txtNombre"
+                            type="text"
+                            class="form-control"
+                            placeholder="Nombre"
+                            maxlength="100"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <!-- Col -->
+                    </div>
+                    <!-- Row -->
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="txtEditorial" class="control-label"
+                            >Editorial</label
+                          >
+                          <input
+                            id="txtEditorial"
+                            type="text"
+                            class="form-control"
+                            placeholder="Editorial"
+                            maxlength="50"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <!-- Col -->
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="txtCarrera" class="control-label"
+                            >Carrera</label
+                          >
+                          <input
+                            id="txtCarrera"
+                            type="text"
+                            class="form-control"
+                            placeholder="Carrera"
+                            maxlength="50"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <!-- Col -->
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="txtUbicacion" class="control-label"
+                            >Ubicación</label
+                          >
+                          <input
+                            id="txtUbicacion"
+                            type="text"
+                            class="form-control"
+                            placeholder="Ubicación"
+                            maxlength="10"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <!-- Col -->
+                    </div>
+                    <!-- Row -->
+                    <button
+                      id="btnAgregar"
+                      type="submit"
+                      class="btn btn-primary submit"
+                    >
+                      Actualizar
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -177,7 +273,7 @@
     <!-- endinject -->
     <!-- plugin js for this page -->
     <script src="./js/load-user.js"></script>
-    <script src="./js/consultar.js"></script>
+    <script src="./js/modificar.js"></script>
     <script src="../assets/vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <!-- end plugin js for this page -->

@@ -150,10 +150,45 @@ electronIpcMain.handle('getUserData', (event) => {
   return data;
 });
 
+electronIpcMain.handle('getBook', (event, ISBN) => {
+  store.delete('isbnLibro');
+  store.delete('nombreLibro');
+  store.delete('carreraLibro');
+  store.delete('ubicacionLibro');
+  store.delete('editorialLibro');
+
+  let isbn = '', nombre = '', carrera = '', ubicacion = '', editorial = '';
+
+  db.query('SELECT * FROM libros WHERE isbn = ?', [ISBN], (error, results, fields) => {
+    if (error) {
+      console.log(error);
+    }
+
+    if (results.length > 0) {
+      isbn = results[0].ISBN;
+      nombre = results[0].nombre;
+      carrera = results[0].carrera;
+      ubicacion = results[0].ubicacion;
+      editorial = results[0].editorial;
+
+      store.set('isbnLibro', isbn);
+      store.set('nombreLibro', nombre);
+      store.set('carreraLibro', carrera);
+      store.set('ubicacionLibro', ubicacion);
+      store.set('editorialLibro', editorial);
+    }
+  });
+
+  let data2 = { isbn: store.get('isbnLibro'), nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
+
+  console.log(data2);
+  return data2;
+});
+
 electronIpcMain.handle('getBooks', (event) => {
   let isbn = '', nombre = '', carrera = '', ubicacion = '', editorial = '';
 
-  db.query('SELECT * FROM `libros`', (error, results, fields) => {
+  db.query('SELECT * FROM libros', (error, results, fields) => {
     if (error) {
       console.log(error);
     }

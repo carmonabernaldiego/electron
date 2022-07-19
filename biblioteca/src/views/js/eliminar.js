@@ -1,15 +1,3 @@
-let pageConsult;
-
-document.addEventListener('DOMContentLoaded', function () {
-    pageConsult = new PageConsult(window);
-});
-
-class PageConsult {
-    constructor() {
-        consultBooks();
-    }
-}
-
 const mostrarLibros = (libros) => {
     let TablaLibros = document.querySelector('#tabla-libros');
     let texto = '';
@@ -65,6 +53,8 @@ const consultBooks = () => {
     });
 }
 
+consultBooks();
+
 $(function () {
     showSwal = function (type, ISBN) {
         'use strict';
@@ -94,7 +84,7 @@ $(function () {
                                 title: '¡Eliminado!',
                                 text: "Registro eliminado.",
                                 icon: 'success',
-                                confirmButtonClass: 'mr-2',
+                                confirmButtonClass: 'mr-2'
                             }).then((result) => {
                                 consultBooks();
                                 location.reload(true);

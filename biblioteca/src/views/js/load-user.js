@@ -35,36 +35,7 @@ class Page {
         profileUser.src = 'http://mysoftup.com/images/users/' + image;
         profileUserBox.src = 'http://mysoftup.com/images/users/' + image;
 
-        let texto =
-          `
-          <li class='nav-item nav-category'>Libros</li>
-          <li class='nav-item'>
-            <a href='consultar.html' class='nav-link'>
-              <i class='link-icon' data-feather='book'></i>
-              <span class='link-title'>Consultar Libros</span>
-            </a>
-          </li>
-          <li class='nav-item'>
-            <a href='agregar.html' class='nav-link'>
-              <i class='link-icon' data-feather='plus-square'></i>
-              <span class='link-title'>Agregar Libros</span>
-            </a>
-          </li>
-          <li class='nav-item'>
-            <a href='modificar.html' class='nav-link'>
-              <i class='link-icon' data-feather='edit'></i>
-              <span class='link-title'>Modificar Libros</span>
-            </a>
-          </li>
-          <li class='nav-item'>
-            <a href='eliminar.html' class='nav-link'>
-              <i class='link-icon' data-feather='trash'></i>
-              <span class='link-title'>ELiminar Libros</span>
-            </a>
-          </li>
-          `;
-
-        navUser.innerHTML += texto;
+        location.href = 'consultar.html';
       } else if (permissions == 'invitado') {
         profileName.innerHTML = 'Invitado';
         profileEmail.innerHTML = 'invitado@ckh.com';
