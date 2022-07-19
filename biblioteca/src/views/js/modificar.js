@@ -78,5 +78,7 @@ const updateBook = (ISBN) => {
         txtCarrera.value = carrera;
         txtUbicacion.value = ubicacion;
         txtEditorial.value = editorial;
+
+        txtISBN.focus();
     });
 }
