@@ -1,7 +1,8 @@
-const formUpdate = document.querySelector('#formUpdate');
-const dataGridView = document.querySelector('#dataGridView');
+const updateBook = (ISBN) => {
+    window.ipcRender.send('consultBook', ISBN);
 
-formUpdate.classList.add('d-none');
+    location.href = './form-modificar.html';
+}
 
 const mostrarLibros = (libros) => {
     let TablaLibros = document.querySelector('#tabla-libros');
@@ -59,26 +60,3 @@ const consultBooks = () => {
 }
 
 consultBooks();
-
-const updateBook = (ISBN) => {
-    dataGridView.classList.add('d-none');
-    formUpdate.classList.remove('d-none');
-
-    window.ipcRender.invoke('getBook', ISBN).then((result) => {
-        let { isbn, nombre, carrera, ubicacion, editorial } = result;
-        console.log(result);
-        let txtISBN = document.querySelector('#txtISBN');
-        let txtNombre = document.querySelector('#txtNombre');
-        let txtCarrera = document.querySelector('#txtCarrera');
-        let txtUbicacion = document.querySelector('#txtUbicacion');
-        let txtEditorial = document.querySelector('#txtEditorial');
-
-        txtISBN.value = isbn;
-        txtNombre.value = nombre;
-        txtCarrera.value = carrera;
-        txtUbicacion.value = ubicacion;
-        txtEditorial.value = editorial;
-
-        txtISBN.focus();
-    });
-}

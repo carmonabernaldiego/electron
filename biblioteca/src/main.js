@@ -130,6 +130,18 @@ function validateLogout(confirm) {
     store.delete('image');
     store.delete('confirmDelete');
 
+    store.delete('isbn');
+    store.delete('nombre');
+    store.delete('carrera');
+    store.delete('ubicacion');
+    store.delete('editorial');
+
+    store.delete('isbnL');
+    store.delete('nombreL');
+    store.delete('carreraL');
+    store.delete('ubicacionL');
+    store.delete('editorialL');
+
     createWindow();
     loginWindow.show();
     window.close();
@@ -151,30 +163,23 @@ electronIpcMain.handle('getUserData', (event) => {
   return data;
 });
 
-electronIpcMain.handle('getBook', (event, ISBN) => {
-  let isbn = '', nombre = '', carrera = '', ubicacion = '', editorial = '';
+electronIpcMain.on('consultBook', (event, ISBN) => {
+  const sql = 'SELECT * FROM libros WHERE ISBN=?';
 
-  db.query('SELECT * FROM libros WHERE isbn = ? LIMIT 1', [ISBN], (error, results, fields) => {
+  db.query(sql, ISBN, (error, results) => {
     if (error) {
       console.log(error);
     }
-
-    if (results) {
-      isbn = results[0].ISBN;
-      nombre = results[0].nombre;
-      carrera = results[0].carrera;
-      ubicacion = results[0].ubicacion;
-      editorial = results[0].editorial;
-
-      store.set('isbnLibro', isbn);
-      store.set('nombreLibro', nombre);
-      store.set('carreraLibro', carrera);
-      store.set('ubicacionLibro', ubicacion);
-      store.set('editorialLibro', editorial);
-    }
+    store.set('isbnL', results[0].ISBN);
+    store.set('nombreL', results[0].nombre);
+    store.set('carreraL', results[0].carrera);
+    store.set('ubicacionL', results[0].ubicacion);
+    store.set('editorialL', results[0].editorial);
   });
+});
 
-  let data = { isbn: store.get('isbnLibro'), nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
+electronIpcMain.handle('getBook', (event) => {
+  const data = { isbn: store.get('isbnL'), nombre: store.get('nombreL'), carrera: store.get('carreraL'), ubicacion: store.get('ubicacionL'), editorial: store.get('editorialL') };
 
   return data;
 });
