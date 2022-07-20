@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 class PageBooks {
     constructor() {
         this.attachEvents();
-        this.loadBooks();
+        this.buscarLibros('');
     }
 
     get(id) {
@@ -25,7 +25,7 @@ class PageBooks {
         let btnIngles = this.get('#btnIngles');
         let txtBuscar = this.get('#txtSearch');
 
-        btnMostrarTodo.addEventListener('click', () => { this.loadBooks; txtBuscar.value = ''; txtBuscar.focus(); });
+        btnMostrarTodo.addEventListener('click', () => { this.buscarLibros(''); txtBuscar.value = ''; txtBuscar.focus(); });
         btnSoftware.addEventListener('click', () => { this.filtrarCarrera('Software'); txtBuscar.value = ''; txtBuscar.focus(); });
         btnAmbiental.addEventListener('click', () => { this.filtrarCarrera('Ambiental'); txtBuscar.value = ''; txtBuscar.focus(); });
         btnEnergia.addEventListener('click', () => { this.filtrarCarrera('Energía'); txtBuscar.value = ''; txtBuscar.focus(); });
@@ -34,38 +34,6 @@ class PageBooks {
         txtBuscar.addEventListener('change', () => { this.buscarLibros(txtBuscar.value); txtBuscar.focus(); });
 
         txtBuscar.focus();
-    }
-
-    loadBooks() {
-        window.ipcRender.invoke('getBooks').then((result) => {
-            let { isbn, nombre, carrera, ubicacion, editorial } = result;
-
-            isbn = isbn.replace(/(^_)|(_$)/g, '');
-            nombre = nombre.replace(/(^_)|(_$)/g, '');
-            carrera = carrera.replace(/(^_)|(_$)/g, '');
-            ubicacion = ubicacion.replace(/(^_)|(_$)/g, '');
-            editorial = editorial.replace(/(^_)|(_$)/g, '');
-
-            isbn = isbn.split('_');
-            nombre = nombre.split('_');
-            carrera = carrera.split('_');
-            ubicacion = ubicacion.split('_');
-            editorial = editorial.split('_');
-
-            let libros = [];
-
-            for (let i = 0; i < isbn.length; i++) {
-                libros.push({
-                    'isbn': isbn[i],
-                    'nombre': nombre[i],
-                    'carrera': carrera[i],
-                    'ubicacion': ubicacion[i],
-                    'editorial': editorial[i]
-                });
-            }
-
-            mostrarLibros(libros);
-        });
     }
 
     buscarLibros = (data) => {
