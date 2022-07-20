@@ -45,7 +45,13 @@ class PageLogin {
 
             const data = { email: email, password: password };
 
-            window.ipcRender.send('login', data);
+            window.ipcRender.invoke('login', data).then((confirm) => {
+                if (confirm == 0) {
+                    error.innerHTML = 'Correo electrónico o contraseña equivocada.';
+                    error.classList.remove('text-muted');
+                    error.classList.add('text-danger');
+                }
+            });
         }
     }
 

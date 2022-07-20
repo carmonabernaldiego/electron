@@ -82,8 +82,9 @@ electronApp.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-electronIpcMain.on('login', (event, data) => {
+electronIpcMain.handle('login', (event, data) => {
   validateLogin(data);
+  return store.get('confirmLogin');
 });
 
 function validateLogin(data) {
@@ -101,6 +102,7 @@ function validateLogin(data) {
       store.set('permissions', results[0].permiso);
       store.set('name', results[0].nombre);
       store.set('image', results[0].imagen);
+      store.set('confirmLogin', 1);
 
       createWindowDashboard();
       window.loadFile(path.join(__dirname, 'views/consultar.html'));
@@ -108,10 +110,7 @@ function validateLogin(data) {
       loginWindow.close();
       window.maximize();
     } else {
-      new electronNotification({
-        title: 'Inicia Sesión',
-        body: 'Correo electrónico o contraseña equivocada.'
-      }).show();
+      store.set('confirmLogin', 0);
     }
   });
 }

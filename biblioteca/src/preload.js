@@ -4,12 +4,12 @@ const ipcRender = require('electron').ipcRenderer;
 const ipc = {
     'render': {
         'send': [
-            'login',
             'logout',
             'invitado',
             'consultBook'
         ],
         'sendReceive': [
+            'login',
             'getUserData',
             'getBooks',
             'getBook',
