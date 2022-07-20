@@ -7,13 +7,13 @@ const ipc = {
             'login',
             'logout',
             'invitado',
-            'consultBook',
-            'addBook'
+            'consultBook'
         ],
         'sendReceive': [
             'getUserData',
-            'getBook',
             'getBooks',
+            'getBook',
+            'addBook',
             'updateBook',
             'deleteBook'
         ]

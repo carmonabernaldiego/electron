@@ -25,7 +25,7 @@ const createWindowDashboard = () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: true,
-      devTools: false,
+      devTools: true,
       preload: path.join(__dirname, 'preload.js')
     }
   });
@@ -200,8 +200,9 @@ electronIpcMain.handle('getBooks', (event) => {
   return data;
 });
 
-electronIpcMain.on('addBook', (event, data) => {
+electronIpcMain.handle('addBook', (event, data) => {
   addDB(data);
+  return store.get('confirmAdd');
 });
 
 function addDB(data) {
@@ -211,15 +212,9 @@ function addDB(data) {
   db.query(sql, [isbn, nombre, editorial, carrera, ubicacion], (error) => {
     if (error) {
       console.log(error);
-      new electronNotification({
-        title: 'Error',
-        body: 'El Libro con ISBN ' + isbn + ' ya existe.'
-      }).show();
+      store.set('confirmAdd', 0);
     } else {
-      new electronNotification({
-        title: 'Biblioteca CKH',
-        body: 'El Libro con ISBN ' + isbn + ' se agrego con éxito.'
-      }).show();
+      store.set('confirmAdd', 1);
     }
   });
 }

@@ -11,7 +11,7 @@
     <!-- plugin css for this page -->
     <link
       rel="stylesheet"
-      href="../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css"
+      href="../assets/vendors/sweetalert2/sweetalert2.min.css"
     />
     <!-- end plugin css for this page -->
     <!-- inject:css -->
@@ -134,7 +134,7 @@
               <div class="card">
                 <div class="card-body">
                   <h6 class="card-title">Libros</h6>
-                  <div>
+                  <form onsubmit="return formSubmit(event)">
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="form-group">
@@ -147,7 +147,7 @@
                             class="form-control"
                             placeholder="ISBN"
                             maxlength="10"
-                            onkeypress="validateInput(event)"
+                            pattern="[0-9]+"
                             required
                           />
                         </div>
@@ -266,7 +266,7 @@
                     >
                       Agregar
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -290,6 +290,8 @@
     <!-- plugin js for this page -->
     <script src="./js/load-user.js"></script>
     <script src="./js/agregar.js"></script>
+    <script src="../assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+    <script src="../assets/vendors/promise-polyfill/polyfill.min.js"></script>
     <!-- end plugin js for this page -->
     <!-- inject:js -->
     <script src="../assets/vendors/feather-icons/feather.min.js"></script>

@@ -1,72 +1,24 @@
 let txtISBN = document.querySelector('#txtISBN');
-txtISBN.focus();
 let txtNombre = document.querySelector('#txtNombre');
 let txtCarrera = document.querySelector('#txtCarrera');
 let txtUbicacion = document.querySelector('#txtUbicacion');
 let txtEditorial = document.querySelector('#txtEditorial');
 
+txtISBN.focus();
+
+txtISBN.addEventListener('keypress', function (e) {
+    if (!soloNumeros(e)) {
+        e.preventDefault();
+    }
+})
+
 let btnAgregar = document.querySelector('#btnAgregar');
-
-txtISBN.addEventListener('keyup', function (e) {
-    let keycode = e.keyCode || e.which;
-    if (keycode == 13) {
-        txtNombre.focus();
-    }
-});
-
-txtNombre.addEventListener('keyup', function (e) {
-    let keycode = e.keyCode || e.which;
-    if (keycode == 13) {
-        txtEditorial.focus();
-    }
-});
-
-txtEditorial.addEventListener('keyup', function (e) {
-    let keycode = e.keyCode || e.which;
-    if (keycode == 13) {
-        txtCarrera.focus();
-    }
-});
-
-txtCarrera.addEventListener('keyup', function (e) {
-    let keycode = e.keyCode || e.which;
-    if (keycode == 13) {
-        txtUbicacion.focus();
-    }
-});
-
-txtUbicacion.addEventListener('keyup', function (e) {
-    let keycode = e.keyCode || e.which;
-    if (keycode == 13) {
-        btnAgregar.focus();
-    }
-});
 
 btnAgregar.addEventListener('click', () => {
     if (!(txtISBN.value == '' || txtNombre.value == '' || txtCarrera.value == '' || txtUbicacion.value == '' || txtEditorial.value == '')) {
         let data = { isbn: txtISBN.value, nombre: txtNombre.value, carrera: txtCarrera.value, ubicacion: txtUbicacion.value, editorial: txtEditorial.value };
         addBook(data);
-    } else {
-        if (txtISBN.value == '') {
-            txtISBN.focus();
-        } else if (txtNombre.value == '') {
-            txtNombre.focus();
-        } else if (txtEditorial.value == '') {
-            txtEditorial.focus();
-        } else if (txtCarrera.value == '') {
-            txtCarrera.focus();
-        } else if (txtUbicacion.value == '') {
-            txtUbicacion.focus();
-        }
     }
-});
-
-btnAgregar.addEventListener("focus", () => {
-    window.addEventListener("keypress", function (event) {
-        if (event.keyCode == 13) {
-            event.preventDefault();
-        }
-    });
 });
 
 const addBook = (data) => {
@@ -80,7 +32,7 @@ const addBook = (data) => {
             allowEscapeKey: false,
             allowOutsideClick: false
         });
-        
+
         if (confirm == 1) {
             swalWithBootstrapButtons.fire({
                 title: '¡Agregado!',
@@ -164,19 +116,12 @@ const consultBooks = () => {
     });
 }
 
-function validateInput(evt) {
-    let theEvent = evt || window.event;
+function soloNumeros(e) {
+    var key = e.charCode;
+    return key >= 48 && key <= 57 || key == 13;
+}
 
-    if (theEvent.type === 'paste') {
-        key = evt.clipboardData.getData('text/plain');
-    } else {
-        let key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode(key);
-    }
-    let regex = /[0-9]|\./;
-
-    if (!regex.test(key)) {
-        theEvent.returnValue = false;
-        if (theEvent.preventDefault) theEvent.preventDefault();
-    }
+const formSubmit = (event) => {
+    event.preventDefault();
+    return true;
 }
