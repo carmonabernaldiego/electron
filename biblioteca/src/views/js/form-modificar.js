@@ -4,6 +4,48 @@ let txtCarrera = document.querySelector('#txtCarrera');
 let txtUbicacion = document.querySelector('#txtUbicacion');
 let txtEditorial = document.querySelector('#txtEditorial');
 
+let btnCancelar = document.querySelector('#btnCancelar');
+let btnActualizar = document.querySelector('#btnActualizar');
+
+txtNombre.addEventListener('keyup', function (e) {
+    var keycode = e.keyCode || e.which;
+    if (keycode == 13) {
+        txtEditorial.focus();
+    }
+});
+
+txtEditorial.addEventListener('keyup', function (e) {
+    var keycode = e.keyCode || e.which;
+    if (keycode == 13) {
+        txtCarrera.focus();
+    }
+});
+
+txtCarrera.addEventListener('keyup', function (e) {
+    var keycode = e.keyCode || e.which;
+    if (keycode == 13) {
+        txtUbicacion.focus();
+    }
+});
+
+txtUbicacion.addEventListener('keyup', function (e) {
+    var keycode = e.keyCode || e.which;
+    if (keycode == 13) {
+        btnActualizar.focus();
+    }
+});
+
+btnCancelar.addEventListener('click', () => {
+    location.href = './modificar.html';
+});
+
+btnActualizar.addEventListener('click', () => {
+    if (!(txtISBN.value == '' || txtNombre.value == '' || txtCarrera.value == '' || txtUbicacion.value == '' || txtEditorial.value == '')) {
+        const data = { isbn: txtISBN.value, nombre: txtNombre.value, carrera: txtCarrera.value, ubicacion: txtUbicacion.value, editorial: txtEditorial.value };
+        updateBook(data);
+    }
+});
+
 const loadBook = () => {
     window.ipcRender.invoke('getBook').then((result) => {
         let { isbn, nombre, carrera, ubicacion, editorial } = result;
@@ -19,59 +61,6 @@ const loadBook = () => {
 }
 
 loadBook();
-
-let btnCancelar = document.querySelector('#btnCancelar');
-
-btnCancelar.addEventListener('click', () => {
-    location.href = './modificar.html';
-});
-
-let btnActualizar = document.querySelector('#btnActualizar');
-
-btnActualizar.addEventListener('click', () => {
-    if (!(txtISBN.value == '' || txtNombre.value == '' || txtCarrera.value == '' || txtUbicacion.value == '' || txtEditorial.value == '')) {
-        const data = { isbn: txtISBN.value, nombre: txtNombre.value, carrera: txtCarrera.value, ubicacion: txtUbicacion.value, editorial: txtEditorial.value };
-        updateBook(data);
-    }
-});
-
-const updateBook = (data) => {
-    window.ipcRender.invoke('updateBook', data).then((result) => {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger mr-2'
-            },
-            buttonsStyling: false,
-            allowOutsideClick: false
-        });
-        if (result == 1) {
-            swalWithBootstrapButtons.fire({
-                title: '¡Actualizado!',
-                text: "Registro actualizado.",
-                icon: 'success',
-                confirmButtonClass: 'mr-2'
-            }).then((result) => {
-                if (result.value) {
-                    consultBooks();
-                    location.href = './modificar.html';
-                }
-            });
-        } else if (result == 0) {
-            swalWithBootstrapButtons.fire({
-                title: '¡Error!',
-                text: "La información permanece segura :)",
-                icon: 'error',
-                confirmButtonClass: 'mr-2'
-            }).then((result) => {
-                if (result.value) {
-                    consultBooks();
-                    location.href = './modificar.html';
-                }
-            });
-        }
-    });
-}
 
 const mostrarLibros = (libros) => {
     let TablaLibros = document.querySelector('#tabla-libros');
@@ -125,5 +114,43 @@ const consultBooks = () => {
         }
 
         mostrarLibros(libros);
+    });
+}
+
+const updateBook = (data) => {
+    window.ipcRender.invoke('updateBook', data).then((result) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger mr-2'
+            },
+            buttonsStyling: false,
+            allowOutsideClick: false
+        });
+        if (result == 1) {
+            swalWithBootstrapButtons.fire({
+                title: '¡Actualizado!',
+                text: "Registro actualizado.",
+                icon: 'success',
+                confirmButtonClass: 'mr-2'
+            }).then((result) => {
+                if (result.value) {
+                    consultBooks();
+                    location.href = './modificar.html';
+                }
+            });
+        } else if (result == 0) {
+            swalWithBootstrapButtons.fire({
+                title: '¡Error!',
+                text: "La información permanece segura :)",
+                icon: 'error',
+                confirmButtonClass: 'mr-2'
+            }).then((result) => {
+                if (result.value) {
+                    consultBooks();
+                    location.href = './modificar.html';
+                }
+            });
+        }
     });
 }
