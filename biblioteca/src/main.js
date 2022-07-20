@@ -5,8 +5,7 @@ const electronNotification = require('electron').Notification;
 const Store = require('electron-store');
 const store = new Store();
 const path = require('path');
-
-let db = require('./connection.js');
+const db = require('./connection.js');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -239,6 +238,25 @@ function deleteDB(ISBN) {
       store.set('confirmDelete', 0);
     } else {
       store.set('confirmDelete', 1);
+    }
+  });
+}
+
+electronIpcMain.handle('updateBook', (event, data) => {
+  updateDB(data);
+  return store.get('confirmUpdate');
+});
+
+function updateDB(data) {
+  const { isbn, nombre, carrera, ubicacion, editorial } = data;
+  const sql = 'UPDATE libros SET nombre=?, editorial=?, carrera=?, ubicacion=? WHERE ISBN=?';
+
+  db.query(sql, [nombre, editorial, carrera, ubicacion, isbn], (error) => {
+    if (error) {
+      console.log(error);
+      store.set('confirmUpdate', 0);
+    } else {
+      store.set('confirmUpdate', 1);
     }
   });
 }

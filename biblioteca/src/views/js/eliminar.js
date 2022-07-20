@@ -8,8 +8,8 @@ $(function () {
                     cancelButton: 'btn btn-danger mr-2'
                 },
                 buttonsStyling: false,
+                allowOutsideClick: false
             });
-
             swalWithBootstrapButtons.fire({
                 title: '¿Estas seguro?',
                 text: "¡Esta acción no se puede revertir!",

@@ -14,6 +14,7 @@ const ipc = {
             'getUserData',
             'getBook',
             'getBooks',
+            'updateBook',
             'deleteBook'
         ]
     }
