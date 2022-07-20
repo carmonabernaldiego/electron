@@ -13,6 +13,10 @@
       rel="stylesheet"
       href="../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css"
     />
+    <link
+      rel="stylesheet"
+      href="../assets/vendors/sweetalert2/sweetalert2.min.css"
+    />
     <!-- end plugin css for this page -->
     <!-- inject:css -->
     <link
@@ -52,7 +56,7 @@
                 <span class="link-title">Agregar Libros</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a href="modificar.html" class="nav-link">
                 <i class="link-icon" data-feather="edit"></i>
                 <span class="link-title">Modificar Libros</span>
@@ -134,20 +138,109 @@
               <div class="card">
                 <div class="card-body">
                   <h6 class="card-title">Libros</h6>
-                  <div class="table-responsive">
-                    <table id="dataTable" class="table">
-                      <thead>
-                        <tr>
-                          <th>ISBN</th>
-                          <th>Nombre</th>
-                          <th>Carrera</th>
-                          <th>Ubicación</th>
-                          <th>Editorial</th>
-                        </tr>
-                      </thead>
-                      <tbody id="tabla-libros"></tbody>
-                    </table>
-                  </div>
+                  <form action="#">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="txtISBN" class="control-label"
+                            >ISBN</label
+                          >
+                          <input
+                            id="txtISBN"
+                            type="text"
+                            class="form-control"
+                            placeholder="ISBN"
+                            maxlength="10"
+                            disabled
+                          />
+                        </div>
+                      </div>
+                      <!-- Col -->
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="txtNombre" class="control-label"
+                            >Nombre</label
+                          >
+                          <input
+                            id="txtNombre"
+                            type="text"
+                            class="form-control"
+                            placeholder="Nombre"
+                            maxlength="100"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <!-- Col -->
+                    </div>
+                    <!-- Row -->
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="txtEditorial" class="control-label"
+                            >Editorial</label
+                          >
+                          <input
+                            id="txtEditorial"
+                            type="text"
+                            class="form-control"
+                            placeholder="Editorial"
+                            maxlength="50"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <!-- Col -->
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="txtCarrera" class="control-label"
+                            >Carrera</label
+                          >
+                          <input
+                            id="txtCarrera"
+                            type="text"
+                            class="form-control"
+                            placeholder="Carrera"
+                            maxlength="50"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <!-- Col -->
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label for="txtUbicacion" class="control-label"
+                            >Ubicación</label
+                          >
+                          <input
+                            id="txtUbicacion"
+                            type="text"
+                            class="form-control"
+                            placeholder="Ubicación"
+                            maxlength="10"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <!-- Col -->
+                    </div>
+                    <!-- Row -->
+                    <button type="submit" class="d-none"></button>
+                    <button
+                      id="btnActualizar"
+                      type="button"
+                      class="btn btn-primary submit"
+                    >
+                      Actualizar
+                    </button>
+                    <button
+                      id="btnCancelar"
+                      type="button"
+                      class="btn btn-danger submit ml-2"
+                    >
+                      Cancelar
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -158,8 +251,10 @@
           class="footer d-flex flex-column flex-md-row align-items-center justify-content-between"
         >
           <p class="text-muted text-center text-md-left">
-            Copyright © 2022 <a href="https://github.com/carmonabernaldiego/electron">Biblioteca CKH</a>. Todos los derechos
-            reservados
+            Copyright © 2022
+            <a href="https://github.com/carmonabernaldiego/electron"
+              >Biblioteca CKH</a
+            >. Todos los derechos reservados
           </p>
         </footer>
         <!-- partial -->
@@ -170,16 +265,14 @@
     <!-- endinject -->
     <!-- plugin js for this page -->
     <script src="./js/load-user.js"></script>
-    <script src="./js/consultar.js"></script>
-    <script src="../assets/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="../assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="./js/form-modificar.js"></script>
+    <script src="../assets/vendors/sweetalert2/sweetalert2.min.js"></script>
     <!-- end plugin js for this page -->
     <!-- inject:js -->
     <script src="../assets/vendors/feather-icons/feather.min.js"></script>
     <script src="../assets/js/template.js"></script>
     <!-- endinject -->
     <!-- custom js for this page -->
-    <script src="./js/data-table.js"></script>
     <!-- end custom js for this page -->
   </body>
 </html>

@@ -5,8 +5,7 @@ const electronNotification = require('electron').Notification;
 const Store = require('electron-store');
 const store = new Store();
 const path = require('path');
-
-let db = require('./connection.js');
+const db = require('./connection.js');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -61,20 +60,13 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
-electronApp.on('ready', createWindowDashboard);
+electronApp.on('ready', createWindow);
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 electronApp.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    store.delete('user');
-    store.delete('email');
-    store.delete('permissions');
-    store.delete('name');
-    store.delete('image');
-    store.delete('confirmDelete');
-    
     electronApp.quit();
   }
 });
@@ -83,7 +75,7 @@ electronApp.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (electronBrowserWindow.getAllWindows().length === 0) {
-    createWindowDashboard();
+    createWindow();
   }
 });
 
@@ -111,6 +103,7 @@ function validateLogin(data) {
       store.set('image', results[0].imagen);
 
       createWindowDashboard();
+      window.loadFile(path.join(__dirname, 'views/consultar.html'));
       window.show();
       loginWindow.close();
       window.maximize();
@@ -134,7 +127,6 @@ function validateLogout(confirm) {
     store.delete('permissions');
     store.delete('name');
     store.delete('image');
-    store.delete('confirmDelete');
 
     createWindow();
     loginWindow.show();
@@ -157,10 +149,31 @@ electronIpcMain.handle('getUserData', (event) => {
   return data;
 });
 
+electronIpcMain.on('consultBook', (event, ISBN) => {
+  const sql = 'SELECT * FROM libros WHERE ISBN=?';
+
+  db.query(sql, ISBN, (error, results) => {
+    if (error) {
+      console.log(error);
+    }
+    store.set('isbnL', results[0].ISBN);
+    store.set('nombreL', results[0].nombre);
+    store.set('carreraL', results[0].carrera);
+    store.set('ubicacionL', results[0].ubicacion);
+    store.set('editorialL', results[0].editorial);
+  });
+});
+
+electronIpcMain.handle('getBook', (event) => {
+  const data = { isbn: store.get('isbnL'), nombre: store.get('nombreL'), carrera: store.get('carreraL'), ubicacion: store.get('ubicacionL'), editorial: store.get('editorialL') };
+
+  return data;
+});
+
 electronIpcMain.handle('getBooks', (event) => {
   let isbn = '', nombre = '', carrera = '', ubicacion = '', editorial = '';
 
-  db.query('SELECT * FROM `libros`', (error, results, fields) => {
+  db.query('SELECT * FROM libros', (error, results, fields) => {
     if (error) {
       console.log(error);
     }
@@ -174,15 +187,15 @@ electronIpcMain.handle('getBooks', (event) => {
         editorial += results[i].editorial + '_';
       }
 
-      store.set('isbnLibro', isbn);
-      store.set('nombreLibro', nombre);
-      store.set('carreraLibro', carrera);
-      store.set('ubicacionLibro', ubicacion);
-      store.set('editorialLibro', editorial);
+      store.set('isbn', isbn);
+      store.set('nombre', nombre);
+      store.set('carrera', carrera);
+      store.set('ubicacion', ubicacion);
+      store.set('editorial', editorial);
     }
   });
 
-  const data = { isbn: store.get('isbnLibro'), nombre: store.get('nombreLibro'), carrera: store.get('carreraLibro'), ubicacion: store.get('ubicacionLibro'), editorial: store.get('editorialLibro') };
+  const data = { isbn: store.get('isbn'), nombre: store.get('nombre'), carrera: store.get('carrera'), ubicacion: store.get('ubicacion'), editorial: store.get('editorial') };
 
   return data;
 });
@@ -225,6 +238,25 @@ function deleteDB(ISBN) {
       store.set('confirmDelete', 0);
     } else {
       store.set('confirmDelete', 1);
+    }
+  });
+}
+
+electronIpcMain.handle('updateBook', (event, data) => {
+  updateDB(data);
+  return store.get('confirmUpdate');
+});
+
+function updateDB(data) {
+  const { isbn, nombre, carrera, ubicacion, editorial } = data;
+  const sql = 'UPDATE libros SET nombre=?, editorial=?, carrera=?, ubicacion=? WHERE ISBN=?';
+
+  db.query(sql, [nombre, editorial, carrera, ubicacion, isbn], (error) => {
+    if (error) {
+      console.log(error);
+      store.set('confirmUpdate', 0);
+    } else {
+      store.set('confirmUpdate', 1);
     }
   });
 }
