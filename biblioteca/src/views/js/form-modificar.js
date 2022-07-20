@@ -14,8 +14,14 @@ const loadBook = () => {
         txtUbicacion.value = ubicacion;
         txtEditorial.value = editorial;
 
-        txtISBN.focus();
+        txtNombre.focus();
     });
 }
 
 loadBook();
+
+let btnCancelar = document.querySelector('#btnCancelar');
+
+btnCancelar.addEventListener('click', () => {
+    location.href = './modificar.html';
+});

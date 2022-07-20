@@ -147,7 +147,7 @@
                             class="form-control"
                             placeholder="ISBN"
                             maxlength="10"
-                            required
+                            disabled
                           />
                         </div>
                       </div>
@@ -222,11 +222,18 @@
                     </div>
                     <!-- Row -->
                     <button
-                      id="btnAgregar"
+                      id="btnActualizar"
                       type="submit"
                       class="btn btn-primary submit"
                     >
                       Actualizar
+                    </button>
+                    <button
+                      id="btnCancelar"
+                      type="button"
+                      class="btn btn-danger submit ml-2"
+                    >
+                      Cancelar
                     </button>
                   </form>
                 </div>
@@ -239,7 +246,7 @@
           class="footer d-flex flex-column flex-md-row align-items-center justify-content-between"
         >
           <p class="text-muted text-center text-md-left">
-            Copyright © 2022 <a href="#">Biblioteca CKH</a>. Todos los derechos
+            Copyright © 2022 <a href="https://github.com/carmonabernaldiego/electron">Biblioteca CKH</a>. Todos los derechos
             reservados
           </p>
         </footer>

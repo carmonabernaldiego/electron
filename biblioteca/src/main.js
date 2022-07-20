@@ -128,19 +128,6 @@ function validateLogout(confirm) {
     store.delete('permissions');
     store.delete('name');
     store.delete('image');
-    store.delete('confirmDelete');
-
-    store.delete('isbn');
-    store.delete('nombre');
-    store.delete('carrera');
-    store.delete('ubicacion');
-    store.delete('editorial');
-
-    store.delete('isbnL');
-    store.delete('nombreL');
-    store.delete('carreraL');
-    store.delete('ubicacionL');
-    store.delete('editorialL');
 
     createWindow();
     loginWindow.show();
