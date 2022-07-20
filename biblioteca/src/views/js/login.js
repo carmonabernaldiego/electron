@@ -36,9 +36,6 @@ class PageLogin {
             error.classList.remove('text-muted');
             error.classList.add('text-danger');
         } else {
-            error.innerHTML = '¡Bienvenido de nuevo! Ingrese a su cuenta.';
-            error.classList.add('text-muted');
-            error.classList.remove('text-danger');
             page.get('#txtEmail').value = '';
             page.get('#txtPassword').value = '';
             page.get('#txtEmail').focus();

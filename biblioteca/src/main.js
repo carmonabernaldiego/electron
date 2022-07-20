@@ -94,6 +94,7 @@ function validateLogin(data) {
   db.query(sql, [email, password], (error, results, fields) => {
     if (error) {
       console.log(error);
+      store.set('confirmLogin', 0);
     }
 
     if (results.length > 0) {
@@ -109,8 +110,6 @@ function validateLogin(data) {
       window.show();
       loginWindow.close();
       window.maximize();
-    } else {
-      store.set('confirmLogin', 0);
     }
   });
 }
