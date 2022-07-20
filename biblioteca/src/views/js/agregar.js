@@ -8,35 +8,35 @@ let txtEditorial = document.querySelector('#txtEditorial');
 let btnAgregar = document.querySelector('#btnAgregar');
 
 txtISBN.addEventListener('keyup', function (e) {
-    var keycode = e.keyCode || e.which;
+    let keycode = e.keyCode || e.which;
     if (keycode == 13) {
         txtNombre.focus();
     }
 });
 
 txtNombre.addEventListener('keyup', function (e) {
-    var keycode = e.keyCode || e.which;
+    let keycode = e.keyCode || e.which;
     if (keycode == 13) {
         txtEditorial.focus();
     }
 });
 
 txtEditorial.addEventListener('keyup', function (e) {
-    var keycode = e.keyCode || e.which;
+    let keycode = e.keyCode || e.which;
     if (keycode == 13) {
         txtCarrera.focus();
     }
 });
 
 txtCarrera.addEventListener('keyup', function (e) {
-    var keycode = e.keyCode || e.which;
+    let keycode = e.keyCode || e.which;
     if (keycode == 13) {
         txtUbicacion.focus();
     }
 });
 
 txtUbicacion.addEventListener('keyup', function (e) {
-    var keycode = e.keyCode || e.which;
+    let keycode = e.keyCode || e.which;
     if (keycode == 13) {
         btnAgregar.focus();
     }
@@ -66,13 +66,47 @@ btnAgregar.addEventListener("focus", () => {
         if (event.keyCode == 13) {
             event.preventDefault();
         }
-    }, false);
+    });
 });
 
 const addBook = (data) => {
-    window.ipcRender.send('addBook', data);
-    consultBooks();
-    location.reload();
+    window.ipcRender.invoke('addBook', data).then((confirm) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger mr-2'
+            },
+            buttonsStyling: false,
+            allowEscapeKey: false,
+            allowOutsideClick: false
+        });
+        
+        if (confirm == 1) {
+            swalWithBootstrapButtons.fire({
+                title: '¡Agregado!',
+                text: "Registro agregado.",
+                icon: 'success',
+                confirmButtonClass: 'mr-2'
+            }).then((result) => {
+                if (result.value) {
+                    consultBooks();
+                    location.reload(true);
+                }
+            });
+        } else if (confirm == 0) {
+            swalWithBootstrapButtons.fire({
+                title: '¡Error!',
+                text: "No se puede agregar un nuevo registro a la base de datos.",
+                icon: 'error',
+                confirmButtonClass: 'mr-2'
+            }).then((result) => {
+                if (result.value) {
+                    consultBooks();
+                    location.reload(true);
+                }
+            });
+        }
+    });
 }
 
 const mostrarLibros = (libros) => {
@@ -131,15 +165,15 @@ const consultBooks = () => {
 }
 
 function validateInput(evt) {
-    var theEvent = evt || window.event;
+    let theEvent = evt || window.event;
 
     if (theEvent.type === 'paste') {
-        key = event.clipboardData.getData('text/plain');
+        key = evt.clipboardData.getData('text/plain');
     } else {
-        var key = theEvent.keyCode || theEvent.which;
+        let key = theEvent.keyCode || theEvent.which;
         key = String.fromCharCode(key);
     }
-    var regex = /[0-9]|\./;
+    let regex = /[0-9]|\./;
 
     if (!regex.test(key)) {
         theEvent.returnValue = false;

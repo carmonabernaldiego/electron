@@ -125,7 +125,8 @@ const updateBook = (data) => {
                 cancelButton: 'btn btn-danger mr-2'
             },
             buttonsStyling: false,
-            allowOutsideClick: false
+            allowEscapeKey : false,
+                allowOutsideClick: false
         });
         if (result == 1) {
             swalWithBootstrapButtons.fire({

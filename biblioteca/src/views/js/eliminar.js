@@ -8,6 +8,7 @@ $(function () {
                     cancelButton: 'btn btn-danger mr-2'
                 },
                 buttonsStyling: false,
+                allowEscapeKey : false,
                 allowOutsideClick: false
             });
             swalWithBootstrapButtons.fire({
