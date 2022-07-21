@@ -34,6 +34,8 @@ class Page {
         profileEmail.innerHTML = email;
         profileUser.src = 'http://mysoftup.com/images/users/' + image;
         profileUserBox.src = 'http://mysoftup.com/images/users/' + image;
+
+        window.ipcRender.send('consultCarreras');
       } else if (permissions == 'invitado') {
         profileName.innerHTML = 'Lector';
         profileEmail.innerHTML = '';

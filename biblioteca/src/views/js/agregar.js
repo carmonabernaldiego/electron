@@ -4,8 +4,6 @@ let selectCarrera = document.querySelector('#selectCarrera');
 let txtUbicacion = document.querySelector('#txtUbicacion');
 let txtEditorial = document.querySelector('#txtEditorial');
 
-window.ipcRender.send('consultCarreras');
-
 window.ipcRender.invoke('getCarreras').then((result) => {
     let { idCarrera, nombreCarrera } = result;
 
