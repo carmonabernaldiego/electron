@@ -129,10 +129,6 @@ function validateLogout(confirm) {
     store.delete('idCarrera');
     store.delete('nombreCarrera');
 
-    store.delete('confirmAdd');
-    store.delete('confirmUpdate');
-    store.delete('confirmDelete');
-
     createWindow();
     loginWindow.show();
     window.close();
