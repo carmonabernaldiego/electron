@@ -1,8 +1,38 @@
 let txtISBN = document.querySelector('#txtISBN');
 let txtNombre = document.querySelector('#txtNombre');
-let txtCarrera = document.querySelector('#txtCarrera');
+let selectCarrera = document.querySelector('#selectCarrera');
 let txtUbicacion = document.querySelector('#txtUbicacion');
 let txtEditorial = document.querySelector('#txtEditorial');
+
+
+window.ipcRender.invoke('getCarreras').then((result) => {
+    let { idCarrera, nombreCarrera } = result;
+
+    idCarrera = idCarrera.replace(/(^_)|(_$)/g, '');
+    idCarrera = idCarrera.split('_');
+    nombreCarrera = nombreCarrera.replace(/(^_)|(_$)/g, '');
+    nombreCarrera = nombreCarrera.split('_');
+
+    let carreras = [];
+
+    for (let i = 0; i < idCarrera.length; i++) {
+        carreras.push({
+            'idCarrera': idCarrera[i],
+            'nombreCarrera': nombreCarrera[i]
+        });
+    }
+
+    let texto = '';
+
+    for (let i = 0; i < carreras.length; i++) {
+        texto +=
+            `
+            <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
+            `;
+    }
+
+    selectCarrera.innerHTML += texto;
+});
 
 txtISBN.focus();
 
@@ -10,13 +40,13 @@ txtISBN.addEventListener('keypress', function (e) {
     if (!soloNumeros(e)) {
         e.preventDefault();
     }
-})
+});
 
 let btnAgregar = document.querySelector('#btnAgregar');
 
 btnAgregar.addEventListener('click', () => {
-    if (!(txtISBN.value == '' || txtNombre.value == '' || txtCarrera.value == '' || txtUbicacion.value == '' || txtEditorial.value == '')) {
-        let data = { isbn: txtISBN.value, nombre: txtNombre.value, carrera: txtCarrera.value, ubicacion: txtUbicacion.value, editorial: txtEditorial.value };
+    if (!(txtISBN.value == '' || txtNombre.value == '' || selectCarrera.value == '' || txtUbicacion.value == '' || txtEditorial.value == '')) {
+        let data = { isbn: txtISBN.value, nombre: txtNombre.value, carrera: selectCarrera.value, ubicacion: txtUbicacion.value, editorial: txtEditorial.value };
         addBook(data);
     }
 });

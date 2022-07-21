@@ -10,6 +10,7 @@ const ipc = {
         ],
         'sendReceive': [
             'login',
+            'getCarreras',
             'getUserData',
             'getBooks',
             'getBook',

@@ -194,48 +194,13 @@
                             >Carrera</label
                           >
                           <select
-                            id="txtCarrera"
+                            id="selectCarrera"
                             class="form-control"
                             style="color: #495057"
                             required
                           >
                             <option value="" selected>
                               Seleccionar carrera
-                            </option>
-                            <option value="Ingeniería en Nanotecnología">
-                              Ingeniería en Nanotecnología
-                            </option>
-                            <option
-                              value="Licenciatura en Administración y Gestión Empresarial"
-                            >
-                              Licenciatura en Administración y Gestión
-                              Empresarial
-                            </option>
-                            <option value="Ingeniería Petrolera">
-                              Ingeniería Petrolera
-                            </option>
-                            <option
-                              value="Ingeniería en Tecnologías de Manufactura"
-                            >
-                              Ingeniería en Tecnologías de Manufactura
-                            </option>
-                            <option value="Ingeniería en Energía">
-                              Ingeniería en Energía
-                            </option>
-                            <option value="Ingeniería en Software">
-                              Ingeniería en Software
-                            </option>
-                            <option value="Ingeniería Biomédica">
-                              Ingeniería Biomédica
-                            </option>
-                            <option value="Ingeniería en Tecnología Ambiental">
-                              Ingeniería en Tecnología Ambiental
-                            </option>
-                            <option value="Ingeniería Agroindustrial">
-                              Ingeniería Agroindustrial
-                            </option>
-                            <option value="Ingeniería Mecatrónica">
-                              Ingeniería Mecatrónica
                             </option>
                           </select>
                         </div>
@@ -250,6 +215,7 @@
                             id="txtUbicacion"
                             type="text"
                             class="form-control"
+                            onkeyup="this.value = this.value.toUpperCase();"
                             placeholder="Ubicación"
                             maxlength="10"
                             required

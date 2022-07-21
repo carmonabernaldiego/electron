@@ -217,24 +217,6 @@ function addDB(data) {
   });
 }
 
-electronIpcMain.handle('deleteBook', (event, ISBN) => {
-  deleteDB(ISBN);
-  return store.get('confirmDelete');
-});
-
-function deleteDB(ISBN) {
-  const sql = 'DELETE FROM libros WHERE ISBN = ?';
-
-  db.query(sql, [ISBN], (error) => {
-    if (error) {
-      console.log(error);
-      store.set('confirmDelete', 0);
-    } else {
-      store.set('confirmDelete', 1);
-    }
-  });
-}
-
 electronIpcMain.handle('updateBook', (event, data) => {
   updateDB(data);
   return store.get('confirmUpdate');
@@ -253,3 +235,45 @@ function updateDB(data) {
     }
   });
 }
+
+electronIpcMain.handle('deleteBook', (event, ISBN) => {
+  deleteDB(ISBN);
+  return store.get('confirmDelete');
+});
+
+function deleteDB(ISBN) {
+  const sql = 'DELETE FROM libros WHERE ISBN = ?';
+
+  db.query(sql, [ISBN], (error) => {
+    if (error) {
+      console.log(error);
+      store.set('confirmDelete', 0);
+    } else {
+      store.set('confirmDelete', 1);
+    }
+  });
+}
+
+electronIpcMain.handle('getCarreras', (event) => {
+  let idCarrera = '', nombreCarrera = '';
+
+  db.query('SELECT * FROM carreras', (error, results, fields) => {
+    if (error) {
+      console.log(error);
+    }
+
+    if (results.length > 0) {
+      for (let i = 0; i < results.length; i++) {
+        idCarrera += results[i].id_carrera + '_';
+        nombreCarrera += results[i].nombre_carrera + '_';
+      }
+
+      store.set('idCarrera', idCarrera);
+      store.set('nombreCarrera', nombreCarrera);
+    }
+  });
+
+  const data = { idCarrera: store.get('idCarrera'), nombreCarrera: store.get('nombreCarrera') };
+
+  return data;
+});
