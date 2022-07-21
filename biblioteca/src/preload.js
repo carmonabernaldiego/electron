@@ -6,7 +6,8 @@ const ipc = {
         'send': [
             'logout',
             'invitado',
-            'consultBook'
+            'consultBook',
+            'consultCarreras'
         ],
         'sendReceive': [
             'login',

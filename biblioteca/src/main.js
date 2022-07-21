@@ -126,6 +126,9 @@ function validateLogout(confirm) {
     store.delete('name');
     store.delete('image');
 
+    store.delete('idCarrera');
+    store.delete('nombreCarrera');
+
     createWindow();
     loginWindow.show();
     window.close();
@@ -254,7 +257,7 @@ function deleteDB(ISBN) {
   });
 }
 
-electronIpcMain.handle('getCarreras', (event) => {
+electronIpcMain.on('consultCarreras', (event) => {
   let idCarrera = '', nombreCarrera = '';
 
   db.query('SELECT * FROM carreras', (error, results, fields) => {
@@ -272,7 +275,9 @@ electronIpcMain.handle('getCarreras', (event) => {
       store.set('nombreCarrera', nombreCarrera);
     }
   });
+});
 
+electronIpcMain.handle('getCarreras', (event) => {
   const data = { idCarrera: store.get('idCarrera'), nombreCarrera: store.get('nombreCarrera') };
 
   return data;
