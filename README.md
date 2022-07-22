@@ -14,3 +14,7 @@ npm install electron
 npm install mysql2
 
 npm install electron-store
+
+5.- Ejecuta el siguiente comando para iniciar:
+
+npm run start
