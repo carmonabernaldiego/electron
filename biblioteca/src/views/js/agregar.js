@@ -108,9 +108,9 @@ const mostrarLibros = (libros) => {
             <tr>
                 <td>${libros[i].isbn}</td>
                 <td>${libros[i].nombre}</td>
+                <td>${libros[i].editorial}</td>
                 <td>${libros[i].carrera}</td>
                 <td>${libros[i].ubicacion}</td>
-                <td>${libros[i].editorial}</td>
                 <td class="text-center"><button type="button" class="btn btn-danger" onclick="showSwal('passing-parameter-execute-cancel', '${libros[i].isbn}')">Eliminar</button></td>
             </tr>
         `;
