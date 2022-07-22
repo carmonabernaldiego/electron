@@ -51,7 +51,13 @@ btnAgregar.addEventListener('click', () => {
 });
 
 const addBook = (data) => {
-    window.ipcRender.invoke('addBook', data).then((confirm) => {
+    window.ipcRender.send('addBook', data);
+    localStorage.setItem('reload', '1');
+    location.reload();
+}
+
+if (localStorage.getItem('reload') == '1') {
+    window.ipcRender.invoke('confirmAddBook').then((confirm) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -71,7 +77,7 @@ const addBook = (data) => {
             }).then((result) => {
                 if (result.value) {
                     consultBooks();
-                    location.reload(true);
+                    localStorage.removeItem('reload');
                 }
             });
         } else if (confirm == 0) {
@@ -83,7 +89,7 @@ const addBook = (data) => {
             }).then((result) => {
                 if (result.value) {
                     consultBooks();
-                    location.reload(true);
+                    localStorage.removeItem('reload');
                 }
             });
         }

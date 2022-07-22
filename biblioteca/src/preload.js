@@ -6,6 +6,9 @@ const ipc = {
         'send': [
             'logout',
             'invitado',
+            'addBook',
+            'updateBook',
+            'deleteBook',
             'consultBook',
             'consultCarreras'
         ],
@@ -15,9 +18,7 @@ const ipc = {
             'getUserData',
             'getBooks',
             'getBook',
-            'addBook',
-            'updateBook',
-            'deleteBook'
+            'confirmAddBook'
         ]
     }
 };

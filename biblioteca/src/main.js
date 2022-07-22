@@ -129,6 +129,18 @@ function validateLogout(confirm) {
     store.delete('idCarrera');
     store.delete('nombreCarrera');
 
+    store.delete('isbnL');
+    store.delete('nombreL');
+    store.delete('carreraL');
+    store.delete('ubicacionL');
+    store.delete('editorialL');
+
+    store.delete('confirmAdd');
+    store.delete('confirmUpdate');
+    store.delete('confirmDelete');
+
+    store.delete('confirmLogin');
+
     createWindow();
     loginWindow.show();
     window.close();
@@ -201,9 +213,12 @@ electronIpcMain.handle('getBooks', (event) => {
   return data;
 });
 
-electronIpcMain.handle('addBook', (event, data) => {
-  addDB(data);
+electronIpcMain.handle('confirmAddBook', (event) => {
   return store.get('confirmAdd');
+});
+
+electronIpcMain.on('addBook', (event, data) => {
+  addDB(data);
 });
 
 function addDB(data) {
