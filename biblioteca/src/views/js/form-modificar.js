@@ -130,5 +130,5 @@ const consultBooks = () => {
 
 const formSubmit = (event) => {
     event.preventDefault();
-    return true;
+    return false;
 }
