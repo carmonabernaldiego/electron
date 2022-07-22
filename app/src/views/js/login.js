@@ -1,55 +1,57 @@
-let page;
+let error = document.querySelector('#text-error');
+let email = document.querySelector('#txtEmail');
+let password = document.querySelector('#txtPassword');
 
-document.addEventListener('DOMContentLoaded', function () {
-    page = new PageLogin(window);
+let btnLogin = document.querySelector('#btnLogin');
+
+btnLogin.addEventListener('click', () => {
+    validateInputs();
 });
 
-class PageLogin {
-    constructor() {
-        this.attachEvents();
+let btnInvitado = document.querySelector('#btnInvitado');
+
+btnInvitado.addEventListener('click', () => {
+    invitado();
+});
+
+const formSubmit = (event) => {
+    event.preventDefault();
+    login();
+    return false;
+}
+
+const login = () => {
+    if (!(email.value == '' && password.value == '')) {
+        const data = { email: email.value, password: password.value };
+
+        window.ipcRender.send('login', data);
+
+        setTimeout(errorLogin, 300);
     }
+}
 
-    get(id) {
-        return document.querySelector(id);
+const errorLogin = () => {
+    error.innerHTML = 'Correo electrónico o contraseña equivocada.';
+    error.classList.remove('text-muted');
+    error.classList.add('text-danger');
+
+    email.value = '';
+    password.value = '';
+    email.focus();
+}
+
+const validateInputs = () => {
+    if (email.value == '') {
+        error.innerHTML = 'Ingresá tú dirección de correo electrónico.';
+        error.classList.remove('text-muted');
+        error.classList.add('text-danger');
+    } else if (password.value == '') {
+        error.innerHTML = 'Ingresá tú contraseña.';
+        error.classList.remove('text-muted');
+        error.classList.add('text-danger');
     }
+}
 
-    attachEvents() {
-        let btnLogin = this.get('#btnLogin');
-        btnLogin.addEventListener('click', this.login);
-
-        let btnInvitado = this.get('#btnInvitado');
-        btnInvitado.addEventListener('click', this.invitado);
-    }
-
-    login() {
-        let error = page.get('#text-error');
-
-        let email = page.get('#txtEmail').value;
-        let password = page.get('#txtPassword').value;
-
-        if (email == '') {
-            error.innerHTML = 'Ingresá tú dirección de correo electrónico.';
-            error.classList.remove('text-muted');
-            error.classList.add('text-danger');
-        } else if (password == '') {
-            error.innerHTML = 'Ingresá tú contraseña.';
-            error.classList.remove('text-muted');
-            error.classList.add('text-danger');
-        } else {
-            error.innerHTML = '¡Bienvenido de nuevo! Ingrese a su cuenta.';
-            error.classList.add('text-muted');
-            error.classList.remove('text-danger');
-            page.get('#txtEmail').value = '';
-            page.get('#txtPassword').value = '';
-            page.get('#txtEmail').focus();
-
-            const data = { email: email, password: password };
-
-            window.ipcRender.send('login', data);
-        }
-    }
-
-    invitado() {
-        window.ipcRender.send('invitado', 'invitado');
-    }
+const invitado = () => {
+    window.ipcRender.send('invitado', 'invitado');
 }

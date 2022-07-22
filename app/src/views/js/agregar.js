@@ -1,25 +1,99 @@
 let txtISBN = document.querySelector('#txtISBN');
+let txtNombre = document.querySelector('#txtNombre');
+let selectCarrera = document.querySelector('#selectCarrera');
+let txtUbicacion = document.querySelector('#txtUbicacion');
+let txtEditorial = document.querySelector('#txtEditorial');
+
+window.ipcRender.invoke('getCarreras').then((result) => {
+    let { idCarrera, nombreCarrera } = result;
+
+    idCarrera = idCarrera.replace(/(^_)|(_$)/g, '');
+    idCarrera = idCarrera.split('_');
+    nombreCarrera = nombreCarrera.replace(/(^_)|(_$)/g, '');
+    nombreCarrera = nombreCarrera.split('_');
+
+    let carreras = [];
+
+    for (let i = 0; i < idCarrera.length; i++) {
+        carreras.push({
+            'idCarrera': idCarrera[i],
+            'nombreCarrera': nombreCarrera[i]
+        });
+    }
+
+    let texto = '';
+
+    for (let i = 0; i < carreras.length; i++) {
+        texto +=
+            `
+            <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
+            `;
+    }
+
+    selectCarrera.innerHTML += texto;
+});
+
 txtISBN.focus();
+
+txtISBN.addEventListener('keypress', function (e) {
+    if (!soloNumeros(e)) {
+        e.preventDefault();
+    }
+});
 
 let btnAgregar = document.querySelector('#btnAgregar');
 
 btnAgregar.addEventListener('click', () => {
-    txtISBN = document.querySelector('#txtISBN').value;
-    let txtNombre = document.querySelector('#txtNombre').value;
-    let txtCarrera = document.querySelector('#txtCarrera').value;
-    let txtUbicacion = document.querySelector('#txtUbicacion').value;
-    let txtEditorial = document.querySelector('#txtEditorial').value;
-
-    if (!(txtISBN == '' || txtNombre == '' || txtCarrera == '' || txtUbicacion == '' || txtEditorial == '')) {
-        let data = { isbn: txtISBN, nombre: txtNombre, carrera: txtCarrera, ubicacion: txtUbicacion, editorial: txtEditorial };
+    if (!(txtISBN.value == '' || txtNombre.value == '' || selectCarrera.value == '' || txtUbicacion.value == '' || txtEditorial.value == '')) {
+        let data = { isbn: txtISBN.value, nombre: txtNombre.value, carrera: selectCarrera.value, ubicacion: txtUbicacion.value, editorial: txtEditorial.value };
         addBook(data);
     }
 });
 
 const addBook = (data) => {
     window.ipcRender.send('addBook', data);
-    consultBooks();
+    localStorage.setItem('reload', '1');
     location.reload();
+}
+
+if (localStorage.getItem('reload') == '1') {
+    localStorage.removeItem('reload');
+
+    window.ipcRender.invoke('confirmAddBook').then((confirm) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger mr-2'
+            },
+            buttonsStyling: false,
+            allowEscapeKey: false,
+            allowOutsideClick: false
+        });
+
+        if (confirm == 1) {
+            swalWithBootstrapButtons.fire({
+                title: '¡Agregado!',
+                text: "Registro agregado.",
+                icon: 'success',
+                confirmButtonClass: 'mr-2'
+            }).then((result) => {
+                if (result.value) {
+                    consultBooks();
+                }
+            });
+        } else if (confirm == 0) {
+            swalWithBootstrapButtons.fire({
+                title: '¡Error!',
+                text: "No se puede agregar un nuevo registro a la base de datos.",
+                icon: 'error',
+                confirmButtonClass: 'mr-2'
+            }).then((result) => {
+                if (result.value) {
+                    consultBooks();
+                }
+            });
+        }
+    });
 }
 
 const mostrarLibros = (libros) => {
@@ -77,20 +151,12 @@ const consultBooks = () => {
     });
 }
 
-function validateInput(evt) {
-    var theEvent = evt || window.event;
+function soloNumeros(e) {
+    var key = e.charCode;
+    return key >= 48 && key <= 57 || key == 13;
+}
 
-    // Handle paste
-    if (theEvent.type === 'paste') {
-        key = event.clipboardData.getData('text/plain');
-    } else {
-        // Handle key press
-        var key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode(key);
-    }
-    var regex = /[0-9]|\./;
-    if (!regex.test(key)) {
-        theEvent.returnValue = false;
-        if (theEvent.preventDefault) theEvent.preventDefault();
-    }
+const formSubmit = (event) => {
+    event.preventDefault();
+    return false;
 }

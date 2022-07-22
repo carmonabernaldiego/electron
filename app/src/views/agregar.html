@@ -11,7 +11,7 @@
     <!-- plugin css for this page -->
     <link
       rel="stylesheet"
-      href="../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css"
+      href="../assets/vendors/sweetalert2/sweetalert2.min.css"
     />
     <!-- end plugin css for this page -->
     <!-- inject:css -->
@@ -134,7 +134,7 @@
               <div class="card">
                 <div class="card-body">
                   <h6 class="card-title">Libros</h6>
-                  <form action="#">
+                  <form onsubmit="return formSubmit(event)">
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="form-group">
@@ -147,7 +147,7 @@
                             class="form-control"
                             placeholder="ISBN"
                             maxlength="10"
-                            onkeypress="validateInput(event)"
+                            pattern="[0-9]+"
                             required
                           />
                         </div>
@@ -182,7 +182,7 @@
                             type="text"
                             class="form-control"
                             placeholder="Editorial"
-                            maxlength="50"
+                            maxlength="100"
                             required
                           />
                         </div>
@@ -194,47 +194,13 @@
                             >Carrera</label
                           >
                           <select
-                            id="txtCarrera"
+                            id="selectCarrera"
                             class="form-control"
+                            style="color: #495057"
                             required
                           >
                             <option value="" selected>
                               Seleccionar carrera
-                            </option>
-                            <option value="Ingeniería en Nanotecnología">
-                              Ingeniería en Nanotecnología
-                            </option>
-                            <option
-                              value="Licenciatura en Administración y Gestión Empresarial"
-                            >
-                              Licenciatura en Administración y Gestión
-                              Empresarial
-                            </option>
-                            <option value="Ingeniería Petrolera">
-                              Ingeniería Petrolera
-                            </option>
-                            <option
-                              value="Ingeniería en Tecnologías de Manufactura"
-                            >
-                              Ingeniería en Tecnologías de Manufactura
-                            </option>
-                            <option value="Ingeniería en Energía">
-                              Ingeniería en Energía
-                            </option>
-                            <option value="Ingeniería en Software">
-                              Ingeniería en Software
-                            </option>
-                            <option value="Ingeniería Biomédica">
-                              Ingeniería Biomédica
-                            </option>
-                            <option value="Ingeniería en Tecnología Ambiental">
-                              Ingeniería en Tecnología Ambiental
-                            </option>
-                            <option value="Ingeniería Agroindustrial">
-                              Ingeniería Agroindustrial
-                            </option>
-                            <option value="Ingeniería Mecatrónica">
-                              Ingeniería Mecatrónica
                             </option>
                           </select>
                         </div>
@@ -249,6 +215,7 @@
                             id="txtUbicacion"
                             type="text"
                             class="form-control"
+                            onkeyup="this.value = this.value.toUpperCase();"
                             placeholder="Ubicación"
                             maxlength="10"
                             required
@@ -276,7 +243,7 @@
           class="footer d-flex flex-column flex-md-row align-items-center justify-content-between"
         >
           <p class="text-muted text-center text-md-left">
-            Copyright © 2022 <a href="https://github.com/carmonabernaldiego/electron">Biblioteca CKH</a>. Todos los derechos
+            Copyright © 2022 <a href="#">Biblioteca CKH</a>. Todos los derechos
             reservados
           </p>
         </footer>
@@ -289,6 +256,8 @@
     <!-- plugin js for this page -->
     <script src="./js/load-user.js"></script>
     <script src="./js/agregar.js"></script>
+    <script src="../assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+    <script src="../assets/vendors/promise-polyfill/polyfill.min.js"></script>
     <!-- end plugin js for this page -->
     <!-- inject:js -->
     <script src="../assets/vendors/feather-icons/feather.min.js"></script>

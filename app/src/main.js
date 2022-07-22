@@ -104,14 +104,9 @@ function validateLogin(data) {
 
       createWindowDashboard();
       window.loadFile(path.join(__dirname, 'views/consultar.html'));
+      window.maximize();
       window.show();
       loginWindow.close();
-      window.maximize();
-    } else {
-      new electronNotification({
-        title: 'Inicia Sesión',
-        body: 'Correo electrónico o contraseña equivocada.'
-      }).show();
     }
   });
 }
@@ -127,6 +122,19 @@ function validateLogout(confirm) {
     store.delete('permissions');
     store.delete('name');
     store.delete('image');
+
+    store.delete('idCarrera');
+    store.delete('nombreCarrera');
+
+    store.delete('isbnL');
+    store.delete('nombreL');
+    store.delete('carreraL');
+    store.delete('ubicacionL');
+    store.delete('editorialL');
+
+    store.delete('confirmAdd');
+    store.delete('confirmUpdate');
+    store.delete('confirmDelete');
 
     createWindow();
     loginWindow.show();
@@ -173,7 +181,7 @@ electronIpcMain.handle('getBook', (event) => {
 electronIpcMain.handle('getBooks', (event) => {
   let isbn = '', nombre = '', carrera = '', ubicacion = '', editorial = '';
 
-  db.query('SELECT * FROM libros', (error, results, fields) => {
+  db.query('SELECT * FROM libros INNER JOIN carreras ON carreras.id_carrera = libros.carrera', (error, results, fields) => {
     if (error) {
       console.log(error);
     }
@@ -182,7 +190,7 @@ electronIpcMain.handle('getBooks', (event) => {
       for (let i = 0; i < results.length; i++) {
         isbn += results[i].ISBN + '_';
         nombre += results[i].nombre + '_';
-        carrera += results[i].carrera + '_';
+        carrera += results[i].nombre_carrera + '_';
         ubicacion += results[i].ubicacion + '_';
         editorial += results[i].editorial + '_';
       }
@@ -200,6 +208,10 @@ electronIpcMain.handle('getBooks', (event) => {
   return data;
 });
 
+electronIpcMain.handle('confirmAddBook', (event) => {
+  return store.get('confirmAdd');
+});
+
 electronIpcMain.on('addBook', (event, data) => {
   addDB(data);
 });
@@ -211,33 +223,9 @@ function addDB(data) {
   db.query(sql, [isbn, nombre, editorial, carrera, ubicacion], (error) => {
     if (error) {
       console.log(error);
-      new electronNotification({
-        title: 'Error',
-        body: 'El Libro con ISBN ' + isbn + ' ya existe.'
-      }).show();
+      store.set('confirmAdd', 0);
     } else {
-      new electronNotification({
-        title: 'Biblioteca CKH',
-        body: 'El Libro con ISBN ' + isbn + ' se agrego con éxito.'
-      }).show();
-    }
-  });
-}
-
-electronIpcMain.handle('deleteBook', (event, ISBN) => {
-  deleteDB(ISBN);
-  return store.get('confirmDelete');
-});
-
-function deleteDB(ISBN) {
-  const sql = 'DELETE FROM libros WHERE ISBN = ?';
-
-  db.query(sql, [ISBN], (error) => {
-    if (error) {
-      console.log(error);
-      store.set('confirmDelete', 0);
-    } else {
-      store.set('confirmDelete', 1);
+      store.set('confirmAdd', 1);
     }
   });
 }
@@ -260,3 +248,50 @@ function updateDB(data) {
     }
   });
 }
+
+electronIpcMain.handle('confirmDeleteBook', (event) => {
+  return store.get('confirmDelete');
+});
+
+electronIpcMain.on('deleteBook', (event, ISBN) => {
+  deleteDB(ISBN);
+});
+
+function deleteDB(ISBN) {
+  const sql = 'DELETE FROM libros WHERE ISBN = ?';
+
+  db.query(sql, [ISBN], (error) => {
+    if (error) {
+      console.log(error);
+      store.set('confirmDelete', 0);
+    } else {
+      store.set('confirmDelete', 1);
+    }
+  });
+}
+
+electronIpcMain.on('consultCarreras', (event) => {
+  let idCarrera = '', nombreCarrera = '';
+
+  db.query('SELECT * FROM carreras', (error, results, fields) => {
+    if (error) {
+      console.log(error);
+    }
+
+    if (results.length > 0) {
+      for (let i = 0; i < results.length; i++) {
+        idCarrera += results[i].id_carrera + '_';
+        nombreCarrera += results[i].nombre_carrera + '_';
+      }
+
+      store.set('idCarrera', idCarrera);
+      store.set('nombreCarrera', nombreCarrera);
+    }
+  });
+});
+
+electronIpcMain.handle('getCarreras', (event) => {
+  const data = { idCarrera: store.get('idCarrera'), nombreCarrera: store.get('nombreCarrera') };
+
+  return data;
+});

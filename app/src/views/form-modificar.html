@@ -138,7 +138,7 @@
               <div class="card">
                 <div class="card-body">
                   <h6 class="card-title">Libros</h6>
-                  <div>
+                  <form onsubmit="return formSubmit(event)">
                     <div class="row">
                       <div class="col-sm-6">
                         <div class="form-group">
@@ -185,7 +185,7 @@
                             type="text"
                             class="form-control"
                             placeholder="Editorial"
-                            maxlength="50"
+                            maxlength="100"
                             required
                           />
                         </div>
@@ -227,7 +227,7 @@
                     <!-- Row -->
                     <button
                       id="btnActualizar"
-                      type="button"
+                      type="submit"
                       class="btn btn-primary submit"
                     >
                       Actualizar
@@ -239,7 +239,7 @@
                     >
                       Cancelar
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -266,6 +266,7 @@
     <script src="./js/load-user.js"></script>
     <script src="./js/form-modificar.js"></script>
     <script src="../assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+    <script src="../assets/vendors/promise-polyfill/polyfill.min.js"></script>
     <!-- end plugin js for this page -->
     <!-- inject:js -->
     <script src="../assets/vendors/feather-icons/feather.min.js"></script>

@@ -8,9 +8,10 @@ $(function () {
                     cancelButton: 'btn btn-danger mr-2'
                 },
                 buttonsStyling: false,
-                allowEscapeKey : false,
+                allowEscapeKey: false,
                 allowOutsideClick: false
             });
+
             swalWithBootstrapButtons.fire({
                 title: '¿Estas seguro?',
                 text: "¡Esta acción no se puede revertir!",
@@ -22,27 +23,9 @@ $(function () {
                 reverseButtons: true
             }).then((result) => {
                 if (result.value) {
-                    window.ipcRender.invoke('deleteBook', ISBN).then((confirm) => {
-                        if (confirm == 1) {
-                            swalWithBootstrapButtons.fire({
-                                title: '¡Eliminado!',
-                                text: "Registro eliminado.",
-                                icon: 'success',
-                                confirmButtonClass: 'mr-2'
-                            }).then((result) => {
-                                if (result.value) {
-                                    consultBooks();
-                                    location.reload(true);
-                                }
-                            });
-                        } else if (confirm == 0) {
-                            swalWithBootstrapButtons.fire(
-                                'Cancelado',
-                                'La información permanece segura :)',
-                                'error'
-                            );
-                        }
-                    });
+                    window.ipcRender.send('deleteBook', ISBN);
+                    localStorage.setItem('reload', '1');
+                    location.reload();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     swalWithBootstrapButtons.fire(
                         'Cancelado',
@@ -54,6 +37,42 @@ $(function () {
         }
     }
 });
+
+if (localStorage.getItem('reload') == '1') {
+    localStorage.removeItem('reload');
+
+    window.ipcRender.invoke('confirmDeleteBook').then((confirm) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger mr-2'
+            },
+            buttonsStyling: false,
+            allowEscapeKey: false,
+            allowOutsideClick: false
+        });
+
+        if (confirm == 1) {
+            swalWithBootstrapButtons.fire({
+                title: '¡Eliminado!',
+                text: "Registro eliminado.",
+                icon: 'success',
+                confirmButtonClass: 'mr-2'
+            }).then((result) => {
+                if (result.value) {
+                    consultBooks();
+                    location.reload();
+                }
+            });
+        } else if (confirm == 0) {
+            swalWithBootstrapButtons.fire(
+                'Cancelado',
+                'La información permanece segura :)',
+                'error'
+            );
+        }
+    });
+}
 
 const mostrarLibros = (libros) => {
     let TablaLibros = document.querySelector('#tabla-libros');

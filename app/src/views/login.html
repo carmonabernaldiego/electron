@@ -36,7 +36,7 @@
                         mb-4">
                         ¡Bienvenido de nuevo! Ingrese a su cuenta.
                       </h5>
-                      <form class="forms-login" action="#">
+                      <form class="forms-login" onsubmit="return formSubmit(event)">
                         <div class="form-group">
                           <label for="txtEmail">Correo electrónico</label>
                           <input
@@ -88,6 +88,7 @@
     <!-- endinject -->
     <!-- plugin js for this page -->
     <script src="./js/login.js"></script>
+    <script src="../assets/vendors/promise-polyfill/polyfill.min.js"></script>
     <!-- end plugin js for this page -->
     <!-- inject:js -->
     <script src="../assets/vendors/feather-icons/feather.min.js"></script>

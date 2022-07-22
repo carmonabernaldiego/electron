@@ -7,15 +7,20 @@ const ipc = {
             'login',
             'logout',
             'invitado',
+            'addBook',
+            'updateBook',
+            'deleteBook',
             'consultBook',
-            'addBook'
+            'consultCarreras'
         ],
         'sendReceive': [
+            'confirmLogin',
+            'getCarreras',
             'getUserData',
-            'getBook',
             'getBooks',
-            'updateBook',
-            'deleteBook'
+            'getBook',
+            'confirmAddBook',
+            'confirmDeleteBook'
         ]
     }
 };
