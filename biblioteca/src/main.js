@@ -120,6 +120,8 @@ electronIpcMain.on('logout', (event, confirm) => {
 
 function validateLogout(confirm) {
   if (confirm == 'confirm-logout') {
+    store.delete('confirmLogin');
+
     store.delete('user');
     store.delete('email');
     store.delete('permissions');
@@ -138,8 +140,6 @@ function validateLogout(confirm) {
     store.delete('confirmAdd');
     store.delete('confirmUpdate');
     store.delete('confirmDelete');
-
-    store.delete('confirmLogin');
 
     createWindow();
     loginWindow.show();
@@ -254,9 +254,12 @@ function updateDB(data) {
   });
 }
 
-electronIpcMain.handle('deleteBook', (event, ISBN) => {
-  deleteDB(ISBN);
+electronIpcMain.handle('confirmDeleteBook', (event) => {
   return store.get('confirmDelete');
+});
+
+electronIpcMain.on('deleteBook', (event, ISBN) => {
+  deleteDB(ISBN);
 });
 
 function deleteDB(ISBN) {

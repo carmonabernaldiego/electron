@@ -57,6 +57,8 @@ const addBook = (data) => {
 }
 
 if (localStorage.getItem('reload') == '1') {
+    localStorage.removeItem('reload');
+
     window.ipcRender.invoke('confirmAddBook').then((confirm) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -77,7 +79,6 @@ if (localStorage.getItem('reload') == '1') {
             }).then((result) => {
                 if (result.value) {
                     consultBooks();
-                    localStorage.removeItem('reload');
                 }
             });
         } else if (confirm == 0) {
@@ -89,7 +90,6 @@ if (localStorage.getItem('reload') == '1') {
             }).then((result) => {
                 if (result.value) {
                     consultBooks();
-                    localStorage.removeItem('reload');
                 }
             });
         }

@@ -18,7 +18,8 @@ const ipc = {
             'getUserData',
             'getBooks',
             'getBook',
-            'confirmAddBook'
+            'confirmAddBook',
+            'confirmDeleteBook'
         ]
     }
 };
