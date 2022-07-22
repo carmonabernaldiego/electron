@@ -154,7 +154,7 @@ const mostrarLibrosBusqueda = (libros, data) => {
                 <div class='col-md-4 stretch-card grid-margin grid-margin-md-0'>
                     <div class='card'>
                         <div class='card-header border-0 text-center'>${libros[i].nombre}</div>
-                        <img src='../assets/images/book.jpg' class='card-img' alt=''>
+                        <img style='pointer-events: none;' src='../assets/images/book.jpg' class='card-img' alt=''>
                         <div class='card-body'>
                             <h6 class='card-subtitle text-body'>ISBN: ${libros[i].isbn}</h6>
                             <h6 class='card-subtitle text-body'>Editorial: ${libros[i].editorial}</h6>
