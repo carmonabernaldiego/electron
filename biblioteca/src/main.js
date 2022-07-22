@@ -19,6 +19,7 @@ let loginWindow;
 const createWindowDashboard = () => {
   // Create the browser window.
   window = new electronBrowserWindow({
+    icon: __dirname + '/assets/images/favicon.ico',
     width: 900,
     height: 600,
     autoHideMenuBar: true,
@@ -39,6 +40,7 @@ const createWindowDashboard = () => {
 const createWindow = () => {
   // Create the browser window.
   loginWindow = new electronBrowserWindow({
+    icon: __dirname + '/assets/images/favicon.ico',
     width: 500,
     height: 470,
     resizable: false,
