@@ -82,9 +82,12 @@ electronApp.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-electronIpcMain.handle('login', (event, data) => {
-  validateLogin(data);
+electronIpcMain.handle('confirmLogin', (event) => {
   return store.get('confirmLogin');
+});
+
+electronIpcMain.on('login', (event, data) => {
+  validateLogin(data);
 });
 
 function validateLogin(data) {

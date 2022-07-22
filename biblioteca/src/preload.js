@@ -4,6 +4,7 @@ const ipcRender = require('electron').ipcRenderer;
 const ipc = {
     'render': {
         'send': [
+            'login',
             'logout',
             'invitado',
             'addBook',
@@ -13,7 +14,7 @@ const ipc = {
             'consultCarreras'
         ],
         'sendReceive': [
-            'login',
+            'confirmLogin',
             'getCarreras',
             'getUserData',
             'getBooks',

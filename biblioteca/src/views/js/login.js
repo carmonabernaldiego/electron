@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 class PageLogin {
     constructor() {
+        this.reload();
         this.attachEvents();
     }
 
@@ -36,17 +37,25 @@ class PageLogin {
             error.classList.remove('text-muted');
             error.classList.add('text-danger');
         } else {
-            page.get('#txtEmail').value = '';
-            page.get('#txtPassword').value = '';
-            page.get('#txtEmail').focus();
-
             const data = { email: email, password: password };
 
-            window.ipcRender.invoke('login', data).then((confirm) => {
+            window.ipcRender.send('login', data);
+        }
+    }
+
+    reload() {
+        if (localStorage.getItem('reload') == '1') {
+            localStorage.removeItem('reload');
+
+            window.ipcRender.invoke('confirmLogin').then((confirm) => {
                 if (confirm == 0) {
                     error.innerHTML = 'Correo electrónico o contraseña equivocada.';
                     error.classList.remove('text-muted');
                     error.classList.add('text-danger');
+
+                    page.get('#txtEmail').value = '';
+                    page.get('#txtPassword').value = '';
+                    page.get('#txtEmail').focus();
                 }
             });
         }
