@@ -82,10 +82,6 @@ electronApp.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-electronIpcMain.handle('confirmLogin', (event) => {
-  return store.get('confirmLogin');
-});
-
 electronIpcMain.on('login', (event, data) => {
   validateLogin(data);
 });
@@ -97,7 +93,6 @@ function validateLogin(data) {
   db.query(sql, [email, password], (error, results, fields) => {
     if (error) {
       console.log(error);
-      store.set('confirmLogin', 0);
     }
 
     if (results.length > 0) {
@@ -106,13 +101,12 @@ function validateLogin(data) {
       store.set('permissions', results[0].permiso);
       store.set('name', results[0].nombre);
       store.set('image', results[0].imagen);
-      store.set('confirmLogin', 1);
 
       createWindowDashboard();
       window.loadFile(path.join(__dirname, 'views/consultar.html'));
+      window.maximize();
       window.show();
       loginWindow.close();
-      window.maximize();
     }
   });
 }
@@ -123,8 +117,6 @@ electronIpcMain.on('logout', (event, confirm) => {
 
 function validateLogout(confirm) {
   if (confirm == 'confirm-logout') {
-    store.delete('confirmLogin');
-
     store.delete('user');
     store.delete('email');
     store.delete('permissions');
