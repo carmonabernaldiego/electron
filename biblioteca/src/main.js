@@ -186,7 +186,7 @@ electronIpcMain.handle('getBook', (event) => {
 electronIpcMain.handle('getBooks', (event) => {
   let isbn = '', nombre = '', carrera = '', ubicacion = '', editorial = '';
 
-  db.query('SELECT * FROM libros', (error, results, fields) => {
+  db.query('SELECT * FROM libros INNER JOIN carreras ON carreras.id_carrera = libros.carrera', (error, results, fields) => {
     if (error) {
       console.log(error);
     }
@@ -195,7 +195,7 @@ electronIpcMain.handle('getBooks', (event) => {
       for (let i = 0; i < results.length; i++) {
         isbn += results[i].ISBN + '_';
         nombre += results[i].nombre + '_';
-        carrera += results[i].carrera + '_';
+        carrera += results[i].nombre_carrera + '_';
         ubicacion += results[i].ubicacion + '_';
         editorial += results[i].editorial + '_';
       }
