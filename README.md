@@ -10,5 +10,7 @@
 
 
 npm install electron
+
 npm install mysql2
+
 npm install electron-store
