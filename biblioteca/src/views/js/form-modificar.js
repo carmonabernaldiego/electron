@@ -33,10 +33,22 @@ const loadBook = () => {
             let texto = '';
 
             for (let i = 0; i < carreras.length; i++) {
-                texto +=
-                    `
-                    <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
-                    `;
+                if (carreras != '') {
+
+                }
+                if (carreras[i].idCarrera == carrera) {
+                    texto +=
+                        `
+                        <option value="${carreras[i].idCarrera}" selected>${carreras[i].nombreCarrera}</option>
+                        `;
+                }
+
+                if (carreras[i].idCarrera != carrera) {
+                    texto +=
+                        `
+                        <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
+                        `;
+                }
             }
 
             selectCarrera.innerHTML += texto;

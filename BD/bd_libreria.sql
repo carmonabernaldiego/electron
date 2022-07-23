@@ -1,40 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 5.1.3
--- https://www.phpmyadmin.net/
---
--- Servidor: localhost:3306
--- Tiempo de generación: 21-07-2022 a las 04:13:09
--- Versión del servidor: 5.7.33
--- Versión de PHP: 7.4.19
+CREATE DATABASE IF NOT EXISTS bd_libreria;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `bd_libreria`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `carreras`
---
+USE bd_libreria;
 
 CREATE TABLE `carreras` (
   `id_carrera` int(3) NOT NULL,
   `nombre_carrera` varchar(100) COLLATE utf8_spanish2_ci NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `carreras`
---
 
 INSERT INTO `carreras` (`id_carrera`, `nombre_carrera`) VALUES
 (489, 'Ambiental'),
@@ -43,12 +14,6 @@ INSERT INTO `carreras` (`id_carrera`, `nombre_carrera`) VALUES
 (783, 'Software'),
 (892, 'Inglés');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `libros`
---
-
 CREATE TABLE `libros` (
   `ISBN` varchar(10) COLLATE utf8_spanish2_ci NOT NULL,
   `nombre` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
@@ -56,10 +21,6 @@ CREATE TABLE `libros` (
   `carrera` int(3) NOT NULL DEFAULT '0',
   `ubicacion` varchar(10) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `libros`
---
 
 INSERT INTO `libros` (`ISBN`, `nombre`, `editorial`, `carrera`, `ubicacion`) VALUES
 ('1', 'Libro 1', 'Editorial 1', 783, 'A2'),
@@ -114,12 +75,6 @@ INSERT INTO `libros` (`ISBN`, `nombre`, `editorial`, `carrera`, `ubicacion`) VAL
 ('8499838781', 'Enterprise 1', 'Express', 892, 'C1'),
 ('8499928211', 'Derechos de los usuarios de los servicios de salud', 'IPN', 638, 'A1');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
 CREATE TABLE `usuarios` (
   `usuario` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `correo` varchar(200) COLLATE utf8_spanish2_ci DEFAULT NULL,
@@ -129,50 +84,22 @@ CREATE TABLE `usuarios` (
   `imagen` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
--- Volcado de datos para la tabla `usuarios`
---
-
 INSERT INTO `usuarios` (`usuario`, `correo`, `contrasena`, `permiso`, `nombre`, `imagen`) VALUES
 ('admin', 'carmonabernaldiego@gmail.com', 'root', 'admin', 'Diego Carmona Bernal', 'admin788.png'),
 ('hiram', 'hiram@gmail.com', 'hiram', 'admin', 'Hiram Culebro', 'admin-eb405861.png'),
 ('key', 'key@gmail.com', 'key123', 'admin', 'Keyla Sosa', 'key.jpeg');
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `carreras`
---
 ALTER TABLE `carreras`
   ADD PRIMARY KEY (`id_carrera`);
-
---
--- Indices de la tabla `libros`
---
+  
 ALTER TABLE `libros`
   ADD PRIMARY KEY (`ISBN`),
   ADD KEY `FK_carreras` (`carrera`);
 
---
--- Indices de la tabla `usuarios`
---
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`usuario`),
   ADD UNIQUE KEY `email` (`correo`);
 
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `libros`
---
 ALTER TABLE `libros`
   ADD CONSTRAINT `FK_carreras` FOREIGN KEY (`carrera`) REFERENCES `carreras` (`id_carrera`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
