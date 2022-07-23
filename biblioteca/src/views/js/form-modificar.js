@@ -1,6 +1,6 @@
 let txtISBN = document.querySelector('#txtISBN');
 let txtNombre = document.querySelector('#txtNombre');
-let txtCarrera = document.querySelector('#txtCarrera');
+let selectCarrera = document.querySelector('#selectCarrera');
 let txtUbicacion = document.querySelector('#txtUbicacion');
 let txtEditorial = document.querySelector('#txtEditorial');
 
@@ -10,9 +10,37 @@ const loadBook = () => {
 
         txtISBN.value = isbn;
         txtNombre.value = nombre;
-        txtCarrera.value = carrera;
         txtUbicacion.value = ubicacion;
         txtEditorial.value = editorial;
+
+        window.ipcRender.invoke('getCarreras').then((result) => {
+            let { idCarrera, nombreCarrera } = result;
+
+            idCarrera = idCarrera.replace(/(^_)|(_$)/g, '');
+            idCarrera = idCarrera.split('_');
+            nombreCarrera = nombreCarrera.replace(/(^_)|(_$)/g, '');
+            nombreCarrera = nombreCarrera.split('_');
+
+            let carreras = [];
+
+            for (let i = 0; i < idCarrera.length; i++) {
+                carreras.push({
+                    'idCarrera': idCarrera[i],
+                    'nombreCarrera': nombreCarrera[i]
+                });
+            }
+
+            let texto = '';
+
+            for (let i = 0; i < carreras.length; i++) {
+                texto +=
+                    `
+                    <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
+                    `;
+            }
+
+            selectCarrera.innerHTML += texto;
+        });
 
         txtNombre.focus();
     });

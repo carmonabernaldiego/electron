@@ -24,8 +24,7 @@ class Page {
     let profileUserBox = this.get('#profileUserBox');
     let profileName = this.get('#profileName');
     let profileEmail = this.get('#profileEmail');
-    let navUser = this.get('#navUser');
-
+   
     window.ipcRender.invoke('getUserData').then((result) => {
       const { user, email, permissions, image, name } = result;
 
