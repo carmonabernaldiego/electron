@@ -1,7 +1,6 @@
 const electronApp = require('electron').app;
 const electronBrowserWindow = require('electron').BrowserWindow;
 const electronIpcMain = require('electron').ipcMain;
-const electronNotification = require('electron').Notification;
 const Store = require('electron-store');
 const store = new Store();
 const path = require('path');
