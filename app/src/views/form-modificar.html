@@ -193,17 +193,15 @@
                       <!-- Col -->
                       <div class="col-sm-4">
                         <div class="form-group">
-                          <label for="txtCarrera" class="control-label"
+                          <label for="selectCarrera" class="control-label"
                             >Carrera</label
                           >
-                          <input
-                            id="txtCarrera"
-                            type="text"
+                          <select
+                            id="selectCarrera"
                             class="form-control"
-                            placeholder="Carrera"
-                            maxlength="50"
+                            style="color: #495057"
                             required
-                          />
+                          ></select>
                         </div>
                       </div>
                       <!-- Col -->
@@ -216,6 +214,7 @@
                             id="txtUbicacion"
                             type="text"
                             class="form-control"
+                            onkeyup="this.value = this.value.toUpperCase();"
                             placeholder="Ubicación"
                             maxlength="10"
                             required

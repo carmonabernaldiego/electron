@@ -1,6 +1,6 @@
 let txtISBN = document.querySelector('#txtISBN');
 let txtNombre = document.querySelector('#txtNombre');
-let txtCarrera = document.querySelector('#txtCarrera');
+let selectCarrera = document.querySelector('#selectCarrera');
 let txtUbicacion = document.querySelector('#txtUbicacion');
 let txtEditorial = document.querySelector('#txtEditorial');
 
@@ -10,9 +10,49 @@ const loadBook = () => {
 
         txtISBN.value = isbn;
         txtNombre.value = nombre;
-        txtCarrera.value = carrera;
         txtUbicacion.value = ubicacion;
         txtEditorial.value = editorial;
+
+        window.ipcRender.invoke('getCarreras').then((result) => {
+            let { idCarrera, nombreCarrera } = result;
+
+            idCarrera = idCarrera.replace(/(^_)|(_$)/g, '');
+            idCarrera = idCarrera.split('_');
+            nombreCarrera = nombreCarrera.replace(/(^_)|(_$)/g, '');
+            nombreCarrera = nombreCarrera.split('_');
+
+            let carreras = [];
+
+            for (let i = 0; i < idCarrera.length; i++) {
+                carreras.push({
+                    'idCarrera': idCarrera[i],
+                    'nombreCarrera': nombreCarrera[i]
+                });
+            }
+
+            let texto = '';
+
+            for (let i = 0; i < carreras.length; i++) {
+                if (carreras != '') {
+
+                }
+                if (carreras[i].idCarrera == carrera) {
+                    texto +=
+                        `
+                        <option value="${carreras[i].idCarrera}" selected>${carreras[i].nombreCarrera}</option>
+                        `;
+                }
+
+                if (carreras[i].idCarrera != carrera) {
+                    texto +=
+                        `
+                        <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
+                        `;
+                }
+            }
+
+            selectCarrera.innerHTML += texto;
+        });
 
         txtNombre.focus();
     });
@@ -28,14 +68,22 @@ btnCancelar.addEventListener('click', () => {
 });
 
 btnActualizar.addEventListener('click', () => {
-    if (!(txtISBN.value == '' || txtNombre.value == '' || txtCarrera.value == '' || txtUbicacion.value == '' || txtEditorial.value == '')) {
-        const data = { isbn: txtISBN.value, nombre: txtNombre.value, carrera: txtCarrera.value, ubicacion: txtUbicacion.value, editorial: txtEditorial.value };
+    if (!(txtISBN.value == '' || txtNombre.value == '' || selectCarrera.value == '' || txtUbicacion.value == '' || txtEditorial.value == '')) {
+        let data = { isbn: txtISBN.value, nombre: txtNombre.value, carrera: selectCarrera.value, ubicacion: txtUbicacion.value, editorial: txtEditorial.value };
         updateBook(data);
     }
 });
 
 const updateBook = (data) => {
-    window.ipcRender.invoke('updateBook', data).then((result) => {
+    window.ipcRender.send('updateBook', data);
+    localStorage.setItem('reload', '1');
+    location.reload();
+}
+
+if (localStorage.getItem('reload') == '1') {
+    localStorage.removeItem('reload');
+
+    window.ipcRender.invoke('confirmUpdateBook').then((confirm) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -45,7 +93,8 @@ const updateBook = (data) => {
             allowEscapeKey: false,
             allowOutsideClick: false
         });
-        if (result == 1) {
+
+        if (confirm == 1) {
             swalWithBootstrapButtons.fire({
                 title: '¡Actualizado!',
                 text: "Registro actualizado.",
@@ -57,7 +106,7 @@ const updateBook = (data) => {
                     location.href = './modificar.html';
                 }
             });
-        } else if (result == 0) {
+        } else if (confirm == 0) {
             swalWithBootstrapButtons.fire({
                 title: '¡Error!',
                 text: "La información permanece segura :)",
@@ -84,10 +133,10 @@ const mostrarLibros = (libros) => {
             `
             <tr>
                 <td>${libros[i].isbn}</td>
-                <td>${libros[i].nombre}</td>
+                <td>${libros[i].nombre}</td>                
+                <td>${libros[i].editorial}</td>
                 <td>${libros[i].carrera}</td>
                 <td>${libros[i].ubicacion}</td>
-                <td>${libros[i].editorial}</td>
                 <td class="text-center"><button type="button" class="btn btn-danger" onclick="showSwal('passing-parameter-execute-cancel', '${libros[i].isbn}')">Eliminar</button></td>
             </tr>
         `;

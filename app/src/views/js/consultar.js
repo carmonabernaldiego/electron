@@ -54,9 +54,9 @@ const mostrarLibros = (libros) => {
             <tr>
                 <td>${libros[i].isbn}</td>
                 <td>${libros[i].nombre}</td>
+                <td>${libros[i].editorial}</td>
                 <td>${libros[i].carrera}</td>
                 <td>${libros[i].ubicacion}</td>
-                <td>${libros[i].editorial}</td>
             </tr>
         `;
     }

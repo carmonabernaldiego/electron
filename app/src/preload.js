@@ -14,12 +14,12 @@ const ipc = {
             'consultCarreras'
         ],
         'sendReceive': [
-            'confirmLogin',
             'getCarreras',
             'getUserData',
             'getBooks',
             'getBook',
             'confirmAddBook',
+            'confirmUpdateBook',
             'confirmDeleteBook'
         ]
     }
