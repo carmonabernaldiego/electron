@@ -103,6 +103,7 @@ if (localStorage.getItem('reload') == '1') {
             }).then((result) => {
                 if (result.value) {
                     consultBooks();
+                    location.href = './modificar.html';
                 }
             });
         } else if (confirm == 0) {
@@ -114,6 +115,7 @@ if (localStorage.getItem('reload') == '1') {
             }).then((result) => {
                 if (result.value) {
                     consultBooks();
+                    location.href = './modificar.html';
                 }
             });
         }
