@@ -68,14 +68,22 @@ btnCancelar.addEventListener('click', () => {
 });
 
 btnActualizar.addEventListener('click', () => {
-    if (!(txtISBN.value == '' || txtNombre.value == '' || txtCarrera.value == '' || txtUbicacion.value == '' || txtEditorial.value == '')) {
-        const data = { isbn: txtISBN.value, nombre: txtNombre.value, carrera: txtCarrera.value, ubicacion: txtUbicacion.value, editorial: txtEditorial.value };
+    if (!(txtISBN.value == '' || txtNombre.value == '' || selectCarrera.value == '' || txtUbicacion.value == '' || txtEditorial.value == '')) {
+        let data = { isbn: txtISBN.value, nombre: txtNombre.value, carrera: selectCarrera.value, ubicacion: txtUbicacion.value, editorial: txtEditorial.value };
         updateBook(data);
     }
 });
 
 const updateBook = (data) => {
-    window.ipcRender.invoke('updateBook', data).then((result) => {
+    window.ipcRender.send('updateBook', data);
+    localStorage.setItem('reload', '1');
+    location.reload();
+}
+
+if (localStorage.getItem('reload') == '1') {
+    localStorage.removeItem('reload');
+
+    window.ipcRender.invoke('confirmUpdateBook').then((confirm) => {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -85,7 +93,8 @@ const updateBook = (data) => {
             allowEscapeKey: false,
             allowOutsideClick: false
         });
-        if (result == 1) {
+
+        if (confirm == 1) {
             swalWithBootstrapButtons.fire({
                 title: '¡Actualizado!',
                 text: "Registro actualizado.",
@@ -94,10 +103,9 @@ const updateBook = (data) => {
             }).then((result) => {
                 if (result.value) {
                     consultBooks();
-                    location.href = './modificar.html';
                 }
             });
-        } else if (result == 0) {
+        } else if (confirm == 0) {
             swalWithBootstrapButtons.fire({
                 title: '¡Error!',
                 text: "La información permanece segura :)",
@@ -106,7 +114,6 @@ const updateBook = (data) => {
             }).then((result) => {
                 if (result.value) {
                     consultBooks();
-                    location.href = './modificar.html';
                 }
             });
         }

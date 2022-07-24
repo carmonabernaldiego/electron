@@ -232,9 +232,12 @@ function addDB(data) {
   });
 }
 
-electronIpcMain.handle('updateBook', (event, data) => {
-  updateDB(data);
+electronIpcMain.handle('confirmUpdateBook', (event) => {
   return store.get('confirmUpdate');
+});
+
+electronIpcMain.on('updateBook', (event, data) => {
+  updateDB(data);
 });
 
 function updateDB(data) {
