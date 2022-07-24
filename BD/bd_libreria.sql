@@ -23,7 +23,6 @@ CREATE TABLE `libros` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 INSERT INTO `libros` (`ISBN`, `nombre`, `editorial`, `carrera`, `ubicacion`) VALUES
-('1', 'Libro 1', 'Editorial 1', 783, 'A2'),
 ('8401921015', 'Compiladores', 'Pearson', 783, 'B2'),
 ('8402086969', 'Como programar en c++', 'Deitel', 783, 'A4'),
 ('8403083910', 'Ecological restoration', 'Island Press', 489, 'D2'),
