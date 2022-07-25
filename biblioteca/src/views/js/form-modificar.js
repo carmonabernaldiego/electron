@@ -76,7 +76,14 @@ btnActualizar.addEventListener('click', () => {
 
 const updateBook = (data) => {
     window.ipcRender.send('updateBook', data);
+
     localStorage.setItem('reload', '1');
+    localStorage.setItem('txtISBN', txtISBN.value);
+    localStorage.setItem('txtNombre', txtNombre.value);
+    localStorage.setItem('selectCarrera', selectCarrera.value);
+    localStorage.setItem('txtUbicacion', txtUbicacion.value);
+    localStorage.setItem('txtEditorial', txtEditorial.value);
+
     location.reload();
 }
 
@@ -93,6 +100,11 @@ if (localStorage.getItem('reload') == '1') {
             allowEscapeKey: false,
             allowOutsideClick: false
         });
+
+        txtISBN.value = localStorage.getItem('txtISBN');
+        txtNombre.value = localStorage.getItem('txtNombre');
+        txtUbicacion.value = localStorage.getItem('txtUbicacion');
+        txtEditorial.value = localStorage.getItem('txtEditorial');
 
         if (confirm == 1) {
             swalWithBootstrapButtons.fire({
