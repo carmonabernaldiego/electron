@@ -33,21 +33,34 @@ const loadBook = () => {
             let texto = '';
 
             for (let i = 0; i < carreras.length; i++) {
-                if (carreras != '') {
+                if (localStorage.getItem('selectCarrera')) {
+                    if (carreras[i].idCarrera == localStorage.getItem('selectCarrera')) {
+                        texto +=
+                            `
+                            <option value="${carreras[i].idCarrera}" selected>${carreras[i].nombreCarrera}</option>
+                            `;
+                    }
 
-                }
-                if (carreras[i].idCarrera == carrera) {
-                    texto +=
-                        `
-                        <option value="${carreras[i].idCarrera}" selected>${carreras[i].nombreCarrera}</option>
-                        `;
-                }
+                    if (carreras[i].idCarrera != localStorage.getItem('selectCarrera')) {
+                        texto +=
+                            `
+                            <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
+                            `;
+                    }
+                } else {
+                    if (carreras[i].idCarrera == carrera) {
+                        texto +=
+                            `
+                            <option value="${carreras[i].idCarrera}" selected>${carreras[i].nombreCarrera}</option>
+                            `;
+                    }
 
-                if (carreras[i].idCarrera != carrera) {
-                    texto +=
-                        `
-                        <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
-                        `;
+                    if (carreras[i].idCarrera != carrera) {
+                        texto +=
+                            `
+                            <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
+                            `;
+                    }
                 }
             }
 
@@ -106,12 +119,6 @@ if (localStorage.getItem('reload') == '1') {
             allowOutsideClick: false
         });
 
-        localStorage.removeItem('txtISBN');
-        localStorage.removeItem('txtNombre');
-        localStorage.removeItem('txtUbicacion');
-        localStorage.removeItem('selectCarrera');
-        localStorage.removeItem('txtEditorial');
-
         if (confirm == 1) {
             swalWithBootstrapButtons.fire({
                 title: '¡Actualizado!',
@@ -120,6 +127,11 @@ if (localStorage.getItem('reload') == '1') {
                 confirmButtonClass: 'mr-2'
             }).then((result) => {
                 if (result.value) {
+                    localStorage.removeItem('txtISBN');
+                    localStorage.removeItem('txtNombre');
+                    localStorage.removeItem('txtUbicacion');
+                    localStorage.removeItem('selectCarrera');
+                    localStorage.removeItem('txtEditorial');
                     consultBooks();
                     location.href = './modificar.html';
                 }
@@ -132,6 +144,11 @@ if (localStorage.getItem('reload') == '1') {
                 confirmButtonClass: 'mr-2'
             }).then((result) => {
                 if (result.value) {
+                    localStorage.removeItem('txtISBN');
+                    localStorage.removeItem('txtNombre');
+                    localStorage.removeItem('txtUbicacion');
+                    localStorage.removeItem('selectCarrera');
+                    localStorage.removeItem('txtEditorial');
                     consultBooks();
                     location.href = './modificar.html';
                 }
