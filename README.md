@@ -20,7 +20,10 @@ npm install electron-store
 npm run start
 
 Usuarios:
-![image](https://user-images.githubusercontent.com/43613125/181368270-ab547545-33e7-48ec-b1d8-21a6dc4a32f4.png)
+
+<p align="center">
+  ![image](https://user-images.githubusercontent.com/43613125/181368270-ab547545-33e7-48ec-b1d8-21a6dc4a32f4.png)
+</p>
 
 ![image](https://user-images.githubusercontent.com/43613125/181367847-6e3934bf-e2ec-4cfc-9cdc-932b5cfaa855.png)
 
