@@ -91,6 +91,11 @@ if (localStorage.getItem('reload') == '1') {
     localStorage.removeItem('reload');
 
     window.ipcRender.invoke('confirmUpdateBook').then((confirm) => {
+        txtISBN.value = localStorage.getItem('txtISBN');
+        txtNombre.value = localStorage.getItem('txtNombre');
+        txtUbicacion.value = localStorage.getItem('txtUbicacion');
+        txtEditorial.value = localStorage.getItem('txtEditorial');
+
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -101,11 +106,11 @@ if (localStorage.getItem('reload') == '1') {
             allowOutsideClick: false
         });
 
-        txtISBN.value = localStorage.getItem('txtISBN');
-        txtNombre.value = localStorage.getItem('txtNombre');
-        txtUbicacion.value = localStorage.getItem('txtUbicacion');
-        selectCarrera.value = localStorage.getItem('selectCarrera');
-        txtEditorial.value = localStorage.getItem('txtEditorial');
+        localStorage.removeItem('txtISBN');
+        localStorage.removeItem('txtNombre');
+        localStorage.removeItem('txtUbicacion');
+        localStorage.removeItem('selectCarrera');
+        localStorage.removeItem('txtEditorial');
 
         if (confirm == 1) {
             swalWithBootstrapButtons.fire({
