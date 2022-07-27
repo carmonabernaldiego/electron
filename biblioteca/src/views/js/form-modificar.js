@@ -104,6 +104,7 @@ if (localStorage.getItem('reload') == '1') {
         txtISBN.value = localStorage.getItem('txtISBN');
         txtNombre.value = localStorage.getItem('txtNombre');
         txtUbicacion.value = localStorage.getItem('txtUbicacion');
+        selectCarrera.value = localStorage.getItem('selectCarrera');
         txtEditorial.value = localStorage.getItem('txtEditorial');
 
         if (confirm == 1) {
