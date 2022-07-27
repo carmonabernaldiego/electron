@@ -18,3 +18,10 @@ npm install electron-store
 5.- Ejecuta el siguiente comando para iniciar:
 
 npm run start
+
+
+![image](https://user-images.githubusercontent.com/43613125/181367847-6e3934bf-e2ec-4cfc-9cdc-932b5cfaa855.png)
+
+![image](https://user-images.githubusercontent.com/43613125/181367910-ce471935-1067-4b53-b3df-47b1fd894b6d.png)
+
+![image](https://user-images.githubusercontent.com/43613125/181367794-ecdc6d22-23c0-4a6c-9b67-45ad75ea733a.png)
