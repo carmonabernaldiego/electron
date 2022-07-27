@@ -2,7 +2,7 @@
 
 1.- Clona el repositorio.
 
-2.- Crea una nueva base de datos con el nombre “bd_libreria” e importa el archivo “bd_libreria.sql” que está en la carpeta “BD” de este repositorio.
+2.- Accede a tu gestor de base de datos MySQL, importa el archivo “bd_libreria.sql” que está en la carpeta “BD” de este repositorio.
 
 3.- Posiciónate en la carpeta “biblioteca” si estas en Windows, de lo contrario accede a la carpeta “app” si estas en alguna distribución Linux.
 
