@@ -127,6 +127,12 @@ function validateLogout(confirm) {
     store.delete('idCarrera');
     store.delete('nombreCarrera');
 
+    /*store.delete('isbn');
+    store.delete('nombre');
+    store.delete('carrera');
+    store.delete('ubicacion');
+    store.delete('editorial');*/
+
     store.delete('isbnL');
     store.delete('nombreL');
     store.delete('carreraL');

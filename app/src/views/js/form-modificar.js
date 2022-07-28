@@ -33,21 +33,34 @@ const loadBook = () => {
             let texto = '';
 
             for (let i = 0; i < carreras.length; i++) {
-                if (carreras != '') {
+                if (localStorage.getItem('selectCarrera')) {
+                    if (carreras[i].idCarrera == localStorage.getItem('selectCarrera')) {
+                        texto +=
+                            `
+                            <option value="${carreras[i].idCarrera}" selected>${carreras[i].nombreCarrera}</option>
+                            `;
+                    }
 
-                }
-                if (carreras[i].idCarrera == carrera) {
-                    texto +=
-                        `
-                        <option value="${carreras[i].idCarrera}" selected>${carreras[i].nombreCarrera}</option>
-                        `;
-                }
+                    if (carreras[i].idCarrera != localStorage.getItem('selectCarrera')) {
+                        texto +=
+                            `
+                            <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
+                            `;
+                    }
+                } else {
+                    if (carreras[i].idCarrera == carrera) {
+                        texto +=
+                            `
+                            <option value="${carreras[i].idCarrera}" selected>${carreras[i].nombreCarrera}</option>
+                            `;
+                    }
 
-                if (carreras[i].idCarrera != carrera) {
-                    texto +=
-                        `
-                        <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
-                        `;
+                    if (carreras[i].idCarrera != carrera) {
+                        texto +=
+                            `
+                            <option value="${carreras[i].idCarrera}">${carreras[i].nombreCarrera}</option>
+                            `;
+                    }
                 }
             }
 
@@ -76,7 +89,14 @@ btnActualizar.addEventListener('click', () => {
 
 const updateBook = (data) => {
     window.ipcRender.send('updateBook', data);
+
     localStorage.setItem('reload', '1');
+    localStorage.setItem('txtISBN', txtISBN.value);
+    localStorage.setItem('txtNombre', txtNombre.value);
+    localStorage.setItem('selectCarrera', selectCarrera.value);
+    localStorage.setItem('txtUbicacion', txtUbicacion.value);
+    localStorage.setItem('txtEditorial', txtEditorial.value);
+
     location.reload();
 }
 
@@ -84,6 +104,11 @@ if (localStorage.getItem('reload') == '1') {
     localStorage.removeItem('reload');
 
     window.ipcRender.invoke('confirmUpdateBook').then((confirm) => {
+        txtISBN.value = localStorage.getItem('txtISBN');
+        txtNombre.value = localStorage.getItem('txtNombre');
+        txtUbicacion.value = localStorage.getItem('txtUbicacion');
+        txtEditorial.value = localStorage.getItem('txtEditorial');
+
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -102,6 +127,11 @@ if (localStorage.getItem('reload') == '1') {
                 confirmButtonClass: 'mr-2'
             }).then((result) => {
                 if (result.value) {
+                    localStorage.removeItem('txtISBN');
+                    localStorage.removeItem('txtNombre');
+                    localStorage.removeItem('txtUbicacion');
+                    localStorage.removeItem('selectCarrera');
+                    localStorage.removeItem('txtEditorial');
                     consultBooks();
                     location.href = './modificar.html';
                 }
@@ -114,6 +144,11 @@ if (localStorage.getItem('reload') == '1') {
                 confirmButtonClass: 'mr-2'
             }).then((result) => {
                 if (result.value) {
+                    localStorage.removeItem('txtISBN');
+                    localStorage.removeItem('txtNombre');
+                    localStorage.removeItem('txtUbicacion');
+                    localStorage.removeItem('selectCarrera');
+                    localStorage.removeItem('txtEditorial');
                     consultBooks();
                     location.href = './modificar.html';
                 }
