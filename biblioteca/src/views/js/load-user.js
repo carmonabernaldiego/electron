@@ -24,15 +24,15 @@ class Page {
     let profileUserBox = this.get('#profileUserBox');
     let profileName = this.get('#profileName');
     let profileEmail = this.get('#profileEmail');
-   
+
     window.ipcRender.invoke('getUserData').then((result) => {
       const { user, email, permissions, image, name } = result;
 
       if (permissions == 'admin') {
         profileName.innerHTML = name;
         profileEmail.innerHTML = email;
-        profileUser.src = 'http://mysoftup.com/images/users/' + image;
-        profileUserBox.src = 'http://mysoftup.com/images/users/' + image;
+        profileUser.src = '../assets/images/' + image;
+        profileUserBox.src = '../assets/images/' + image;
 
         window.ipcRender.send('consultCarreras');
       } else if (permissions == 'invitado') {
