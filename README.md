@@ -6,7 +6,9 @@
 
 2. Navega a la ubicación donde deseas clonar el repositorio. Puedes hacerlo usando el comando cd seguido de la ruta del directorio. Por ejemplo: `cd /ruta/del/directorio`
 
-3. Clona el repositorio usando el siguiente comando: `git clone https://github.com/carmonabernaldiego/electron/edit/main/README.md`
+3. Clona el repositorio usando el siguiente comando:
+
+> `git clone https://github.com/carmonabernaldiego/electron/edit/main/README.md`
 
 4. Accede al gestor de base de datos MySQL y asegúrate de tenerlo instalado en tu sistema. Luego, importa el archivo "bd_libreria.sql" que se encuentra en la carpeta "BD" del repositorio clonado. Puedes importar el archivo utilizando una herramienta de administración de MySQL como phpMyAdmin o el comando mysql en la línea de comandos.
 
