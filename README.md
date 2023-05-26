@@ -1,6 +1,6 @@
 # Electron - Fichero Bibliotecario
 
-**Guía de Instalación Rápida:
+**Guía de Instalación Rápida:**
 
 1. Abre una terminal o línea de comandos en tu sistema.
 
