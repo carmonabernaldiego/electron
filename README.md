@@ -27,7 +27,9 @@
 Estos comandos instalarán las dependencias de Electron, mysql2 y electron-store en tu proyecto.
 
 7. Una vez que se hayan instalado las dependencias, ejecuta el siguiente comando para iniciar la aplicación:
-npm run start
+
+> `npm run start`
+
 Este comando iniciará la aplicación utilizando Electron.
 
 Usuarios:
