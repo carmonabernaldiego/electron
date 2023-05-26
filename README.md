@@ -8,7 +8,7 @@
 
 3. Clona el repositorio usando el siguiente comando:
 
-> `git clone https://github.com/carmonabernaldiego/electron/edit/main/README.md`
+> `git clone https://github.com/carmonabernaldiego/electron.git`
 
 4. Accede al gestor de base de datos MySQL y asegúrate de tenerlo instalado en tu sistema. Luego, importa el archivo "bd_libreria.sql" que se encuentra en la carpeta "BD" del repositorio clonado. Puedes importar el archivo utilizando una herramienta de administración de MySQL como phpMyAdmin o el comando mysql en la línea de comandos.
 
