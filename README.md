@@ -4,7 +4,7 @@
 
 1. Abre una terminal o línea de comandos en tu sistema.
 
-2. Navega a la ubicación donde deseas clonar el repositorio. Puedes hacerlo usando el comando cd seguido de la ruta del directorio. Por ejemplo: `cd /ruta/del/directorio`.
+2. Navega a la ubicación donde deseas clonar el repositorio. Puedes hacerlo usando el comando cd seguido de la ruta del directorio. Por ejemplo: `cd /ruta/del/directorio`
 
 3. Clona el repositorio usando el siguiente comando: `git clone https://github.com/carmonabernaldiego/electron/edit/main/README.md`
 
@@ -12,8 +12,8 @@
 
 5. Después de clonar el repositorio, posiciona la terminal en la carpeta correspondiente dependiendo del sistema operativo:
 
-- En Windows: Navega a la carpeta "biblioteca" usando el comando cd biblioteca.
-- En Linux: Navega a la carpeta "app" usando el comando cd app.
+  - En Windows: Navega a la carpeta "biblioteca" usando el comando cd biblioteca.
+  - En Linux: Navega a la carpeta "app" usando el comando cd app.
 
 6. Ejecuta los siguientes comandos para instalar las dependencias necesarias:
 `npm install electron
