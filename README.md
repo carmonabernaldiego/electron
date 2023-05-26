@@ -1,5 +1,7 @@
 # Electron - Fichero Bibliotecario
 
+Guía de Instalación Rápida:
+
 1. Abre una terminal o línea de comandos en tu sistema.
 
 2. Navega a la ubicación donde deseas clonar el repositorio. Puedes hacerlo usando el comando cd seguido de la ruta del directorio. Por ejemplo: cd /ruta/del/directorio.
