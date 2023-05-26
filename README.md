@@ -18,9 +18,7 @@
 6. Ejecuta los siguientes comandos para instalar las dependencias necesarias:
 
 `npm install electron`
-
 `npm install mysql2`
-
 `npm install electron-store`
 
 
