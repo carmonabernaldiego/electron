@@ -1,23 +1,27 @@
 # Electron - Fichero Bibliotecario
 
-1.- Clona el repositorio.
+1. Abre una terminal o línea de comandos en tu sistema.
 
-2.- Accede a tu gestor de base de datos MySQL, importa el archivo “bd_libreria.sql” que está en la carpeta “BD” de este repositorio.
+2. Navega a la ubicación donde deseas clonar el repositorio. Puedes hacerlo usando el comando cd seguido de la ruta del directorio. Por ejemplo: cd /ruta/del/directorio.
 
-3.- Posiciónate en la carpeta “biblioteca” si estas en Windows, de lo contrario accede a la carpeta “app” si estas en alguna distribución Linux.
+3. Clona el repositorio usando el siguiente comando: git clone https://github.com/carmonabernaldiego/electron/edit/main/README.md
 
-4.- Ejecuta los siguientes comandos, asegúrate que estas en la carpeta correcta de acuerdo con el punto anterior.
+4. Accede al gestor de base de datos MySQL y asegúrate de tenerlo instalado en tu sistema. Luego, importa el archivo "bd_libreria.sql" que se encuentra en la carpeta "BD" del repositorio clonado. Puedes importar el archivo utilizando una herramienta de administración de MySQL como phpMyAdmin o el comando mysql en la línea de comandos.
 
+5. Después de clonar el repositorio, posiciona la terminal en la carpeta correspondiente dependiendo del sistema operativo:
 
+En Windows: Navega a la carpeta "biblioteca" usando el comando cd biblioteca.
+En Linux: Navega a la carpeta "app" usando el comando cd app.
+
+6. Ejecuta los siguientes comandos para instalar las dependencias necesarias:
 npm install electron
-
 npm install mysql2
-
 npm install electron-store
+Estos comandos instalarán las dependencias de Electron, mysql2 y electron-store en tu proyecto.
 
-5.- Ejecuta el siguiente comando para iniciar:
-
+7. Una vez que se hayan instalado las dependencias, ejecuta el siguiente comando para iniciar la aplicación:
 npm run start
+Este comando iniciará la aplicación utilizando Electron.
 
 Usuarios:
 
