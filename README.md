@@ -12,8 +12,8 @@
 
 5. Después de clonar el repositorio, posiciona la terminal en la carpeta correspondiente dependiendo del sistema operativo:
 
-<- En Windows: Navega a la carpeta "biblioteca" usando el comando cd biblioteca.>
-<- En Linux: Navega a la carpeta "app" usando el comando cd app.>
+> - En Windows: Navega a la carpeta "biblioteca" usando el comando cd biblioteca.
+> - En Linux: Navega a la carpeta "app" usando el comando cd app.
 
 6. Ejecuta los siguientes comandos para instalar las dependencias necesarias:
 `npm install electron
