@@ -4,7 +4,7 @@
 
 2. Navega a la ubicación donde deseas clonar el repositorio. Puedes hacerlo usando el comando cd seguido de la ruta del directorio. Por ejemplo: cd /ruta/del/directorio.
 
-3. Clona el repositorio usando el siguiente comando: git clone https://github.com/carmonabernaldiego/electron/edit/main/README.md
+3. Clona el repositorio usando el siguiente comando: `git clone https://github.com/carmonabernaldiego/electron/edit/main/README.md`
 
 4. Accede al gestor de base de datos MySQL y asegúrate de tenerlo instalado en tu sistema. Luego, importa el archivo "bd_libreria.sql" que se encuentra en la carpeta "BD" del repositorio clonado. Puedes importar el archivo utilizando una herramienta de administración de MySQL como phpMyAdmin o el comando mysql en la línea de comandos.
 
@@ -14,9 +14,9 @@ En Windows: Navega a la carpeta "biblioteca" usando el comando cd biblioteca.
 En Linux: Navega a la carpeta "app" usando el comando cd app.
 
 6. Ejecuta los siguientes comandos para instalar las dependencias necesarias:
-npm install electron
+`npm install electron
 npm install mysql2
-npm install electron-store
+npm install electron-store`
 Estos comandos instalarán las dependencias de Electron, mysql2 y electron-store en tu proyecto.
 
 7. Una vez que se hayan instalado las dependencias, ejecuta el siguiente comando para iniciar la aplicación:
